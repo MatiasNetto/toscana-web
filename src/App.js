@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link, Switch} from "react-router-dom";
 
 //pages
 import TestPage from './pages/TestPage'
+import Home from './pages/Home'
 
 function App() {
   return (
@@ -10,7 +11,7 @@ function App() {
       <Switch>
 
       <Route path='/test' exact children={TestPage}/>
-      <Route exact path='/' children='home'/>
+      <Route exact path='/' children={Home}/>
 
       </Switch>
     </Router>

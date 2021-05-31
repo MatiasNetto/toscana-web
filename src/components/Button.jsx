@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Buttom = () => {
+const Button = () => {
     return ( 
         <>
         
@@ -8,4 +8,4 @@ const Buttom = () => {
      );
 }
  
-export default Buttom;
+export default Button;
