@@ -1,9 +1,50 @@
 .main-container {
   height: 92vh;
   width: 100%;
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  border: 1px solid #f00;
+  overflow: hidden;
+}
+
+.slider-shown {
+  width: 100%;
+  position: absolute;
+  z-index: -999;
+  top: 0;
+  left: 0;
+  filter: brightness(80%);
+  opacity: 100%;
+  animation: shown 1s;
+}
+
+@keyframes shown {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+.slider-hidden {
+  width: 100%;
+  position: absolute;
+  z-index: -9999;
+  top: 0;
+  left: 0;
+  filter: brightness(80%);
+  opacity: 100%;
+}
+
+.tittle {
+  font-size: 3em;
+  text-align: center;
+}
+
+.subtittle {
+  font-size: 1em;
+  text-align: center;
 }

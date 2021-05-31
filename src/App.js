@@ -11,7 +11,7 @@ function App() {
       <Switch>
 
       <Route path='/test' exact children={TestPage}/>
-      <Route exact path='/' children={Home}/>
+      <Route exact path='/' component={Home}/>
 
       </Switch>
     </Router>
