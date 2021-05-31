@@ -4,6 +4,7 @@ import React, {useRef, useState} from 'react';
 import './styles/Home.css'
 
 //assets
+import logo from '../assets/logos/logo.png'
 import sliderImage1 from '../assets/slider/slider_1.jpg'
 import sliderImage2 from '../assets/slider/slider_2.jpg'
 import sliderImage3 from '../assets/slider/slider_3.jpg'
@@ -42,7 +43,7 @@ function Home() {
         sliderNumber ++
 
         //reset counter
-        if (sliderNumber == (sliderImages.length - 1)) {sliderNumber = 0}
+        if (sliderNumber == (sliderImages.length)) {sliderNumber = 0}
     }
     setInterval(changeImage,4000)
 
@@ -52,8 +53,8 @@ function Home() {
             <div className='main-container'>
                 <img ref={slider1} src={sliderImage1} className='slider-shown' alt="" />
                 <img ref={slider2} src={sliderImage1} className='slider-hidden' alt="" />
-                <img className='logo-img' src="" alt="Toscana logo" />
-                <div>
+                <img className='logo-img' src={logo} alt="Toscana logo" />
+                <div className='tittles-container'>
                     <h2 className='tittle'>Toscana</h2>
                     <h3 className='subtittle'>Accesorios</h3>
                 </div>

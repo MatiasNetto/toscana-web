@@ -15,7 +15,7 @@
   z-index: -999;
   top: 0;
   left: 0;
-  filter: brightness(80%);
+  filter: brightness(80%) blur(1px);
   opacity: 100%;
   animation: shown 1s;
 }
@@ -35,16 +35,26 @@
   z-index: -9999;
   top: 0;
   left: 0;
-  filter: brightness(80%);
+  filter: brightness(80%) blur(1px);
   opacity: 100%;
 }
 
+.logo-img {
+  width: 40vw;
+}
+
+.tittles-container {
+  margin-bottom: 10vh;
+}
+
 .tittle {
-  font-size: 3em;
+  font-size: 4em;
+  letter-spacing: 4px;
   text-align: center;
 }
 
 .subtittle {
-  font-size: 1em;
+  font-size: 2em;
+  font-weight: 300;
   text-align: center;
 }
