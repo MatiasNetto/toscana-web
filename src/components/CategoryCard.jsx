@@ -1,13 +1,17 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
 
-const CategoryCard = (props) => {
+//styles
+import './styles/CategoryCard.css'
+
+const CategoryCard = ({img,category,align}) => {
 
     return ( 
         <>
-            <div className='category-card-container'>
-                <img src={props.img} alt={props.category} />
-                <h5 style={{textAlign: + props.position}} >{props.category}</h5>
-            </div> 
+            <Link to='/category' className='category-card-container'>
+                <h5 className='text' style={align == 'left' ? {textAlign:'left'} : {textAlign:'right'}} >{category}</h5>
+                <img className='img' src={img} alt={category} />
+            </Link> 
         </>
      );
 }

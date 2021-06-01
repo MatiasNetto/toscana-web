@@ -1,9 +1,0 @@
-.products-grid-container {
-  display: grid;
-  grid-template-columns: 40vw 40vw;
-}
-
-.products-container {
-  background-color: #f5f5ff;
-  padding-top: 5vh;
-}

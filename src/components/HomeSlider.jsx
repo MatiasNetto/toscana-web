@@ -32,8 +32,8 @@ const HomeSLider = () => {
 
     return (
         <div className='main-container'>
-            <img src={sliderNumber %2 != 0 ? sliderImages[sliderNumber] : sliderImages[sliderNumber - 1]} className={sliderNumber %2 != 0 ? 'slider-shown' : 'slider-hidden'} alt="" />
-            <img src={sliderNumber %2 == 0 ? sliderImages[sliderNumber] : sliderImages[sliderNumber - 1]} className={sliderNumber %2 == 0 ? 'slider-shown' : 'slider-hidden'} alt="" />
+            <img src={sliderNumber %2 !== 0 ? sliderImages[sliderNumber] : sliderImages[sliderNumber - 1]} className={sliderNumber %2 !== 0 ? 'slider-shown' : 'slider-hidden'} alt="" />
+            <img src={sliderNumber %2 === 0 ? sliderImages[sliderNumber] : sliderImages[sliderNumber - 1]} className={sliderNumber %2 === 0 ? 'slider-shown' : 'slider-hidden'} alt="" />
             <img className='logo-img' src={logo} alt="Toscana logo" />
             <div className='tittles-container'>
                 <h2 className='tittle'>Toscana</h2>
