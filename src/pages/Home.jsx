@@ -15,6 +15,8 @@ import sliderImage6 from '../assets/slider/slider_6.jpg'
 //components
 import NavBar from '../components/NavBar'
 import Button from '../components/Button'
+import Subtittle from '../components/Subtittle'
+import CategoryCard from '../components/CategoryCard'
 
 function Home() {
     const slider1 = useRef(null);
@@ -60,6 +62,13 @@ function Home() {
                 </div>
                 <Button text='Ver mas'/>
             </div>
+            <div className='products-container'>
+                <Subtittle text='Ver productos'/>
+                <div className='categories-grid-container'>
+                    <CategoryCard category='Anillos' img={sliderImage1} position='right'/>
+                </div>
+            </div>
+
         
         </>
      );

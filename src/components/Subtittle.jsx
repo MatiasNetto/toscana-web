@@ -1,9 +1,12 @@
 import React from 'react';
 
-const Subtittle = () => {
+import './styles/Subtittle.css'
+
+const Subtittle = (props) => {
     return ( 
         <>
-        
+            <h4 className='subtittle'>{props.text}</h4>
+            <hr />
         </>
      );
 }

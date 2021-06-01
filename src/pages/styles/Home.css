@@ -58,3 +58,22 @@
   font-weight: 300;
   text-align: center;
 }
+
+.products-grid-container {
+  display: grid;
+  grid-template-columns: 40vw 40vw;
+}
+
+.products-container {
+  background-color: #f5f5ff;
+  padding-top: 5vh;
+}
+
+@media screen and (min-width: 1000px) {
+  .main-container {
+  }
+
+  .logo-img {
+    width: 18vw;
+  }
+}
