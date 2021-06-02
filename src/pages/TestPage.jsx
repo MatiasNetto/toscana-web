@@ -10,6 +10,7 @@ const TestPage = () => {
     return ( 
         <>
        <h1>ashe</h1> 
+       <NavBar/>
         </>
      );
 }

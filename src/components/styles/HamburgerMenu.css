@@ -1,0 +1,18 @@
+input{
+    position: right;
+    height: 3em;
+    width: 3em;
+    padding-top: 10%;
+    padding-right: 10%;
+    background-color: whitesmoke;
+    border: 5% solid black;
+}
+.hamburguerline{
+    background-color: black;
+    box-sizing: content-box;
+    padding: 5% 3% 5% 3%;
+    height: 3em;
+    width: 1em;
+    border: 5% solid black;
+    border-radius: 20%;
+}
