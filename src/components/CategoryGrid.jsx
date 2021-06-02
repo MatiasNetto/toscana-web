@@ -4,7 +4,7 @@ import React from 'react';
 import './styles/CategoryGrid.css'
 
 //assets
-import sliderImage1 from '../assets/slider/slider_1.jpg'
+import sliderImage1 from '../assets/slider/mobile/slider_1.jpg'
 
 //components
 import Subtittle from '../components/Subtittle'

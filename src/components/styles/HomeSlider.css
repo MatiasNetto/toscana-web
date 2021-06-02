@@ -13,7 +13,8 @@
   width: 100%;
   position: absolute;
   z-index: -999;
-  top: 0;
+  top: 50;
+  bottom: 50;
   left: 0;
   filter: brightness(80%) blur(1px);
   opacity: 100%;
@@ -33,7 +34,8 @@
   width: 100%;
   position: absolute;
   z-index: -9999;
-  top: 0;
+  top: 50;
+  bottom: 50;
   left: 0;
   filter: brightness(80%) blur(1px);
   opacity: 100%;
@@ -61,6 +63,6 @@
 
 @media screen and (min-width: 1000px) {
   .logo-img {
-    width: 18vw;
+    width: 12vw;
   }
 }
