@@ -3,11 +3,11 @@ import React from 'react';
 const HamburgerMenu = () => {
     return ( 
         <>
-        <a href="" target="blank"><input type="button">
+        <a href="" target="blank">
             <div className="hamburguerline"></div>
             <div className="hamburguerline"></div>
-            <div className="hamburguerline"></div>            
-        </input></a>
+            <div className="hamburguerline"></div>
+        </a>
         </>
      );
 }
