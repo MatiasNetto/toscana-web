@@ -5,30 +5,38 @@ import './styles/HomeSlider.css'
 
 //assets
 import logo from '../assets/logos/logo.png'
-import sliderImage1 from '../assets/slider/slider_1.jpg'
-import sliderImage2 from '../assets/slider/slider_2.jpg'
-import sliderImage3 from '../assets/slider/slider_3.jpg'
-import sliderImage4 from '../assets/slider/slider_4.jpg'
-import sliderImage5 from '../assets/slider/slider_5.jpg'
-import sliderImage6 from '../assets/slider/slider_6.jpg'
 
 //components
 import Button from '../components/Button'
 
 
-const HomeSLider = () => {
+// import slider images for mobile or desktop
+let sliderImagesLocation = ''
 
+if (window.innerWidth <= 1000) {
+    sliderImagesLocation = require.context('../assets/slider/mobile', true)
+} else {
+    sliderImagesLocation = require.context('../assets/slider/desktop', true)
+}
+
+//import the resources source
+let sliderImages = []
+for (let i = 0; i < 8; i++){
+    sliderImages[i] = sliderImagesLocation(`./slider_${i + 1}.jpg`).default
+    console.log(sliderImages[i]);
+}
+sliderImages[-1] = sliderImages[sliderImages.length -1]
+
+
+//component
+const HomeSlider = () => {
     const [sliderNumber, setSliderNumber] = useState(0)
-        let sliderImages = [sliderImage1,sliderImage2,sliderImage3,sliderImage4,sliderImage5,sliderImage6]
-        sliderImages[-1] = sliderImages[sliderImages.length -1]
     
+    //change slider image
     useEffect(()=> {
-        console.log(sliderNumber);
         if (sliderNumber == sliderImages.length) {setSliderNumber(0)}
         else {setTimeout(()=>{setSliderNumber(sliderNumber + 1)},3000)}
     })
-
-
 
     return (
         <div className='main-container'>
@@ -43,7 +51,7 @@ const HomeSLider = () => {
         </div> );
 }
  
-export default HomeSLider;
+export default HomeSlider;
 
 
 
