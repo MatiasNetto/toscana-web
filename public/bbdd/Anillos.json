@@ -3,7 +3,7 @@
         "id" : 1,
         "order" : 1,
         "modelo" : "belt",
-        "precio" : 380,
+        "precio" : 390,
         "imgs"  : ["public/products/Anillos/ModeloBelt/1.jpg","public/products/Anillos/ModeloBelt/2.jpg"],
         "nuevo" : true
     },
