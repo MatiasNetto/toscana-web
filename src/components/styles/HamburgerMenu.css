@@ -1,18 +1,13 @@
-input{
-    position: right;
-    height: 12vh;
-    width: 12vw;
-    padding-top: 5vh;
-    padding-right: 5vw;
+.hamburger{
+    height: 5vh;
+    width: 5vw;
+    margin-top: 8px;
     background-color: whitesmoke;
-    border: 5px solid black;
 }
-.hamburguerline{
+.hamburger__line{
     background-color: black;
-    box-sizing: content-box;
-    padding: 2vh 1vw 2vh 1vw;
-    height: 12vh;
-    width: 4vw;
-    border: 5% solid black;
+    margin: 10px 10px 10px 10px;
+    height: 1vh;
+    width: 2vw;
     border-radius: 20%;
 }
