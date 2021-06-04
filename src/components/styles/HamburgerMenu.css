@@ -1,18 +1,18 @@
 input{
     position: right;
-    height: 3em;
-    width: 3em;
-    padding-top: 10%;
-    padding-right: 10%;
+    height: 12vh;
+    width: 12vw;
+    padding-top: 5vh;
+    padding-right: 5vw;
     background-color: whitesmoke;
-    border: 5% solid black;
+    border: 5px solid black;
 }
 .hamburguerline{
     background-color: black;
     box-sizing: content-box;
-    padding: 5% 3% 5% 3%;
-    height: 3em;
-    width: 1em;
+    padding: 2vh 1vw 2vh 1vw;
+    height: 12vh;
+    width: 4vw;
     border: 5% solid black;
     border-radius: 20%;
 }

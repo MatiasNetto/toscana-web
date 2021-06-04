@@ -4,7 +4,7 @@ import HamburgerMenu from './HamburgerMenu';
 const NavBar = () => {
     return ( 
         <>
-        {/* <HamburgerMenu/> */}
+        <div className="rectangule">{/* <HamburgerMenu/> */}</div>
         </>
      );
 }
