@@ -1,9 +1,0 @@
-[
-    {
-        "id" : 1,
-        "order" : 1,
-        "modelo" : "corazon",
-        "precio" : 380,
-        "imgs"  : "../anillos/ModeloCorazon"
-    }
-]

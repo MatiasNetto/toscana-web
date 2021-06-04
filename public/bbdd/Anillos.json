@@ -1,0 +1,27 @@
+[
+    {
+        "id" : 1,
+        "order" : 1,
+        "modelo" : "belt",
+        "precio" : 380,
+        "imgs"  : ["public/products/Anillos/ModeloBelt/1.jpg","public/products/Anillos/ModeloBelt/2.jpg"],
+        "nuevo" : true
+    },
+    {
+        "id" : 2,
+        "order" : 20,
+        "modelo" : "olimpo",
+        "precio" : 420,
+        "imgs"  : ["public/products/Anillos/ModeloOlimpo/1.png","public/products/Anillos/ModeloOlimpo/2.png"],
+        "nuevo" : true
+    },
+    {
+        "id" : 3,
+        "order" : 30,
+        "modelo" : "wings",
+        "precio" : 700,
+        "imgs"  : ["public/products/Anillos/ModeloWings/1.jpg","public/products/Anillos/ModeloWings/2.jpg"],
+        "nuevo" : true
+    }
+
+]
