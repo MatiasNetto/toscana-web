@@ -1,8 +1,9 @@
 .hamburger{
     height: 5vh;
     width: 5vw;
-    margin-top: 8px;
+    margin-top: 8;
     background-color: whitesmoke;
+    border: 30px solid black;
 }
 .hamburger__line{
     background-color: black;

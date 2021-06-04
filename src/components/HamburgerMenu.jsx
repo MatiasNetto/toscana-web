@@ -9,8 +9,6 @@ const HamburgerMenu = () => {
                  <div className="hamburger__line"></div>
                  <div className="hamburger__line"></div>
              </div>
-            
-        
         </>
      );
 }
