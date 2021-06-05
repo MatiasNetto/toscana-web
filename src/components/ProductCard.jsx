@@ -1,12 +1,19 @@
 import React from 'react';
+import {db} from './Firebase'
 
-const ProductCard = () => {
+
+const ProductCard = (props) => {
+    // const show = async () => {
+    //     const data = await db.collection('Anillos').doc().get()
+    //     await console.log(data);
+    // }
+    // show()
     return ( 
         <>
         <div className="card">
-            <div className="card__img"><img src="" alt="" /></div>
-            <div className="card__product">Product</div>
-            <div className="card__price">$1000</div>
+            <img src={props.img} alt="" />
+            <div className="card__product">{props.model}</div>
+            <div className="card__price">{props.price}</div>
         </div>
         </>
      );

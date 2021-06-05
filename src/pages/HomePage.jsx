@@ -15,7 +15,7 @@ import CategoryGrid from '../components/CategoryGrid'
 import HomeSlider from '../components/HomeSlider';
 
 let sliderNumber = 0
-function Home() {
+function HomePage() {
     
     return ( 
         <>
@@ -26,4 +26,4 @@ function Home() {
      );
 }
  
-export default Home;
+export default HomePage;

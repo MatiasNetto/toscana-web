@@ -23,7 +23,6 @@ if (window.innerWidth <= 1000) {
 let sliderImages = []
 for (let i = 0; i < 8; i++){
     sliderImages[i] = sliderImagesLocation(`./slider_${i + 1}.jpg`).default
-    console.log(sliderImages[i]);
 }
 sliderImages[-1] = sliderImages[sliderImages.length -1]
 
