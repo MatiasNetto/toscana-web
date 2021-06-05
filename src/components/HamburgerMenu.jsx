@@ -1,13 +1,14 @@
 import React from 'react';
+import "./styles/HamburgerMenu.css"
 
 const HamburgerMenu = () => {
     return ( 
         <>
-        <a href="" target="blank">
-            <div className="hamburguerline"></div>
-            <div className="hamburguerline"></div>
-            <div className="hamburguerline"></div>
-        </a>
+             <div classname="hamburger">
+                 <div className="hamburger__line"></div>
+                 <div className="hamburger__line"></div>
+                 <div className="hamburger__line"></div>
+             </div>
         </>
      );
 }
