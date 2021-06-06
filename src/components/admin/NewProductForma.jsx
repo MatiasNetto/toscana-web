@@ -12,7 +12,7 @@ const NewProductForm = ({uploadNewProduct}) => {
         new : true
     }
     const [productData, setProductData] = useState(dataLayout)
-    const [category, setCategory] = useState('test_1')
+    const [category, setCategory] = useState('testcategory')
 
     //use effect cada vez que cambia el productData que se actualice el preview, llamando a una funcion llamada por props
 
@@ -38,8 +38,7 @@ const NewProductForm = ({uploadNewProduct}) => {
     return ( 
         <>
             <select onChange={(e)=>{setCategory(e.target.value)}} name="category">
-                <option value="test_1">Test_1</option>
-                <option value="test_2">Test_2</option>
+                <option value="testcategory">Test Category</option>
                 <option value="anillos">Anillos</option>
                 <option value="aros">Aros</option>
                 <option value="collares">Collares</option>

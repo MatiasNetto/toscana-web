@@ -1,14 +1,15 @@
-.hamburger{
-    height: 5vh;
-    width: 5vw;
-    margin-top: 8;
-    background-color: whitesmoke;
-    border: 30px solid black;
+.hamburger {
+  height: 6vh;
+  width: 6vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-right: 10px;
+  background-color: whitesmoke;
 }
-.hamburger__line{
-    background-color: black;
-    margin: 10px 10px 10px 10px;
-    height: 1vh;
-    width: 2vw;
-    border-radius: 20%;
+.hamburger__line {
+  height: 15%;
+  width: 100%;
+  background-color: black;
+  border-radius: 100px;
 }

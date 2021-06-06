@@ -5,6 +5,7 @@ const NavBar = () => {
     return ( 
         <>
         <div className="rectangule">
+            <h1>Toscana</h1>
             <HamburgerMenu/>
         </div>
         </>

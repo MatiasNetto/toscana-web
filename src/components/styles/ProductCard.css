@@ -1,9 +1,9 @@
-.card{
-    background-color: whitesmoke;
-    height: 35vh;
-    width: 35vw;
+.card {
+  background-color: whitesmoke;
+  height: 90%;
+  width: 90%;
 }
-.card__img{
-    height: 20vh;
-    width: 30vw;
+.card__img {
+  height: 20vh;
+  width: 30vw;
 }
