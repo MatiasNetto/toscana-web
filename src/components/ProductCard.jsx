@@ -1,6 +1,5 @@
 import React from 'react';
-import {db} from './Firebase'
-import "./style/ProductCard.css"
+import "./styles/ProductCard.css"
 
 
 const ProductCard = (props) => {

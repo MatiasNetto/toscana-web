@@ -26,6 +26,12 @@ for (let i = 0; i < 8; i++){
 }
 sliderImages[-1] = sliderImages[sliderImages.length -1]
 
+/*
+################################################################################
+#### Hay que remplazar la importacion por un use effect que llame a la BBDD ####
+################################################################################
+*/
+
 
 //component
 const HomeSlider = () => {
@@ -33,9 +39,9 @@ const HomeSlider = () => {
     
     //change slider image
     useEffect(()=> {
-        if (sliderNumber == sliderImages.length) {setSliderNumber(0)}
+        if (sliderNumber === sliderImages.length) {setSliderNumber(0)}
         else {setTimeout(()=>{setSliderNumber(sliderNumber + 1)},3000)}
-    })
+    },[sliderNumber])
 
     return (
         <div className='main-container'>

@@ -9,7 +9,7 @@ const CategoryCard = ({img,category,align}) => {
     return ( 
         <>
             <Link to='/category' className='category-card-container'>
-                <h5 className='text' style={align == 'left' ? {textAlign:'left'} : {textAlign:'right'}} >{category}</h5>
+                <h5 className='text' style={align === 'left' ? {textAlign:'left'} : {textAlign:'right'}} >{category}</h5>
                 <img className='img' src={img} alt={category} />
             </Link> 
         </>
