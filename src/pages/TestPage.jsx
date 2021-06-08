@@ -1,15 +1,11 @@
 import React from 'react';
-import Buttom from '../components/Button'
-import CategoryCard from '../components/CategoryCard'
-import HamburgerMenu from '../components/HamburgerMenu'
-import NavBar from '../components/NavBar'
-import ProductCard from "../components/ProductCard"
+import TestComponent from '../components/TestComponent';
 
 
 const TestPage = () => {
     return ( 
         <>
-        <ProductCard/>
+            <TestComponent/> 
         </>
      );
 }

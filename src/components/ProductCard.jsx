@@ -1,20 +1,17 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
 import "./styles/ProductCard.css"
 
 
 const ProductCard = (props) => {
-    // const show = async () => {
-    //     const data = await db.collection('Anillos').doc().get()
-    //     await console.log(data);
-    // }
-    // show()
+    const toLinkUrl = window.location.pathname + '/' + props.id //la url a la que es direccionado al hacer click en el producto
     return ( 
         <>
-        <div className="card">
+        <Link to={toLinkUrl} className="card">
             <img src={props.img} alt="" />
             <div className="card__product">{props.model}</div>
             <div className="card__price">{props.price}</div>
-        </div>
+        </Link>
         </>
      );
 }

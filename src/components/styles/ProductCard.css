@@ -2,6 +2,7 @@
   background-color: whitesmoke;
   height: 90%;
   width: 90%;
+  text-decoration: none;
 }
 .card__img {
   height: 20vh;

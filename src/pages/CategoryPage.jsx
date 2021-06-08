@@ -20,13 +20,14 @@ const CartegoryPage = () => {
             let productsFragment = []
             const productsRequest = await db.collection(params.category).get();
             productsRequest.forEach((product)=>{
+                console.log(product.data().imgs);
                 productsFragment = [...productsFragment,product.data()]
             });
             setProducts(productsFragment) //setea a products como productsFragment para no andar actualizando todo el tiempo el state
+
         }
         getProductList()
     },[])
-
 
     return ( 
         <>
