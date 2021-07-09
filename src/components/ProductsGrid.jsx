@@ -1,13 +1,25 @@
 import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
 import {storage} from '../components/Firebase'
-
-//styles
-import './styles/ProductsGrid.css';
-
-//assets
 
 //components
 import ProductCard from './ProductCard'
+
+/*###############*/
+/*### STYLES ####*/
+/*###############*/
+
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 40vh;
+  align-items: center;
+  justify-items: center;
+`
+
+/*##################*/
+/*### COMPONENT ####*/
+/*##################*/
 
 const ProductsGirid = ({ products }) => {
   //necesitas agregar a img= el dato de la referencia. tenes que tomar el dato de product.imgsURI y convertirlo en una referencia. con esa referencia 
@@ -18,7 +30,7 @@ const ProductsGirid = ({ products }) => {
       {products == null ? (
         <p>Cargando...</p>
       ) : (
-        <div className='grid-container'>
+      <Grid>
 
         {products.map((product) => {
           return (
@@ -32,7 +44,7 @@ const ProductsGirid = ({ products }) => {
             );
           })}
 
-        </div>
+      </Grid>
       )}
     </>
   );

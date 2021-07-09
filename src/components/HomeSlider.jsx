@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
-
-//styles
-import './styles/HomeSlider.css'
+import styled, {css, keyframes} from 'styled-components';
+import { desktopMediaQuery } from './Styles';
 
 //assets
 import logo from '../assets/logos/logo.png'
@@ -32,8 +31,81 @@ sliderImages[-1] = sliderImages[sliderImages.length -1]
 ################################################################################
 */
 
+/*################*/
+/*#### STYLES ####*/
+/*################*/
 
-//component
+const Slider = styled.div`
+  height: 92vh;
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 8vh;
+  overflow: hidden;
+`
+
+const showAnimation = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100%;
+  }
+`
+
+const SliderImageShown = css`
+  z-index: -999;
+  animation: ${showAnimation} 1s;
+`
+
+const SliderImageHidden = css`
+  z-index: -9999;
+`
+
+
+
+const SliderImage = styled.img`
+  width: 100%;
+  position: absolute;
+  top: 50;
+  bottom: 50;
+  left: 0;
+  filter: brightness(80%) blur(1px);
+  opacity: 100%;
+
+  ${props => props.isHidden === true ? SliderImageHidden : SliderImageShown }
+`
+
+const Logo = styled.img`
+  width: 40vw;
+  ${desktopMediaQuery} {
+    width: 12vw;
+  }
+`
+
+const Tittles = styled.div`
+  margin-bottom: 10vh;
+`
+
+const Tittle = styled.h2`
+  font-size: 4em;
+  letter-spacing: 4px;
+  text-align: center;
+`
+
+const Subtittle = styled.h3`
+  font-size: 2em;
+  font-weight: 300;
+  text-align: center;
+`
+
+/*###################*/
+/*#### COMPONENT ####*/
+/*###################*/
+
 const HomeSlider = () => {
     const [sliderNumber, setSliderNumber] = useState(0)
     
@@ -44,16 +116,17 @@ const HomeSlider = () => {
     },[sliderNumber])
 
     return (
-        <div className='main-container'>
-            <img src={sliderNumber %2 !== 0 ? sliderImages[sliderNumber] : sliderImages[sliderNumber - 1]} className={sliderNumber %2 !== 0 ? 'slider-shown' : 'slider-hidden'} alt="" />
-            <img src={sliderNumber %2 === 0 ? sliderImages[sliderNumber] : sliderImages[sliderNumber - 1]} className={sliderNumber %2 === 0 ? 'slider-shown' : 'slider-hidden'} alt="" />
-            <img className='logo-img' src={logo} alt="Toscana logo" />
-            <div className='tittles-container'>
-                <h2 className='tittle'>Toscana</h2>
-                <h3 className='subtittle'>Accesorios</h3>
-            </div>
+        <Slider>
+            <SliderImage src={sliderNumber %2 !== 0 ? sliderImages[sliderNumber] : sliderImages[sliderNumber - 1]} isHidden={sliderNumber %2 !== 0 ? false : true} alt="" />
+            <SliderImage src={sliderNumber %2 === 0 ? sliderImages[sliderNumber] : sliderImages[sliderNumber - 1]} isHidden={sliderNumber %2 === 0 ? false : true} alt="" />
+            <Logo src={logo} alt="Toscana logo" />
+            <Tittles className='tittles-container'>
+                <Tittle className='tittle'>Toscana</Tittle>
+                <Subtittle className='subtittle'>Accesorios</Subtittle>
+            </Tittles>
             <Button text='Ver mas'/>
-        </div> );
+        </Slider>
+        );
 }
  
 export default HomeSlider;
