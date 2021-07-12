@@ -12,7 +12,6 @@ import ProductCard from './ProductCard';
 const Grid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-auto-rows: 40vh;
   align-items: center;
   justify-items: center;
   padding: 0 1vw;

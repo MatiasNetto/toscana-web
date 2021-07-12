@@ -6,11 +6,12 @@ import styled from 'styled-components';
 /*################*/
 
 const CardLink = styled(Link)`
-  height: 97%;
+  height: 40vh;
   width: 97%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 2% 0;
   background-color: whitesmoke;
   box-shadow: 0px 3px 4px #0003;
   border-radius: 10px;
@@ -31,9 +32,8 @@ const ProductInfo = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding: 8% 0;
 `;
 
 const Model = styled.h3`
