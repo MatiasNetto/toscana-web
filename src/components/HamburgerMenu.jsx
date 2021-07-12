@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-//STYLES
+/*################*/
+/*#### STYLES ####*/
+/*################*/
 
 const Hamburger = styled.button`
   height: 6vh;
@@ -20,7 +22,9 @@ const Line = styled.div`
   border-radius: 100px;
 `;
 
-//COMPONENT
+/*###################*/
+/*#### COMPONENT ####*/
+/*###################*/
 
 const HamburgerMenu = () => {
   return (

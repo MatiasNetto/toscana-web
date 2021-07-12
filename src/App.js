@@ -15,6 +15,10 @@ import NavBar from './components/NavBar';
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;500;600;700;800&display=swap');
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,900;1,400;1,600&display=swap');
+
+  * {
+    scroll-behavior: smooth;
+  }
   p,div,li,ul,a,button {
     font-family: 'Abhaya Libre', serif;
   }

@@ -8,6 +8,10 @@ import 'swiper/swiper-bundle.css';
 //!Falta condicion de que en caso de estar desde movile mostrar los controles del slider
 SwiperCore.use([Zoom]);
 
+/*################*/
+/*#### STYLES ####*/
+/*################*/
+
 const SwiperImage = styled.img`
   width: 100%;
 `;
@@ -32,6 +36,10 @@ const PointInactive = styled.div`
 const PointActive = styled(PointInactive)`
   background: #111;
 `;
+
+/*###################*/
+/*#### COMPONENT ####*/
+/*###################*/
 
 const ProductSlider = ({ imgsURL }) => {
   const [sliderIndex, setSliderIndex] = useState(0);

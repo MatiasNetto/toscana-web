@@ -2,6 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+/*################*/
+/*#### STYLES ####*/
+/*################*/
+
 const CategoryLink = styled(Link)`
   height: 25vh;
   width: 90%;
@@ -9,6 +13,7 @@ const CategoryLink = styled(Link)`
   overflow: hidden;
   margin-top: 3vh;
   border-radius: 10px;
+  box-shadow: 0px 2px 3px #000a;
   text-decoration: none;
 `;
 
@@ -27,6 +32,10 @@ const Img = styled.img`
   left: 0;
   filter: brightness(80%);
 `;
+
+/*###################*/
+/*#### COMPONENT ####*/
+/*###################*/
 
 const CategoryCard = ({ img, category, align, text }) => {
   return (

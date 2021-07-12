@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { storage, storageBucket } from './Firebase';
 import styled from 'styled-components';
+
+/*################*/
+/*#### STYLES ####*/
+/*################*/
 
 const CardLink = styled(Link)`
   height: 97%;
@@ -40,6 +42,10 @@ const Model = styled.h3`
 
 const Price = styled.p``;
 
+/*###################*/
+/*#### COMPONENT ####*/
+/*###################*/
+
 const ProductCard = (props) => {
   // const [image, setImage] = useState('');
 
@@ -59,11 +65,11 @@ const ProductCard = (props) => {
   const toLinkUrl = window.location.pathname + '/' + props.id; //la url a la que es direccionado al hacer click en el producto
   return (
     <>
-      <CardLink to={toLinkUrl} className="card">
+      <CardLink to={toLinkUrl}>
         <Image image={props.imgsURL[0]} alt="" />
         <ProductInfo>
-          <Model className="card__product">{props.model}</Model>
-          <Price className="card__price">${props.price}</Price>
+          <Model>{props.model}</Model>
+          <Price>${props.price}</Price>
         </ProductInfo>
       </CardLink>
     </>

@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 
 //assets
 import sliderImage1 from '../assets/slider/mobile/slider_1.jpg';
@@ -8,9 +9,10 @@ import NavBar from '../components/NavBar';
 import HomeSlider from '../components/HomeSlider';
 import CategoryCard from '../components/CategoryCard';
 
-//STYLES
+/*################*/
+/*#### STYLES ####*/
+/*################*/
 import { Subtittle } from '../components/Styles';
-import styled from 'styled-components';
 
 const Categories = styled.div`
   display: flex;
@@ -19,7 +21,9 @@ const Categories = styled.div`
   align-items: center;
 `;
 
-//COMPONENT
+/*###################*/
+/*#### COMPONENT ####*/
+/*###################*/
 
 function HomePage() {
   return (

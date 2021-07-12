@@ -41,8 +41,9 @@ const Slider = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  align-items: center;
   margin-top: 8vh;
+  padding: 3vh 0 10vh 0;
+  align-items: center;
   overflow: hidden;
 `;
 
@@ -71,6 +72,7 @@ const SliderImage = styled.img`
   bottom: 50;
   left: 0;
   filter: brightness(80%) blur(1px);
+  transform: scale(120%);
   opacity: 100%;
 
   ${(props) => (props.isHidden === true ? SliderImageHidden : SliderImageShown)}
@@ -83,10 +85,6 @@ const Logo = styled.img`
   }
 `;
 
-const Tittles = styled.div`
-  margin-bottom: 10vh;
-`;
-
 const Tittle = styled.h2`
   font-size: 4em;
   letter-spacing: 4px;
@@ -97,6 +95,23 @@ const Subtittle = styled.h3`
   font-size: 2em;
   font-weight: 300;
   text-align: center;
+`;
+
+const SlideButton = styled.button`
+  width: 60vw;
+  height: 18vw;
+  background: transparent;
+  border: 2px solid #fff;
+  border-radius: 100px;
+  font-size: 1.5em;
+  color: #fff;
+  transition: all 0.5s;
+
+  &:hover {
+    background: #fff;
+    border: 2px solid #0000;
+    color: #000;
+  }
 `;
 
 /*###################*/
@@ -125,6 +140,11 @@ const HomeSlider = () => {
     }
   }, [sliderNumber]);
 
+  const handleButtonClick = (e) => {
+    window.scrollTo(0, e.target.parentNode.clientHeight);
+    console.log(e.target.parentNode.clientHeight);
+  };
+
   return (
     <Slider>
       <SliderImage
@@ -138,11 +158,11 @@ const HomeSlider = () => {
         alt=""
       />
       <Logo src={logo} alt="Toscana logo" />
-      <Tittles className="tittles-container">
-        <Tittle className="tittle">Toscana</Tittle>
-        <Subtittle className="subtittle">Accesorios</Subtittle>
-      </Tittles>
-      <Button text="Ver mas" />
+      <div>
+        <Tittle>Toscana</Tittle>
+        <Subtittle>Accesorios</Subtittle>
+      </div>
+      <SlideButton onClick={(e) => handleButtonClick(e)}>Ver productos</SlideButton>
     </Slider>
   );
 };

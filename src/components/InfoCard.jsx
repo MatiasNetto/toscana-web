@@ -4,6 +4,10 @@ import styled from 'styled-components';
 import locationIcon from '../assets/Location-Icon.png';
 import moneyIcon from '../assets/Money-Icon.png';
 
+/*################*/
+/*#### STYLES ####*/
+/*################*/
+
 const CardInfo = styled.div`
   height: 12vh;
   width: 90%;
@@ -32,6 +36,10 @@ const Description = styled.p`
   font-size: 1em;
   color: #333;
 `;
+
+/*###################*/
+/*#### COMPONENT ####*/
+/*###################*/
 
 const InfoCard = (props) => {
   return (

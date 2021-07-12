@@ -8,13 +8,17 @@ import { db } from '../components/Firebase';
 import { Subtittle } from '../components/Styles';
 import styled from 'styled-components';
 
-//STYLES
+/*################*/
+/*#### STYLES ####*/
+/*################*/
 
 const Content = styled.div`
   margin-top: 8vh;
 `;
 
-//COMPONENT
+/*###################*/
+/*#### COMPONENT ####*/
+/*###################*/
 
 const CartegoryPage = () => {
   const [products, setProducts] = useState(null);

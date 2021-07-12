@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { db } from '../components/Firebase';
 import InfoCard from '../components/InfoCard';
+import ProductSlider from '../components/ProductSlider';
 
 import WppLogo from '../assets/Whatsapp-Logo.png';
 
-//STYLES
-import ProductSlider from '../components/ProductSlider';
-import { Link } from 'react-router-dom';
+/*################*/
+/*#### STYLES ####*/
+/*################*/
 
 const Main = styled.main`
   width: 100%;
@@ -74,6 +76,10 @@ const Icon = styled.img`
   height: 60%;
   margin: auto 3vw;
 `;
+
+/*###################*/
+/*#### COMPONENT ####*/
+/*###################*/
 
 const ProductPage = () => {
   //copletar en el useState el objeto con los datos vacios

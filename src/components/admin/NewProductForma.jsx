@@ -2,10 +2,18 @@ import React, { useState } from 'react';
 import { storage, storageBucket } from '../Firebase';
 import styled from 'styled-components';
 
+/*################*/
+/*#### STYLES ####*/
+/*################*/
+
 const Form = styled.form`
   display: flex;
   flex-direction: column;
 `;
+
+/*###################*/
+/*#### COMPONENT ####*/
+/*###################*/
 
 const NewProductForm = ({ uploadNewProduct }) => {
   const dataLayout = {

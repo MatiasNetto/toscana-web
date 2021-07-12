@@ -3,7 +3,9 @@ import HamburgerMenu from './HamburgerMenu';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-//STYLES
+/*################*/
+/*#### STYLES ####*/
+/*################*/
 
 const NavContainer = styled.div`
   height: 8vh;
@@ -24,6 +26,10 @@ const Tittle = styled.h1`
   font-size: 2.3em;
   color: #000;
 `;
+
+/*###################*/
+/*#### COMPONENT ####*/
+/*###################*/
 
 const NavBar = () => {
   return (
