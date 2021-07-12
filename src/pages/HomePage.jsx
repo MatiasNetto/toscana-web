@@ -24,7 +24,6 @@ const Categories = styled.div`
 function HomePage() {
   return (
     <>
-      <NavBar />
       <HomeSlider />
       <div className="products-container">
         <Subtittle>Categorias</Subtittle>

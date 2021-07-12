@@ -8,7 +8,7 @@ const CategoryLink = styled(Link)`
   position: relative;
   overflow: hidden;
   margin-top: 3vh;
-  border-radius: 4vh;
+  border-radius: 10px;
   text-decoration: none;
 `;
 

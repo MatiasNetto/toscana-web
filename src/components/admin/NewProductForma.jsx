@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { storage } from '../Firebase';
+import { storage, storageBucket } from '../Firebase';
 import styled from 'styled-components';
 
 const Form = styled.form`
@@ -44,17 +44,32 @@ const NewProductForm = ({ uploadNewProduct }) => {
     setProductData({ ...{ ...productData, [name]: value }, id: idValue }); //modifica los campos de newProductData especificados por name mas el product id
   };
 
+  const getImgsURL = async (imagesPaths) => {
+    let URLs = [];
+
+    for (let index in imagesPaths) {
+      const gsRef = storage.refFromURL(storageBucket);
+      const url = await gsRef.child(imagesPaths[index]).getDownloadURL();
+      URLs[index] = url;
+    }
+
+    return URLs;
+  };
+
   const handleFilesChange = async (e) => {
-    let filesPaths = [];
+    let imagesPaths = [];
     let rawFiles = e.target.files; //archivos desde fileAPI
+
     for (let i = 0; i < rawFiles.length; i++) {
       //recorro todos los archivos
       let ref = storage.ref(productData.category + '/' + productData.id + '/' + rawFiles[i].name); //la ruta de referencia en el sercidor para subir el archivo
       await ref.put(rawFiles[i]); //subida del archivo al servidor
-      filesPaths[i] = ref.fullPath; //guarda la ubicacion de la imagen en el indice i de la variable filespaths
+      imagesPaths[i] = ref.fullPath; //guarda la ubicacion de la imagen en el indice i de la variable filespaths
     }
+
+    let imgsURL = await getImgsURL(imagesPaths);
+    setProductData({ ...productData, imgsPath: imagesPaths, imgsURL: imgsURL }); //guarda la ubicacion de la imgen en el estado
     alert('files Uploaded');
-    setProductData({ ...productData, imgs: filesPaths }); //guarda la ubicacion de la imgen en el estado
   };
 
   const handleSubmit = (e) => {
