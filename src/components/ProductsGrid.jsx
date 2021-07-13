@@ -29,24 +29,20 @@ const ProductsGirid = ({ products, onClickCallback }) => {
 
   return (
     <>
-      {products == null ? (
-        <p>Cargando...</p>
-      ) : (
-        <Grid>
-          {products.map((product) => {
-            return (
-              <ProductCard
-                key={product.id}
-                imgsURL={product.imgsURL}
-                model={product.model}
-                price={product.price}
-                id={product.id}
-                onClickCallback={onClickCallback}
-              />
-            );
-          })}
-        </Grid>
-      )}
+      <Grid>
+        {products.map((product) => {
+          return (
+            <ProductCard
+              key={product.id}
+              imgsURL={product.imgsURL}
+              model={product.model}
+              price={product.price}
+              id={product.id}
+              onClickCallback={onClickCallback}
+            />
+          );
+        })}
+      </Grid>
     </>
   );
 };

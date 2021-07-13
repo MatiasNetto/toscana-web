@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 import { db } from '../components/Firebase';
 
 const useGetProductsCollection = (category) => {
-  const [products, setProducts] = useState(null);
+  const [collection, setCollection] = useState(null);
   const [isPending, setIsPending] = useState(true);
-  const [error, setError] = useState(null);
+  const [err, setErr] = useState({ error: false, code: '' });
 
   useEffect(() => {
     let _isMounted = true;
@@ -21,15 +21,19 @@ const useGetProductsCollection = (category) => {
           productsFragment = [...productsFragment, product.data()];
         });
 
+        if (productsFragment.length == 0) {
+          throw { code: 'Is Empty' };
+        }
+
         //setea el state products como productsFragment para no andar actualizando todo el tiempo el state, previene memory leack
         if (_isMounted) {
-          setProducts(productsFragment);
-          setError({ error: false });
+          setCollection(productsFragment);
+          setErr({ error: false });
           setIsPending(false);
         }
       } catch (err) {
         console.log(err);
-        setError({ error: true, code: err.code });
+        setErr({ error: true, code: err.code });
         setIsPending(false);
       }
     };
@@ -41,10 +45,9 @@ const useGetProductsCollection = (category) => {
     };
   }, [category]);
 
-  console.log('data');
-  console.log({ products, isPending, error });
+  console.log({ collection, isPending, err });
 
-  return { products, isPending, error };
+  return { collection, isPending, err };
 };
 
 export { useGetProductsCollection };

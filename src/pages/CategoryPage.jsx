@@ -7,6 +7,7 @@ import { db } from '../components/Firebase';
 //components
 import { Subtittle } from '../components/Styles';
 import styled from 'styled-components';
+import { useGetProductsCollection } from '../hooks/useGetProductsCollection';
 
 /*################*/
 /*#### STYLES ####*/
@@ -22,39 +23,29 @@ const Content = styled.div`
 
 const CartegoryPage = () => {
   const [products, setProducts] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState({ error: false });
   const params = useParams();
 
+  let { collection, isPending, err } = useGetProductsCollection(params.category);
+
   useEffect(() => {
-    let _isMounted = true;
-
-    const getProductList = async () => {
-      //trae los productos desde la categoria indicada por parametros y los almacena en productsFragment
-      let productsFragment = [];
-      const productsRequest = await db.collection(params.category).get();
-
-      productsRequest.forEach((product) => {
-        //Recorre la data traida y agrega los productos a productsFragment
-        console.log(product.data().imgsURL);
-        productsFragment = [...productsFragment, product.data()];
-      });
-
-      //setea el state products como productsFragment para no andar actualizando todo el tiempo el state, previene memory leack
-      if (_isMounted) setProducts(productsFragment);
-    };
-
-    getProductList(); //Llama la funcion asincrona
-
-    //Cuando el componente se desmonte, cancela toda actualizacion de estado
-    return () => {
-      _isMounted = false;
-    };
-  }, []);
+    setProducts(collection);
+    setError(err);
+    setLoading(isPending);
+  }, [isPending]);
 
   return (
     <>
       <Content>
         <Subtittle>{params.category.toUpperCase()}</Subtittle>
-        <ProductsGirid products={products} />
+        {loading == true ? (
+          <p>cargando</p>
+        ) : error.error ? (
+          <strong>Ocurrio un error, {error.code}</strong>
+        ) : (
+          <ProductsGirid products={products} />
+        )}
       </Content>
     </>
   );
