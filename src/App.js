@@ -6,7 +6,7 @@ import { createGlobalStyle } from 'styled-components';
 import TestPage from './pages/TestPage';
 import HomePage from './pages/HomePage';
 import CartegoryPage from './pages/CategoryPage';
-import AdminHomePage from './pages/admin/AdminHomePage';
+import AdminAddProductPage from './pages/admin/AdminAddProductPage';
 import ProductPage from './pages/ProductPage';
 import NavBar from './components/NavBar';
 
@@ -37,7 +37,7 @@ function App() {
         <Route path="/test" exact component={TestPage} />
         <Route path="/category/:category" exact component={CartegoryPage} />
         <Route path="/category/:category/:productId" exact component={ProductPage} />
-        <Route path="/admin" exact component={AdminHomePage} />
+        <Route path="/admin/add" exact component={AdminAddProductPage} />
         <Route exact path="/" component={HomePage} />
       </Switch>
     </Router>

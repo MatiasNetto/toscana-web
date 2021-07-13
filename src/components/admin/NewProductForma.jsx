@@ -15,7 +15,7 @@ const Form = styled.form`
 /*#### COMPONENT ####*/
 /*###################*/
 
-const NewProductForm = ({ uploadNewProduct }) => {
+const NewProductForm = ({ onSubmitCallback }) => {
   const dataLayout = {
     id: null,
     order: '',
@@ -23,17 +23,30 @@ const NewProductForm = ({ uploadNewProduct }) => {
     category: 'testcategory',
     description: '',
     price: '',
-    imgs: '',
+    imgsPath: '',
+    imgsURL: '',
     new: true,
   };
   const [productData, setProductData] = useState(dataLayout);
 
   //use effect cada vez que cambia el productData que se actualice el preview, llamando a una funcion pasada por props
 
-  const resetForm = (element) => {
+  const clearForm = (element) => {
     //resetea los datos tanto del form como del state
     setProductData(dataLayout);
     element.reset();
+  };
+
+  const getImgsURL = async (imagesPaths) => {
+    let URLs = [];
+
+    for (let index in imagesPaths) {
+      const gsRef = storage.refFromURL(storageBucket);
+      const url = await gsRef.child(imagesPaths[index]).getDownloadURL();
+      URLs[index] = url;
+    }
+
+    return URLs;
   };
 
   //!Confuso
@@ -52,18 +65,6 @@ const NewProductForm = ({ uploadNewProduct }) => {
     setProductData({ ...{ ...productData, [name]: value }, id: idValue }); //modifica los campos de newProductData especificados por name mas el product id
   };
 
-  const getImgsURL = async (imagesPaths) => {
-    let URLs = [];
-
-    for (let index in imagesPaths) {
-      const gsRef = storage.refFromURL(storageBucket);
-      const url = await gsRef.child(imagesPaths[index]).getDownloadURL();
-      URLs[index] = url;
-    }
-
-    return URLs;
-  };
-
   const handleFilesChange = async (e) => {
     let imagesPaths = [];
     let rawFiles = e.target.files; //archivos desde fileAPI
@@ -75,34 +76,27 @@ const NewProductForm = ({ uploadNewProduct }) => {
       imagesPaths[i] = ref.fullPath; //guarda la ubicacion de la imagen en el indice i de la variable filespaths
     }
 
-    let imgsURL = await getImgsURL(imagesPaths);
-    setProductData({ ...productData, imgsPath: imagesPaths, imgsURL: imgsURL }); //guarda la ubicacion de la imgen en el estado
+    let imgsURL = await getImgsURL(imagesPaths); //genera las direcciones URL de las imagenes con los paths y las devuelve a imgsURL
+    setProductData({ ...productData, imgsPath: imagesPaths, imgsURL: imgsURL }); //guarda los paths y las URLs de las imgenes en el estado
     alert('files Uploaded');
   };
 
   const handleSubmit = (e) => {
     //que va a realizar al darle a submit
     e.preventDefault();
-    uploadNewProduct(productData); //funcion pasada por props
-    resetForm(e.target);
+    onSubmitCallback(productData); //funcion pasada por props
+    clearForm(e.target);
   };
 
   return (
-    <>
-      <select onChange={handleInputChange} name="category">
-        <option value="testcategory">Test Category</option>
-        <option value="anillos">Anillos</option>
-        <option value="aros">Aros</option>
-        <option value="collares">Collares</option>
-        <option value="pulseras">Pulseras</option>
-      </select>
+    <div>
       <Form onSubmit={handleSubmit} action="">
         <label htmlFor="order">Order</label>
         <input onChange={handleInputChange} type="number" name="order" />
         <label htmlFor="model">Model</label>
         <input onChange={handleInputChange} type="text" name="model" />
         <label htmlFor="description">Description</label>
-        <input onChange={handleInputChange} type="text-area" name="description" />
+        <textarea onChange={handleInputChange} type="text-area" name="description" />
         <label htmlFor="price">Price</label>
         <input onChange={handleInputChange} type="number" name="price" />
         <label htmlFor="imgs">IMGS</label>
@@ -115,7 +109,7 @@ const NewProductForm = ({ uploadNewProduct }) => {
         </select>
         <input type="submit" value="Add product" />
       </Form>
-    </>
+    </div>
   );
 };
 

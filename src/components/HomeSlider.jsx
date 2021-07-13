@@ -5,9 +5,6 @@ import { desktopMediaQuery } from './Styles';
 //assets
 import logo from '../assets/logos/logo.png';
 
-//components
-import Button from '../components/Button';
-
 // import slider images for mobile or desktop
 let sliderImagesLocation = '';
 

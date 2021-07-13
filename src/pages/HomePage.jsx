@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import sliderImage1 from '../assets/slider/mobile/slider_1.jpg';
 
 //components
-import NavBar from '../components/NavBar';
 import HomeSlider from '../components/HomeSlider';
 import CategoryCard from '../components/CategoryCard';
 

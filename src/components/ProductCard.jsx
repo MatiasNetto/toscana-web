@@ -65,7 +65,12 @@ const ProductCard = (props) => {
   const toLinkUrl = window.location.pathname + '/' + props.id; //la url a la que es direccionado al hacer click en el producto
   return (
     <>
-      <CardLink to={toLinkUrl}>
+      {/* en caso de contener una funcion de callback el componente se mostrara como div y se asigna el callback correspondiente */}
+      <CardLink
+        as={props.onClickCallback ? 'div' : null}
+        onClick={props.onClickCallback ? props.onClickCallback : null}
+        to={toLinkUrl}
+      >
         <Image image={props.imgsURL[0]} alt="" />
         <ProductInfo>
           <Model>{props.model}</Model>
