@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { storage, storageBucket } from '../components/Firebase';
+import useGetProductData from '../hooks/useGetProductData';
 import { useGetProductsCollection } from '../hooks/useGetProductsCollection';
 
 const TestComponent = () => {
@@ -17,7 +18,11 @@ const TestComponent = () => {
 
   // },[])
 
-  useGetProductsCollection('testcategory');
+  // useGetProductsCollection('testcategory');
+  let category = 'testcategory';
+  let model = 'modelo-anashei';
+  const req = useGetProductData(category, model);
+  console.log(req);
 
   return (
     <>

@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
 import { db } from '../components/Firebase';
 
-console.log('Hook Call');
-
 const useGetProductsCollection = (category) => {
   const [collection, setCollection] = useState(null);
   const [isPending, setIsPending] = useState(true);
@@ -24,11 +22,10 @@ const useGetProductsCollection = (category) => {
         });
 
         if (productsFragment.length == 0) {
-          throw { code: 'Is Empty' };
-        }
-
-        //setea el state products como productsFragment para no andar actualizando todo el tiempo el state, previene memory leack
-        if (_isMounted) {
+          //si el contenido regresado es vacio, erroja un error
+          throw { code: 'La categoria deseada no se pudo encontrar' };
+        } else if (_isMounted) {
+          //actualiza todos los estados como es correspondido
           setCollection(productsFragment);
           setErr({ error: false });
           setIsPending(false);
