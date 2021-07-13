@@ -7,6 +7,7 @@ import InfoCard from '../components/InfoCard';
 import ProductSlider from '../components/ProductSlider';
 
 import WppLogo from '../assets/Whatsapp-Logo.png';
+import useGetProductData from '../hooks/useGetProductData.js';
 
 /*################*/
 /*#### STYLES ####*/
@@ -84,6 +85,8 @@ const Icon = styled.img`
 const ProductPage = () => {
   //copletar en el useState el objeto con los datos vacios
   const [productData, setProductData] = useState({ model: '', price: undefined, imgsURL: [''] });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState({ error: true });
   const params = useParams();
 
   window.scroll({
@@ -92,59 +95,57 @@ const ProductPage = () => {
     behavior: 'smooth',
   });
 
+  let { data, isPending, err } = useGetProductData(params.category, params.productId);
+
   useEffect(() => {
-    let _isMounted = true;
-    const getData = async (category, proudctId) => {
-      //trae los datos del producto solicitado
-      const productRequest = await db.collection(category).doc(proudctId).get();
-
-      // previene memory leack
-      if (_isMounted) setProductData(productRequest.data());
-      console.log(productRequest.data());
-    };
-    getData(params.category, params.productId);
-
-    return () => {
-      _isMounted = false;
-    };
-  }, []);
+    setProductData(data);
+    setError(err);
+    setLoading(isPending);
+  }, [isPending, err]);
 
   return (
     <>
       <Main>
-        <ProductSlider imgsURL={productData.imgsURL} />
+        {loading === true ? (
+          <p>cargando</p>
+        ) : error.error == true ? (
+          <strong>Ocurrio un error, {error.code}</strong>
+        ) : (
+          <>
+            <ProductSlider imgsURL={productData.imgsURL} />
+            <ProductName>{productData.model}</ProductName>
+            <Price>${productData.price}</Price>
 
-        <ProductName>{productData.model}</ProductName>
-        <Price>${productData.price}</Price>
+            <DescriptionContainer>
+              <DescriptionTittle>Description:</DescriptionTittle>
+              <Description>{productData.description}</Description>
+            </DescriptionContainer>
 
-        <DescriptionContainer>
-          <DescriptionTittle>Description:</DescriptionTittle>
-          <Description>{productData.description}</Description>
-        </DescriptionContainer>
+            <Btn
+              as="a"
+              href={`https://wa.me/5491140902700?text=Hola buenos dias, queria consultar por el ${
+                productData.category
+              } modelo ${productData.model.replace('Modelo ', '')}`}
+            >
+              Consultá <Icon src={WppLogo} />
+            </Btn>
 
-        <Btn
-          as="a"
-          href={`https://wa.me/5491140902700?text=Hola buenos dias, queria consultar por el ${
-            productData.category
-          } modelo ${productData.model.replace('Modelo ', '')}`}
-        >
-          Consultá <Icon src={WppLogo} />
-        </Btn>
-
-        <InfoCard
-          tittle="Zona Sur, Avellaneda"
-          description="Envios a todo el pais y puntos de encuentro"
-          icon="location"
-        />
-        <InfoCard
-          tittle="Medios de pago"
-          description="Aceptamos pagos en efectivo, mercado pago o tranferencia"
-          icon="money"
-        />
+            <InfoCard
+              tittle="Zona Sur, Avellaneda"
+              description="Envios a todo el pais y puntos de encuentro"
+              icon="location"
+            />
+            <InfoCard
+              tittle="Medios de pago"
+              description="Aceptamos pagos en efectivo, mercado pago o tranferencia"
+              icon="money"
+            />
+          </>
+        )}
       </Main>
 
       {/* teapa todo lo anterior y muestra el mensaje deseado dependiendo que ocurra */}
-      {productData === undefined ? ( //condicion
+      {/* {productData === undefined ? ( //condicion
         //si el producto no existe:
         <h1>No se encontro el producto</h1>
       ) : (
@@ -160,7 +161,7 @@ const ProductPage = () => {
             <></>
           )}
         </div>
-      )}
+      )} */}
     </>
   );
 };

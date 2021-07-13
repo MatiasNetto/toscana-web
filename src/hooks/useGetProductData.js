@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 import { db } from '../components/Firebase';
 
 const useGetProductData = (category, productId, admin) => {
-  const [data, setData] = useState();
+  const [data, setData] = useState(null);
   const [isPending, setIsPending] = useState(true);
-  const [error, setError] = useState({ error: false, code: 'unknow' });
+  const [err, setErr] = useState({ error: false });
 
   useEffect(() => {
     let _isMounted = true;
@@ -20,13 +20,13 @@ const useGetProductData = (category, productId, admin) => {
         } else if (_isMounted) {
           //si la peticion se realizo con exito se setea el estado con la data
           setData(request.data());
-          setError({ error: false });
+          setErr({ error: false });
           setIsPending(false);
         }
       } catch (err) {
         //en caso de ocurrir un error es actualizado el estado con los datos del error
         console.log(err);
-        setError({ error: true, code: err.code });
+        setErr({ error: true, code: err.code });
         setIsPending(false);
       }
     };
@@ -34,13 +34,14 @@ const useGetProductData = (category, productId, admin) => {
     if (admin && _isMounted) {
       //habilitar el acceso a admin en caso de que admin sea pasado como true
       getData(category, productId);
-    } else if (category !== 'admin' && _isMounted && data === undefined) {
+    } else if (category !== 'admin' && _isMounted && data === null) {
       //habilitar el acceso a todos las colecciones excepto a admin
+      console.log('Hace la request');
       getData(category, productId);
     } else if (category === 'admin' && _isMounted) {
       //lanzar un error en caso de que no sea admin y solicite la infomacion de admin
       setIsPending(false);
-      setError({ error: true, code: 'No tienes el permiso para acceder a esta categoria' });
+      setErr({ error: true, code: 'No tienes el permiso para acceder a esta categoria' });
     }
 
     //cuando el componente se desmonte cancelar todo cambio de estado para evitar memory leak
@@ -49,7 +50,7 @@ const useGetProductData = (category, productId, admin) => {
     };
   }, []);
 
-  return { data, isPending, error };
+  return { data, isPending, err };
 };
 
 export default useGetProductData;
