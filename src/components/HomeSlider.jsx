@@ -139,7 +139,6 @@ const HomeSlider = () => {
 
   const handleButtonClick = (e) => {
     window.scrollTo(0, e.target.parentNode.clientHeight);
-    console.log(e.target.parentNode.clientHeight);
   };
 
   return (

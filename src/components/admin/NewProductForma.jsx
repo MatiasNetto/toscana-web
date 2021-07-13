@@ -55,11 +55,16 @@ const NewProductForm = ({ onSubmitCallback }) => {
     let idValue;
     //si el elemento cambiado es el modelo set id como modelo, en minusculas y con "-" en vez de espacios
     //si no es asi setearlo como el valor de productData.id
-    {
-      e.target.name === 'model'
-        ? (idValue = e.target.value.replace(/ /g, '-').toLowerCase())
-        : (idValue = productData.id);
+    if (e.target.name === 'model') {
+      idValue = e.target.value.replace(/ /g, '-').toLowerCase();
+    } else {
+      idValue = productData.id;
     }
+    // {
+    //   e.target.name === 'model'
+    //     ? (idValue = e.target.value.replace(/ /g, '-').toLowerCase())
+    //     : (idValue = productData.id);
+    // }
     //desturcturacion de la data del evento
     let { name, value } = e.target;
     setProductData({ ...{ ...productData, [name]: value }, id: idValue }); //modifica los campos de newProductData especificados por name mas el product id

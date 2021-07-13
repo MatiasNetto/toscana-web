@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { db } from '../components/Firebase';
 
+console.log('Hook Call');
+
 const useGetProductsCollection = (category) => {
   const [collection, setCollection] = useState(null);
   const [isPending, setIsPending] = useState(true);

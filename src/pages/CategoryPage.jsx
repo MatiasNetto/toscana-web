@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import ProductsGirid from '../components/ProductsGrid';
 
-import { db } from '../components/Firebase';
-
 //components
 import { Subtittle } from '../components/Styles';
 import styled from 'styled-components';
@@ -30,6 +28,7 @@ const CartegoryPage = () => {
   let { collection, isPending, err } = useGetProductsCollection(params.category);
 
   useEffect(() => {
+    console.log('isPendingChange');
     setProducts(collection);
     setError(err);
     setLoading(isPending);

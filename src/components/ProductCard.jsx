@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -47,21 +48,6 @@ const Price = styled.p``;
 /*###################*/
 
 const ProductCard = (props) => {
-  // const [image, setImage] = useState('');
-
-  // Se puede cambiar este codigo y agregarlo directamnete en la pagina de administradores cuando se crea un nuevo producto, es dicir que cuando se crea directamente ya se genere la url hacia la imagen, asi no es necesario que el usuario espere a dos peticiones. Esto hay que ver bien si funcona luego con el tema de las restricciones a la base de datos o que salte algun problema raro, de momento asi funciona, pero queda pendiente de ver esto
-
-  // useEffect(() => {
-  //   const request = async (e) => {
-  //     const gsRef = storage.refFromURL(storageBucket);
-  //     console.log('gsRef', gsRef);
-  //     const url = await gsRef.child(props.imgs[0]).getDownloadURL();
-  //     console.log('url', url);
-  //     setImage(url);
-  //   };
-  //   request();
-  // }, []);
-
   const toLinkUrl = window.location.pathname + '/' + props.id; //la url a la que es direccionado al hacer click en el producto
   return (
     <>
@@ -71,6 +57,7 @@ const ProductCard = (props) => {
         onClick={props.onClickCallback ? props.onClickCallback : null}
         to={toLinkUrl}
       >
+        {/* agregar loading en cada imagen, se crea un componente con la animacion de carga y con styledComponents localmente lo posicionas en el centro de la imagen */}
         <Image image={props.imgsURL[0]} alt="" />
         <ProductInfo>
           <Model>{props.model}</Model>
