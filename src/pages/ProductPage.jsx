@@ -8,6 +8,7 @@ import ProductSlider from '../components/ProductSlider';
 
 import WppLogo from '../assets/Whatsapp-Logo.png';
 import useGetProductData from '../hooks/useGetProductData.js';
+import PageLoader from '../components/PageLoader';
 
 /*################*/
 /*#### STYLES ####*/
@@ -107,7 +108,7 @@ const ProductPage = () => {
     <>
       <Main>
         {loading === true ? (
-          <p>cargando</p>
+          <PageLoader />
         ) : error.error == true ? (
           <strong>Ocurrio un error, {error.code}</strong>
         ) : (

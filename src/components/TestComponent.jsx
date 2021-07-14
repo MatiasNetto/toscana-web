@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { storage, storageBucket } from '../components/Firebase';
-import useGetProductData from '../hooks/useGetProductData';
-import { useGetProductsCollection } from '../hooks/useGetProductsCollection';
+import PageLoader from './PageLoader';
 
 const TestComponent = () => {
   const [imgURL, setImgURL] = useState(null);
@@ -19,16 +17,17 @@ const TestComponent = () => {
   // },[])
 
   // useGetProductsCollection('testcategory');
-  let category = 'testcategory';
-  let model = 'modelo-anashei';
-  const req = useGetProductData(category, model);
-  console.log(req);
+  // let category = 'testcategory';
+  // let model = 'modelo-anashei';
+  // const req = useGetProductData(category, model);
+  // console.log(req);
 
   return (
     <>
       {/* {imgURL == null ? <p>cargando...</p> : 
                 (<img src={imgURL} alt="" />)
             } */}
+      <PageLoader />
     </>
   );
 };

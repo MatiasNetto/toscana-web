@@ -6,6 +6,7 @@ import ProductsGirid from '../components/ProductsGrid';
 import { Subtittle } from '../components/Styles';
 import styled from 'styled-components';
 import { useGetProductsCollection } from '../hooks/useGetProductsCollection';
+import PageLoader from '../components/PageLoader';
 
 /*################*/
 /*#### STYLES ####*/
@@ -39,7 +40,7 @@ const CartegoryPage = () => {
       <Content>
         <Subtittle>{params.category.toUpperCase()}</Subtittle>
         {loading == true ? (
-          <p>cargando</p>
+          <PageLoader />
         ) : error.error ? (
           <strong>Ocurrio un error, {error.code}</strong>
         ) : (
