@@ -7,6 +7,7 @@ import TestPage from './pages/TestPage';
 import HomePage from './pages/HomePage';
 import CartegoryPage from './pages/CategoryPage';
 import AdminAddProductPage from './pages/admin/AdminAddProductPage';
+import AdminEditProductPage from './pages/admin/AdminEditProductPage';
 import ProductPage from './pages/ProductPage';
 import NavBar from './components/NavBar';
 
@@ -38,6 +39,7 @@ function App() {
         <Route path="/category/:category" exact component={CartegoryPage} />
         <Route path="/category/:category/:productId" exact component={ProductPage} />
         <Route path="/admin/add" exact component={AdminAddProductPage} />
+        <Route path="/admin/edit" exact component={AdminEditProductPage} />
         <Route exact path="/" component={HomePage} />
       </Switch>
     </Router>

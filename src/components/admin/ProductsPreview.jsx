@@ -35,11 +35,7 @@ const ProductsPreview = (props) => {
     console.log('FUNCIONAA');
   };
 
-  return (
-    <>
-      <ProductsGirid products={products} onClickCallback={clg} />
-    </>
-  );
+  return <>{products !== null && <ProductsGirid products={products} onClickCallback={props.onClickCallback} />}</>;
 };
 
 export default ProductsPreview;

@@ -48,7 +48,7 @@ const Price = styled.p``;
 /*###################*/
 
 const ProductCard = (props) => {
-  const toLinkUrl = window.location.pathname + '/' + props.id; //la url a la que es direccionado al hacer click en el producto
+  const toLinkUrl = '/' + 'category/' + props.category + '/' + props.id; //la url a la que es direccionado al hacer click en el producto
   return (
     <>
       {/* en caso de contener una funcion de callback el componente se mostrara como div y se asigna el callback correspondiente */}

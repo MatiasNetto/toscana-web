@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { storage, storageBucket } from '../Firebase';
 import styled from 'styled-components';
 
@@ -11,15 +11,31 @@ const Form = styled.form`
   flex-direction: column;
 `;
 
+const ButtonsGrid = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
+
+const ButtonInput = styled.input`
+  width: 100%;
+`;
+
 /*###################*/
 /*#### COMPONENT ####*/
 /*###################*/
 
-const NewProductForm = ({ onSubmitCallback }) => {
+const NewProductForm = ({
+  onSubmitCallback,
+  submitButtonName,
+  secondButtonName,
+  secondButtonCallback,
+  fillFormData,
+}) => {
   const dataLayout = {
-    id: null,
+    id: '',
     order: '',
-    model: null,
+    model: '',
     category: 'testcategory',
     description: '',
     price: '',
@@ -30,6 +46,14 @@ const NewProductForm = ({ onSubmitCallback }) => {
   const [productData, setProductData] = useState(dataLayout);
 
   //use effect cada vez que cambia el productData que se actualice el preview, llamando a una funcion pasada por props
+
+  useEffect(() => {
+    if (fillFormData !== undefined) {
+      setProductData(fillFormData);
+    } else {
+      console.log('data undefined');
+    }
+  }, [fillFormData]);
 
   const clearForm = (element) => {
     //resetea los datos tanto del form como del state
@@ -97,22 +121,30 @@ const NewProductForm = ({ onSubmitCallback }) => {
     <div>
       <Form onSubmit={handleSubmit} action="">
         <label htmlFor="order">Order</label>
-        <input onChange={handleInputChange} type="number" name="order" />
+        <input value={productData.order} onChange={handleInputChange} type="number" name="order" />
+
         <label htmlFor="model">Model</label>
-        <input onChange={handleInputChange} type="text" name="model" />
+        <input value={productData.model} onChange={handleInputChange} type="text" name="model" />
+
         <label htmlFor="description">Description</label>
-        <textarea onChange={handleInputChange} type="text-area" name="description" />
+        <textarea value={productData.description} onChange={handleInputChange} type="text-area" name="description" />
+
         <label htmlFor="price">Price</label>
-        <input onChange={handleInputChange} type="number" name="price" />
+        <input value={productData.price} onChange={handleInputChange} type="number" name="price" />
+
         <label htmlFor="imgs">IMGS</label>
         {/* EL input upload que sea un componente que cuando agregues las imagenes se muestre el progreso */}
         <input onChange={handleFilesChange} type="file" multiple="multiple  " name="imgsURI" />
+
         <label htmlFor="new">New</label>
-        <select onChange={handleInputChange} name="new">
+        <select defaultValue={productData.new} onChange={handleInputChange} name="new">
           <option value="true">true</option>
           <option value="false">false</option>
         </select>
-        <input type="submit" value="Add product" />
+        <ButtonsGrid>
+          <ButtonInput type="submit" value={submitButtonName} />
+          {secondButtonName && <ButtonInput type="button" value={secondButtonName} onclick={secondButtonCallback} />}
+        </ButtonsGrid>
       </Form>
     </div>
   );

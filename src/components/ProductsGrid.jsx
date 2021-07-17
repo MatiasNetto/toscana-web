@@ -35,10 +35,13 @@ const ProductsGirid = ({ products, onClickCallback }) => {
             <ProductCard
               key={product.id}
               imgsURL={product.imgsURL}
+              category={product.category}
               model={product.model}
               price={product.price}
               id={product.id}
-              onClickCallback={onClickCallback}
+              onClickCallback={() => {
+                onClickCallback(product);
+              }}
             />
           );
         })}
