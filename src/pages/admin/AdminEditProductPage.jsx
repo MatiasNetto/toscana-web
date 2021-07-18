@@ -63,6 +63,10 @@ const AdminEditProductPage = () => {
     window.location.reload();
   };
 
+  /*#######################*/
+  /*#### DOM COMPONENT ####*/
+  /*#######################*/
+
   return (
     <>
       <select onChange={handleCategoryChange} name="category">

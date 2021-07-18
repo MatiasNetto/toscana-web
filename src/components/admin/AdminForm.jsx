@@ -126,8 +126,21 @@ const AdminForm = ({ onSubmitCallback, submitName, deleteCallback, dataToFill })
   const handleSubmit = (e) => {
     //que va a realizar al darle a submit
     e.preventDefault();
-    onSubmitCallback(productData, originalProductData); //funcion pasada por props
-    clearForm(e.target); //se puede directamente resetear el navegador
+    let d = productData;
+    if (
+      d.id !== '' &&
+      d.order !== '' &&
+      d.model !== '' &&
+      d.description !== '' &&
+      d.price !== '' &&
+      d.imgsPath !== '' &&
+      e.imgsURL !== ''
+    ) {
+      onSubmitCallback(productData, originalProductData); //funcion pasada por props
+      clearForm(e.target); //se puede directamente resetear el navegador
+    } else {
+      alert('Complete todos los campos');
+    }
   };
 
   const handleDeleteClick = () => {
