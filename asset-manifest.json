@@ -1,0 +1,35 @@
+{
+  "files": {
+    "main.css": "/MatiasNetto/toscana-web/static/css/main.5b66c863.chunk.css",
+    "main.js": "/MatiasNetto/toscana-web/static/js/main.59821852.chunk.js",
+    "main.js.map": "/MatiasNetto/toscana-web/static/js/main.59821852.chunk.js.map",
+    "runtime-main.js": "/MatiasNetto/toscana-web/static/js/runtime-main.ff7b177e.js",
+    "runtime-main.js.map": "/MatiasNetto/toscana-web/static/js/runtime-main.ff7b177e.js.map",
+    "static/css/2.5f03efe0.chunk.css": "/MatiasNetto/toscana-web/static/css/2.5f03efe0.chunk.css",
+    "static/js/2.1f5c9093.chunk.js": "/MatiasNetto/toscana-web/static/js/2.1f5c9093.chunk.js",
+    "static/js/2.1f5c9093.chunk.js.map": "/MatiasNetto/toscana-web/static/js/2.1f5c9093.chunk.js.map",
+    "index.html": "/MatiasNetto/toscana-web/index.html",
+    "static/css/2.5f03efe0.chunk.css.map": "/MatiasNetto/toscana-web/static/css/2.5f03efe0.chunk.css.map",
+    "static/css/main.5b66c863.chunk.css.map": "/MatiasNetto/toscana-web/static/css/main.5b66c863.chunk.css.map",
+    "static/js/2.1f5c9093.chunk.js.LICENSE.txt": "/MatiasNetto/toscana-web/static/js/2.1f5c9093.chunk.js.LICENSE.txt",
+    "static/js/main.59821852.chunk.js.LICENSE.txt": "/MatiasNetto/toscana-web/static/js/main.59821852.chunk.js.LICENSE.txt",
+    "static/media/Location-Icon.746be514.png": "/MatiasNetto/toscana-web/static/media/Location-Icon.746be514.png",
+    "static/media/Money-Icon.17a68ead.png": "/MatiasNetto/toscana-web/static/media/Money-Icon.17a68ead.png",
+    "static/media/logo.98b91c96.png": "/MatiasNetto/toscana-web/static/media/logo.98b91c96.png",
+    "static/media/slider_1.jpg": "/MatiasNetto/toscana-web/static/media/slider_1.3bc8bec2.jpg",
+    "static/media/slider_2.jpg": "/MatiasNetto/toscana-web/static/media/slider_2.7b9d06a3.jpg",
+    "static/media/slider_3.jpg": "/MatiasNetto/toscana-web/static/media/slider_3.f06e4667.jpg",
+    "static/media/slider_4.jpg": "/MatiasNetto/toscana-web/static/media/slider_4.ac495e7f.jpg",
+    "static/media/slider_5.jpg": "/MatiasNetto/toscana-web/static/media/slider_5.f71817a4.jpg",
+    "static/media/slider_6.jpg": "/MatiasNetto/toscana-web/static/media/slider_6.8010914c.jpg",
+    "static/media/slider_7.jpg": "/MatiasNetto/toscana-web/static/media/slider_7.ee8b251c.jpg",
+    "static/media/slider_8.jpg": "/MatiasNetto/toscana-web/static/media/slider_8.54133976.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ff7b177e.js",
+    "static/css/2.5f03efe0.chunk.css",
+    "static/js/2.1f5c9093.chunk.js",
+    "static/css/main.5b66c863.chunk.css",
+    "static/js/main.59821852.chunk.js"
+  ]
+}
