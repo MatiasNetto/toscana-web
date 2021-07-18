@@ -39,7 +39,7 @@ const CartegoryPage = () => {
     <>
       <Content>
         <Subtittle>{params.category.toUpperCase()}</Subtittle>
-        {loading == true ? (
+        {loading === true ? (
           <PageLoader />
         ) : error.error ? (
           <strong>Ocurrio un error, {error.code}</strong>

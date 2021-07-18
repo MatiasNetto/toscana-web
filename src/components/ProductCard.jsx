@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -48,13 +47,13 @@ const Price = styled.p``;
 /*###################*/
 
 const ProductCard = (props) => {
-  const toLinkUrl = '/' + 'category/' + props.category + '/' + props.id; //la url a la que es direccionado al hacer click en el producto
+  // const toLinkUrl = '/' + 'category/' + props.category + '/' + props.id; //la url a la que es direccionado al hacer click en el producto
+  const toLinkUrl = `/category/${props.category}/${props.id}`;
   return (
     <>
-      {/* en caso de contener una funcion de callback el componente se mostrara como div y se asigna el callback correspondiente */}
       <CardLink
-        as={props.onClickCallback ? 'div' : null}
-        onClick={props.onClickCallback ? props.onClickCallback : null}
+        as={props.customClick === true ? 'div' : Link}
+        onClick={props.customClick ? props.onClickCallback : null}
         to={toLinkUrl}
       >
         {/* agregar loading en cada imagen, se crea un componente con la animacion de carga y con styledComponents localmente lo posicionas en el centro de la imagen */}

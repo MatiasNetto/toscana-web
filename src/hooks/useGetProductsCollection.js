@@ -21,7 +21,7 @@ const useGetProductsCollection = (category) => {
           productsFragment = [...productsFragment, product.data()];
         });
 
-        if (productsFragment.length == 0) {
+        if (productsFragment.length === 0) {
           //si el contenido regresado es vacio, erroja un error
           throw { code: 'La categoria deseada no se pudo encontrar' };
         } else if (_isMounted) {

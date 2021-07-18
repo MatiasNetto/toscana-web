@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import AdminForm from '../../components/admin/AdminForm';
 import NewProductForm from '../../components/admin/NewProductForma';
 import ProductsPreview from '../../components/admin/ProductsPreview';
 import { db } from '../../components/Firebase';
@@ -26,26 +27,40 @@ const AdminEditProductPage = () => {
   const [category, setCategory] = useState('testcategory');
   const [fillFormData, setFillFormData] = useState(undefined);
 
+  /*#################*/
+  /*#### CHANGES ####*/
+  /*#################*/
+
+  //Cuando el input de categoria cambia actualiza el estado
   const handleCategoryChange = (e) => {
     console.log(e.target.value);
     setCategory(e.target.value);
   };
 
-  const editProduct = async (productData) => {
-    //comunicarse con la base de datos y modificar el producto
+  //Al hacer click en un producto se llama a esta funcion y setea el formulario con la data del producto enviado
+  const handleFillForm = (data) => {
+    setFillFormData(data);
+    window.scrollTo(0, 0);
+  };
+
+  /*###################*/
+  /*#### FUNCTIONS ####*/
+  /*###################*/
+
+  //Se pasan por parametros la nueva data y la vieja, se borra por completo la data del producto original y se crea uno nuevo con la data actualizada que toma su lugar en la BBDD
+  const editProduct = async (modifiedData, originalData) => {
+    await db.collection(originalData.category).doc(originalData.id).delete(); //Delete el producto origial
+    await db.collection(modifiedData.category).doc(modifiedData.id).set(modifiedData); //Create el producto que remplaza al original
+    alert('Tarea Editada');
+    window.location.reload();
     //en el input de las imagenes es necesario antes de subir nuevas eliminar las anteriores, eso se debe hacer desde el product form o creando un componente aparte para eso que seria lo mas logico
   };
 
   //Agrega un nuevo producto a la categoria seleccionada
   const deleteProduct = async (productData) => {
-    await db.collection(productData.category).doc(productData.id).set(productData);
-    alert('tarea Nueva agregada');
+    await db.collection(productData.category).doc(productData.id).delete();
+    alert('Producto borrado');
     window.location.reload();
-  };
-
-  const handleFillForm = (data) => {
-    setFillFormData(data);
-    window.scrollTo(0, 0);
   };
 
   return (
@@ -58,15 +73,13 @@ const AdminEditProductPage = () => {
         <option value="pulseras">Pulseras</option>
       </select>
       <Page>
-        <NewProductForm
-          category={category}
-          onSubmitCallback={'edita el elemento'}
-          submitButtonName="edit"
-          secondButtonName="Delete"
-          secondButtonCallback={'Borra el elemento'}
-          fillFormData={fillFormData}
+        <AdminForm
+          onSubmitCallback={editProduct}
+          submitName="Edit"
+          deleteCallback={deleteProduct}
+          dataToFill={fillFormData}
         />
-        <ProductsPreview category={category} onClickCallback={handleFillForm} />
+        <ProductsPreview category={category} customClick={true} onClickCallback={handleFillForm} />
       </Page>
     </>
   );
