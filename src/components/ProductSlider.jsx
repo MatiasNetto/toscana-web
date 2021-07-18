@@ -57,7 +57,7 @@ const ProductSlider = ({ imgsURL }) => {
   useEffect(() => {
     let paginationFragment = [];
     for (let i = 0; i < imgsURL.length; i++) {
-      if (i == sliderIndex) paginationFragment[i] = <PointActive key={'point' + i} />;
+      if (i === sliderIndex) paginationFragment[i] = <PointActive key={'point' + i} />;
       else paginationFragment[i] = <PointInactive key={'point' + i} />;
     }
     setPaginationInfo(paginationFragment);

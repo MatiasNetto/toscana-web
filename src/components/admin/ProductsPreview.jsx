@@ -31,11 +31,13 @@ const ProductsPreview = (props) => {
     };
   }, [props.category]);
 
-  const clg = () => {
-    console.log('FUNCIONAA');
-  };
-
-  return <>{products !== null && <ProductsGirid products={products} onClickCallback={props.onClickCallback} />}</>;
+  return (
+    <>
+      {products !== null && (
+        <ProductsGirid products={products} customClick={props.customClick} onClickCallback={props.onClickCallback} />
+      )}
+    </>
+  );
 };
 
 export default ProductsPreview;

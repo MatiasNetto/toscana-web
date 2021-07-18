@@ -44,7 +44,7 @@ const Description = styled.p`
 const InfoCard = (props) => {
   return (
     <CardInfo>
-      <Icon src={props.icon == 'location' ? locationIcon : moneyIcon} />
+      <Icon src={props.icon === 'location' ? locationIcon : moneyIcon} />
       <DataContainer>
         <Tittle>{props.tittle}</Tittle>
         <Description>{props.description}</Description>

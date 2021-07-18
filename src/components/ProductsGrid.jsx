@@ -22,7 +22,7 @@ const Grid = styled.div`
 /*### COMPONENT ####*/
 /*##################*/
 
-const ProductsGirid = ({ products, onClickCallback }) => {
+const ProductsGirid = ({ products, customClick, onClickCallback }) => {
   //necesitas agregar a img= el dato de la referencia. tenes que tomar el dato de product.imgsURI y convertirlo en una referencia. con esa referencia
   //en realidad no se muy bien. lee bien la documentacion
   //https://firebase.google.com/docs/storage/web/download-files?authuser=0
@@ -39,9 +39,14 @@ const ProductsGirid = ({ products, onClickCallback }) => {
               model={product.model}
               price={product.price}
               id={product.id}
-              onClickCallback={() => {
-                onClickCallback(product);
-              }}
+              customClick={customClick}
+              onClickCallback={
+                customClick === true
+                  ? () => {
+                      onClickCallback(product);
+                    }
+                  : null
+              }
             />
           );
         })}

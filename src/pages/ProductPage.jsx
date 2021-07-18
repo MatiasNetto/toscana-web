@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { db } from '../components/Firebase';
 import InfoCard from '../components/InfoCard';
 import ProductSlider from '../components/ProductSlider';
 
@@ -109,7 +108,7 @@ const ProductPage = () => {
       <Main>
         {loading === true ? (
           <PageLoader />
-        ) : error.error == true ? (
+        ) : error.error === true ? (
           <strong>Ocurrio un error, {error.code}</strong>
         ) : (
           <>

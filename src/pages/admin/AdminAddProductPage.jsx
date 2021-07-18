@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import AdminForm from '../../components/admin/AdminForm';
 import NewProductForm from '../../components/admin/NewProductForma';
 import ProductsPreview from '../../components/admin/ProductsPreview';
 import { db } from '../../components/Firebase';
@@ -47,7 +48,12 @@ const AdminAddProductPage = () => {
         <option value="pulseras">Pulseras</option>
       </select>
       <Page>
-        <NewProductForm category={category} onSubmitCallback={uploadNewProduct} submitButtonName="add product" />
+        <AdminForm
+          onSubmitCallback={uploadNewProduct}
+          submitName="Add Product"
+          deleteCallback={undefined}
+          dataToFill={undefined}
+        />
         <ProductsPreview category={category} />
       </Page>
     </>
