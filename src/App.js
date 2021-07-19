@@ -1,4 +1,3 @@
-import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
 
@@ -19,6 +18,9 @@ const GlobalStyle = createGlobalStyle`
 
   * {
     scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
   p,div,li,ul,a,button {
     font-family: 'Abhaya Libre', serif;
