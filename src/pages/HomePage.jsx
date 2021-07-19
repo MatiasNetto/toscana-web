@@ -3,6 +3,10 @@ import styled from 'styled-components';
 
 //assets
 import sliderImage1 from '../assets/slider/mobile/slider_1.jpg';
+import arosImage from '../assets/categorys/Aros.png';
+import anillosImage from '../assets/categorys/Anillo.png';
+import collaresImage from '../assets/categorys/Collar.png';
+import pulserasImage from '../assets/categorys/Pulsera.png';
 
 //components
 import HomeSlider from '../components/HomeSlider';
@@ -31,11 +35,11 @@ function HomePage() {
       <div className="products-container">
         <Subtittle>Categorias</Subtittle>
         <Categories>
-          <CategoryCard text="Test Category" category="testcategory" img={sliderImage1} align="left" />
-          <CategoryCard text="Anillos" category="anillos" img={sliderImage1} align="left" />
-          <CategoryCard text="Aros" category="aros" img={sliderImage1} align="right" />
-          <CategoryCard text="Pulseras" category="pulseras" img={sliderImage1} align="left" />
-          <CategoryCard text="Collares" category="collares" img={sliderImage1} align="right" />
+          {/* <CategoryCard text="Test Category" category="testcategory" img={sliderImage1} align="left" /> */}
+          <CategoryCard text="Anillos" category="anillos" img={anillosImage} align="left" />
+          <CategoryCard text="Aros" category="aros" img={arosImage} align="right" />
+          <CategoryCard text="Pulseras" category="pulseras" img={pulserasImage} align="left" />
+          <CategoryCard text="Collares" category="collares" img={collaresImage} align="right" />
         </Categories>
       </div>
     </>
