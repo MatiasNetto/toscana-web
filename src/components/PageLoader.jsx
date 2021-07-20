@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
 const LoaderContainer = styled.div`
-  height: 100vh;
+  height: 92vh;
   width: 100vw;
   position: absolute;
   top: 0;
