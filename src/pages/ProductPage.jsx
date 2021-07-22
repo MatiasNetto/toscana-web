@@ -83,30 +83,42 @@ const Icon = styled.img`
 /*###################*/
 
 const ProductPage = () => {
-  //copletar en el useState el objeto con los datos vacios
-  const [productData, setProductData] = useState({ model: '', price: undefined, imgsURL: [''] });
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState({ error: true });
   const params = useParams();
+
+  //si existen datos sobre el producto establece awaitingDefault como falso, en caso de que no existan lo establece como true, para que cargue
+  let awaitingDefault = false;
+  if (sessionStorage.getItem(`${params.category}/${params.productId}`) === null) {
+    awaitingDefault = true;
+  }
+
+  //si existe en el session storage completa con los datos, si no devuelve null
+  const [productData, setProductData] = useState(
+    JSON.parse(sessionStorage.getItem(`${params.category}/${params.productId}`))
+  );
+
+  const [awaiting, setAwaiting] = useState(awaitingDefault); //establece con el valor default que establece la condicion anterior
+  const [error, setError] = useState({ error: false });
 
   window.scroll({
     top: 0,
     left: 0,
-    behavior: 'smooth',
+    behavior: 'auto',
   });
 
-  let { data, isPending, err } = useGetProductData(params.category, params.productId);
+  let { data, isPending, err } = useGetProductData(params.category, params.productId, awaitingDefault);
 
   useEffect(() => {
-    setProductData(data);
-    setError(err);
-    setLoading(isPending);
+    if (awaiting === true) {
+      setProductData(data);
+      setError(err);
+      setAwaiting(isPending);
+    }
   }, [isPending, err]);
 
   return (
     <>
       <Main>
-        {loading === true ? (
+        {awaiting === true ? (
           <PageLoader />
         ) : error.error === true ? (
           <strong>Ocurrio un error, {error.code}</strong>

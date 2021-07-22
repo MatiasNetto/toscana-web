@@ -117,7 +117,11 @@ const HomePageSlider = () => {
 
   //scroll hacia abajo
   const handleButtonClick = (e) => {
-    window.scrollTo(0, e.target.parentNode.clientHeight);
+    window.scroll({
+      top: e.target.parentNode.clientHeight,
+      left: 0,
+      behavior: 'smooth',
+    });
   };
 
   //DOM object

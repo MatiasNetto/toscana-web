@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { db } from '../components/Firebase';
 
-const useGetProductsCollection = (category) => {
-  const [collection, setCollection] = useState(null);
-  const [isPending, setIsPending] = useState(true);
+const useGetProductsCollection = (category, pendingDefault) => {
+  const [collection, setCollection] = useState(JSON.parse(sessionStorage.getItem(category)));
+  const [isPending, setIsPending] = useState(pendingDefault);
   const [err, setErr] = useState({ error: false, code: '' });
 
   useEffect(() => {
@@ -36,15 +36,21 @@ const useGetProductsCollection = (category) => {
         setIsPending(false);
       }
     };
-    getData(); //Llama la funcion asincrona
+
+    //comprueva, si la informacion no esta guardada en el session storage hace la peticion, si esta guardada la devuelve
+    if (sessionStorage.getItem(category) === null) {
+      getData(); //Llama la funcion asincrona
+    } else {
+      setCollection(JSON.parse(sessionStorage.getItem(category)));
+      setErr({ error: false });
+      setIsPending(false);
+    }
 
     //Cuando el componente se desmonte, cancela toda actualizacion de estado
     return () => {
       _isMounted = false;
     };
   }, [category]);
-
-  console.log({ collection, isPending, err });
 
   return { collection, isPending, err };
 };

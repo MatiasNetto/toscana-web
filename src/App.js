@@ -17,7 +17,6 @@ const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,900;1,400;1,600&display=swap');
 
   * {
-    scroll-behavior: smooth;
     margin: 0;
     padding: 0;
     box-sizing: border-box;

@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react';
 import { db } from '../components/Firebase';
 
-const useGetProductData = (category, productId, admin) => {
-  const [data, setData] = useState(null);
-  const [isPending, setIsPending] = useState(true);
+const useGetProductData = (category, productId, pendingDefault) => {
+  const [data, setData] = useState(JSON.parse(sessionStorage.getItem(`${category}/${productId}`)));
+  const [isPending, setIsPending] = useState(pendingDefault);
   const [err, setErr] = useState({ error: false });
+
+  console.log(data);
+  console.log(isPending);
 
   useEffect(() => {
     let _isMounted = true;
@@ -31,17 +34,12 @@ const useGetProductData = (category, productId, admin) => {
       }
     };
 
-    if (admin && _isMounted) {
-      //habilitar el acceso a admin en caso de que admin sea pasado como true
+    if (sessionStorage.getItem(`${category}/${productId}`) === null) {
       getData(category, productId);
-    } else if (category !== 'admin' && _isMounted && data === null) {
-      //habilitar el acceso a todos las colecciones excepto a admin
-      console.log('Hace la request');
-      getData(category, productId);
-    } else if (category === 'admin' && _isMounted) {
-      //lanzar un error en caso de que no sea admin y solicite la infomacion de admin
+    } else {
+      setData(JSON.parse(sessionStorage.getItem(`${category}/${productId}`)));
+      setErr({ error: false });
       setIsPending(false);
-      setErr({ error: true, code: 'No tienes el permiso para acceder a esta categoria' });
     }
 
     //cuando el componente se desmonte cancelar todo cambio de estado para evitar memory leak
