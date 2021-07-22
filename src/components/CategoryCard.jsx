@@ -40,7 +40,17 @@ const Img = styled.img`
 const CategoryCard = ({ img, category, align, text }) => {
   return (
     <>
-      <CategoryLink to={'/category/' + category}>
+      {/* //! onClick scrolea hacia arriba de todo al entrar en una categoria, el problema es que al volver a la home page tambien aparece en el top, no se que va a ser lo mejor*/}
+      <CategoryLink
+        onClick={() => {
+          window.scroll({
+            top: 0,
+            left: 0,
+            behavior: 'auto',
+          });
+        }}
+        to={'/category/' + category}
+      >
         <Name className="text" align={align}>
           {text}
         </Name>

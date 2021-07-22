@@ -6,9 +6,6 @@ const useGetProductData = (category, productId, pendingDefault) => {
   const [isPending, setIsPending] = useState(pendingDefault);
   const [err, setErr] = useState({ error: false });
 
-  console.log(data);
-  console.log(isPending);
-
   useEffect(() => {
     let _isMounted = true;
     const getData = async (category, proudctId) => {
