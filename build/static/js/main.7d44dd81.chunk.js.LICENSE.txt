@@ -1,1 +1,0 @@
-//!Falta condicion de que en caso de estar desde movile mostrar los controles del slider

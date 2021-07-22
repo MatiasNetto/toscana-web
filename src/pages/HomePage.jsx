@@ -9,13 +9,13 @@ import pulserasImage from '../assets/categorys/Pulsera.png';
 import testImage from '../assets/categorys/Test.png';
 
 //components
-import HomeSlider from '../components/HomeSlider';
 import CategoryCard from '../components/CategoryCard';
 
 /*################*/
 /*#### STYLES ####*/
 /*################*/
 import { Subtittle } from '../components/Styles';
+import HomePageSlider from '../components/HomePageSlider';
 
 const Categories = styled.div`
   display: flex;
@@ -31,15 +31,15 @@ const Categories = styled.div`
 function HomePage() {
   return (
     <>
-      <HomeSlider />
+      <HomePageSlider />
       <div className="products-container">
         <Subtittle>Categorias</Subtittle>
         <Categories>
+          <CategoryCard text="Test Category" category="testcategory" img={testImage} align="left" />
           <CategoryCard text="Anillos" category="anillos" img={anillosImage} align="left" />
           <CategoryCard text="Aros" category="aros" img={arosImage} align="right" />
           <CategoryCard text="Pulseras" category="pulseras" img={pulserasImage} align="left" />
           <CategoryCard text="Collares" category="collares" img={collaresImage} align="right" />
-          <CategoryCard text="Test Category" category="testcategory" img={testImage} align="left" />
         </Categories>
       </div>
     </>
