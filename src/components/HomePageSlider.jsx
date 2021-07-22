@@ -7,6 +7,7 @@ import 'swiper/swiper-bundle.css';
 
 //assets
 import logoIMG from '../assets/logos/logo.png';
+import sliderIMG from '../assets/slider/mobile/slider_1.jpg';
 
 //css
 import { desktopMediaQuery } from './Styles';
@@ -87,14 +88,7 @@ const SlideButton = styled.button`
 
 const HomePageSlider = () => {
   //el estado se inicializa con la url de la primera imagen, hay que agregarla a mano, despues el resto son traidas con http requests
-  const [sliderImages, setSliderImages] = useState(
-    <SwiperSlide className="swiper-no-swiping" style={{ display: 'flex', alignItems: 'center' }} key={1}>
-      <SwiperImage
-        style={{ filter: 'brightness(80%)' }}
-        src="https://firebasestorage.googleapis.com/v0/b/tostest-2fbf8.appspot.com/o/admin%2Fhome-slider%2Fmobile%2Fslider_1.jpg?alt=media&token=c1f3d51f-13b1-44e6-b5b4-0bb9abd7cee2"
-      ></SwiperImage>
-    </SwiperSlide>
-  );
+  const [sliderImages, setSliderImages] = useState([sliderIMG]);
 
   useEffect(() => {
     let pathRef = storage.ref('admin/home-slider/mobile/'); //se crea la referencia hacia la base de datos
@@ -104,11 +98,7 @@ const HomePageSlider = () => {
       for (let i = 1; i <= imagesCount; i++) {
         let imageURL = await pathRef.child('slider_' + i + '.jpg').getDownloadURL(); //trae la imagen desde el servidor y la almacena en la variable
 
-        sliderFragment[i] = (
-          <SwiperSlide className="swiper-no-swiping" style={{ display: 'flex', alignItems: 'center' }} key={i}>
-            <SwiperImage style={{ filter: 'brightness(80%)' }} src={imageURL}></SwiperImage>
-          </SwiperSlide>
-        ); //agrega la imagen ya formateada al fragmento
+        sliderFragment[i] = imageURL; //agrega la url al fragmento
       }
       setSliderImages(sliderFragment); //una vez guardadas todas la imagenes en el fragment la almacena en el estado
     };
@@ -142,8 +132,17 @@ const HomePageSlider = () => {
         noSwiping={true}
         zoom={true}
       >
-        <p>nazii</p>
-        {sliderImages}
+        {sliderImages.map((image) => {
+          return (
+            <SwiperSlide
+              className="swiper-no-swiping"
+              style={{ display: 'flex', alignItems: 'center' }}
+              key={Math.random()}
+            >
+              <SwiperImage style={{ filter: 'brightness(80%)' }} src={image}></SwiperImage>
+            </SwiperSlide>
+          );
+        })}
       </Swiper>
       <Content>
         <Logo src={logoIMG} alt="Toscana logo" />
