@@ -27,8 +27,23 @@ const Slider = styled.div`
   height: 92vh;
   width: 100%;
   position: relative;
+  z-index: 1;
   overflow: hidden;
   margin-top: 8vh;
+
+  &:before {
+    content: '';
+    height: 92vh;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background-image: url(${sliderIMG});
+    background-size: cover;
+    background-position: center;
+    filter: brightness(80%);
+  }
 `;
 
 const Content = styled.div`
@@ -88,7 +103,9 @@ const SlideButton = styled.button`
 
 const HomePageSlider = () => {
   //el estado se inicializa con la url de la primera imagen, hay que agregarla a mano, despues el resto son traidas con http requests
-  const [sliderImages, setSliderImages] = useState([sliderIMG]);
+  const [sliderImages, setSliderImages] = useState([
+    'https://firebasestorage.googleapis.com/v0/b/tostest-2fbf8.appspot.com/o/admin%2Fhome-slider%2Fmobile%2Fslider_1.jpg?alt=media&token=c1f3d51f-13b1-44e6-b5b4-0bb9abd7cee2',
+  ]);
 
   useEffect(() => {
     let pathRef = storage.ref('admin/home-slider/mobile/'); //se crea la referencia hacia la base de datos
@@ -99,6 +116,7 @@ const HomePageSlider = () => {
         let imageURL = await pathRef.child('slider_' + i + '.jpg').getDownloadURL(); //trae la imagen desde el servidor y la almacena en la variable
 
         sliderFragment[i] = imageURL; //agrega la url al fragmento
+        console.log(imageURL);
       }
       setSliderImages(sliderFragment); //una vez guardadas todas la imagenes en el fragment la almacena en el estado
     };
