@@ -59,6 +59,7 @@ const AdminEditProductPage = () => {
   //Agrega un nuevo producto a la categoria seleccionada
   const deleteProduct = async (productData) => {
     await db.collection(productData.category).doc(productData.id).delete();
+    sessionStorage.clear();
     alert('Producto borrado');
     window.location.reload();
   };
