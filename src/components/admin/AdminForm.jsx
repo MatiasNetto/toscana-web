@@ -25,12 +25,12 @@ const ButtonInput = styled.input`
 /*#### COMPONENT ####*/
 /*###################*/
 
-const AdminForm = ({ onSubmitCallback, submitName, deleteCallback, dataToFill }) => {
+const AdminForm = ({ onSubmitCallback, submitName, deleteCallback, dataToFill, category }) => {
   const dataLayout = {
     id: '',
     order: '',
     model: '',
-    category: 'testcategory',
+    category: category,
     description: '',
     price: '',
     imgsPath: '',
@@ -49,6 +49,11 @@ const AdminForm = ({ onSubmitCallback, submitName, deleteCallback, dataToFill })
   useEffect(() => {
     fillForm(dataToFill);
   }, [dataToFill]);
+
+  //al cambiar la categoria pasada por props actualiza el productData con la nueva categoria
+  useEffect(() => {
+    setProductData({ ...{ ...productData, category: category } });
+  }, [category]);
 
   //Rellena el form y originalProductData con los datos indicados
   const fillForm = (data) => {
@@ -177,10 +182,19 @@ const AdminForm = ({ onSubmitCallback, submitName, deleteCallback, dataToFill })
 
         {/* NEW */}
         <label htmlFor="new">New</label>
-        <select defaultValue={productData.new} onChange={handleInputChange} name="new">
+        {/* <select defaultValue={productData.new} onChange={handleInputChange} name="new">
           <option value="true">true</option>
           <option value="false">false</option>
-        </select>
+        </select> */}
+
+        <input
+          type="checkbox"
+          onClick={(e) => {
+            e.target.value = e.target.checked;
+          }}
+          onChange={handleInputChange}
+          name="new"
+        />
 
         {/* BUTTONS */}
         <ButtonsGrid>

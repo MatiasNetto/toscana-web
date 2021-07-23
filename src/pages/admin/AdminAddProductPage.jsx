@@ -33,7 +33,7 @@ const AdminAddProductPage = () => {
 
   //Agrega un nuevo producto a la categoria seleccionada
   const uploadNewProduct = async (productData) => {
-    await db.collection(productData.category).doc(productData.id).set(productData);
+    await db.collection(category).doc(productData.id).set(productData);
     alert('tarea Nueva agregada');
     window.location.reload();
   };
@@ -53,6 +53,7 @@ const AdminAddProductPage = () => {
           submitName="Add Product"
           deleteCallback={undefined}
           dataToFill={undefined}
+          category={category}
         />
         <ProductsPreview category={category} />
       </Page>
