@@ -15,7 +15,6 @@ const Page = styled.div`
   flex-direction: column;
   ${desktopMediaQuery} {
     flex-direction: row;
-    border: 2px solid #f00;
   }
 `;
 

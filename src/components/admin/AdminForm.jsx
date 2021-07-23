@@ -1,14 +1,53 @@
 import React, { useEffect, useState } from 'react';
 import { storage, storageBucket } from '../Firebase';
 import styled from 'styled-components';
+import { desktopMediaQuery } from '../Styles';
 
 /*################*/
 /*#### STYLES ####*/
 /*################*/
 
+const MainContainer = styled.div`
+  height: 95vh;
+  width: 100%;
+  padding: 1em 1em;
+
+  ${desktopMediaQuery} {
+    width: 25vw;
+  }
+`;
+
 const Form = styled.form`
+  height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+`;
+
+const InputContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const Label = styled.label`
+  color: #000;
+`;
+
+const TextInput = styled.input`
+  height: 5vh;
+  font-size: 1.2em;
+`;
+
+const AreaInput = styled.textarea`
+  height: 15vh;
+  font-size: 1.2em;
+`;
+
+const CheckInput = styled.input`
+  height: 1.2em;
+  width: 1.2em;
+  margin-right: 5px;
+  cursor: pointer;
 `;
 
 const ButtonsGrid = styled.div`
@@ -19,6 +58,9 @@ const ButtonsGrid = styled.div`
 
 const ButtonInput = styled.input`
   width: 100%;
+  height: 6vh;
+  background: #00ce69;
+  font-size: 1.2em;
 `;
 
 /*###################*/
@@ -36,6 +78,10 @@ const AdminForm = ({ onSubmitCallback, submitName, deleteCallback, dataToFill, c
     imgsPath: '',
     imgsURL: '',
     new: true,
+    trending: false,
+    outOfStock: false,
+    offer: false,
+    hidden: false,
   };
 
   const [productData, setProductData] = useState(dataLayout);
@@ -157,52 +203,114 @@ const AdminForm = ({ onSubmitCallback, submitName, deleteCallback, dataToFill, c
   /*#######################*/
 
   return (
-    <div>
+    <MainContainer>
       <Form onSubmit={handleSubmit} action="">
-        {/* ORDER */}
-        <label htmlFor="order">Order</label>
-        <input value={productData.order} onChange={handleInputChange} type="number" name="order" />
-
         {/* MODEL */}
-        <label htmlFor="model">Model</label>
-        <input value={productData.model} onChange={handleInputChange} type="text" name="model" />
+        <InputContainer>
+          <Label htmlFor="model">Model</Label>
+          <TextInput value={productData.model} onChange={handleInputChange} type="text" name="model" />
+        </InputContainer>
 
         {/* DESCRIPTION */}
-        <label htmlFor="description">Description</label>
-        <textarea value={productData.description} onChange={handleInputChange} type="text-area" name="description" />
+        <InputContainer>
+          <Label htmlFor="description">Description</Label>
+          <AreaInput value={productData.description} onChange={handleInputChange} type="text-area" name="description" />
+        </InputContainer>
 
         {/* PRICE */}
-        <label htmlFor="price">Price</label>
-        <input value={productData.price} onChange={handleInputChange} type="number" name="price" />
+        <InputContainer>
+          <Label htmlFor="price">Price</Label>
+          <TextInput value={productData.price} onChange={handleInputChange} type="number" name="price" />
+        </InputContainer>
 
         {/* IMGS */}
-        <label htmlFor="imgs">IMGS</label>
-        {/* EL input upload que sea un componente que cuando agregues las imagenes se muestre el progreso */}
-        <input onChange={handleFilesChange} type="file" multiple="multiple  " name="imgsURI" />
+        <InputContainer>
+          <Label htmlFor="imgs">IMGS</Label>
+          {/* EL input upload que sea un componente que cuando agregues las imagenes se muestre el progreso */}
+          <input onChange={handleFilesChange} type="file" multiple="multiple  " name="imgsURI" />
+        </InputContainer>
+
+        {/* ORDER */}
+        <InputContainer>
+          <Label htmlFor="order">Order</Label>
+          <TextInput value={productData.order} onChange={handleInputChange} type="number" name="order" />
+        </InputContainer>
 
         {/* NEW */}
-        <label htmlFor="new">New</label>
-        {/* <select defaultValue={productData.new} onChange={handleInputChange} name="new">
-          <option value="true">true</option>
-          <option value="false">false</option>
-        </select> */}
+        <div>
+          <CheckInput
+            type="checkbox"
+            defaultChecked="true"
+            onClick={(e) => {
+              e.target.value = e.target.checked;
+            }}
+            onChange={handleInputChange}
+            name="new"
+          />
+          <Label htmlFor="new">New</Label>
+        </div>
 
-        <input
-          type="checkbox"
-          onClick={(e) => {
-            e.target.value = e.target.checked;
-          }}
-          onChange={handleInputChange}
-          name="new"
-        />
+        {/* TRENDING */}
+        <div>
+          <CheckInput
+            type="checkbox"
+            onClick={(e) => {
+              e.target.value = e.target.checked;
+            }}
+            onChange={handleInputChange}
+            name="trending"
+          />
+          <Label htmlFor="trending">Trending</Label>
+        </div>
+
+        {/* OUT OF STOCK */}
+        <div>
+          <CheckInput
+            type="checkbox"
+            onClick={(e) => {
+              e.target.value = e.target.checked;
+            }}
+            onChange={handleInputChange}
+            name="outOfStock"
+          />
+          <Label htmlFor="outOfStock">Sin Stock</Label>
+        </div>
+
+        {/* OFFER */}
+        {/* <div>
+          <CheckInput
+            type="checkbox"
+            onClick={(e) => {
+              e.target.value = e.target.checked;
+            }}
+            onChange={handleInputChange}
+            name="offer"
+          />
+          <Label htmlFor="offer">Oferta</Label>
+        </div> */}
+
+        {/* OUT OF STOCK */}
+        <div>
+          <CheckInput
+            type="checkbox"
+            onClick={(e) => {
+              e.target.value = e.target.checked;
+            }}
+            onChange={handleInputChange}
+            name="hidden"
+          />
+          <Label htmlFor="hidden">Oculto</Label>
+        </div>
 
         {/* BUTTONS */}
         <ButtonsGrid>
           <ButtonInput type="submit" value={submitName} />
-          {deleteCallback !== undefined && <ButtonInput type="button" value="Delete" onClick={handleDeleteClick} />}
+          {deleteCallback !== undefined && (
+            <ButtonInput style={{ background: '#d45452' }} type="button" value="Delete" onClick={handleDeleteClick} />
+          )}
         </ButtonsGrid>
       </Form>
-    </div>
+    </MainContainer>
   );
 };
 
