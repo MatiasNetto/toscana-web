@@ -15,7 +15,6 @@ const Page = styled.div`
   flex-direction: column;
   ${desktopMediaQuery} {
     flex-direction: row;
-    border: 2px solid #f00;
   }
 `;
 
@@ -26,6 +25,7 @@ const Page = styled.div`
 const AdminEditProductPage = () => {
   const [category, setCategory] = useState('testcategory');
   const [fillFormData, setFillFormData] = useState(undefined);
+  const [reload, setReload] = useState(false);
 
   /*#################*/
   /*#### CHANGES ####*/
@@ -40,7 +40,11 @@ const AdminEditProductPage = () => {
   //Al hacer click en un producto se llama a esta funcion y setea el formulario con la data del producto enviado
   const handleFillForm = (data) => {
     setFillFormData(data);
-    window.scrollTo(0, 0);
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
   };
 
   /*###################*/
@@ -52,7 +56,8 @@ const AdminEditProductPage = () => {
     await db.collection(originalData.category).doc(originalData.id).delete(); //Delete el producto origial
     await db.collection(modifiedData.category).doc(modifiedData.id).set(modifiedData); //Create el producto que remplaza al original
     alert('Tarea Editada');
-    window.location.reload();
+    setReload(!reload);
+    // window.location.reload();
     //en el input de las imagenes es necesario antes de subir nuevas eliminar las anteriores, eso se debe hacer desde el product form o creando un componente aparte para eso que seria lo mas logico
   };
 
@@ -61,7 +66,8 @@ const AdminEditProductPage = () => {
     await db.collection(productData.category).doc(productData.id).delete();
     sessionStorage.clear();
     alert('Producto borrado');
-    window.location.reload();
+    setReload(true);
+    // window.location.reload();
   };
 
   /*#######################*/
@@ -84,7 +90,7 @@ const AdminEditProductPage = () => {
           deleteCallback={deleteProduct}
           dataToFill={fillFormData}
         />
-        <ProductsPreview category={category} customClick={true} onClickCallback={handleFillForm} />
+        <ProductsPreview category={category} reload={reload} customClick={true} onClickCallback={handleFillForm} />
       </Page>
     </>
   );

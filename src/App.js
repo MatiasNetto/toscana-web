@@ -9,6 +9,7 @@ import AdminAddProductPage from './pages/admin/AdminAddProductPage';
 import AdminEditProductPage from './pages/admin/AdminEditProductPage';
 import ProductPage from './pages/ProductPage';
 import NavBar from './components/NavBar';
+import AdminPage from './pages/admin/AdminPage';
 
 //STYLES
 
@@ -39,8 +40,8 @@ function App() {
         <Route path="/test" exact component={TestPage} />
         <Route path="/category/:category" exact component={CartegoryPage} />
         <Route path="/category/:category/:productId" exact component={ProductPage} />
-        <Route path="/admin/add" exact component={AdminAddProductPage} />
-        <Route path="/admin/edit" exact component={AdminEditProductPage} />
+        <Route path="/admin" component={AdminPage} />
+        <Route path="/ashei" exact component={AdminEditProductPage} />
         <Route exact path="/" component={HomePage} />
       </Switch>
     </Router>

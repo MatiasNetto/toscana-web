@@ -29,7 +29,7 @@ const ProductsPreview = (props) => {
     return () => {
       _isMounted = false;
     };
-  }, [props.category]);
+  }, [props.category, props.reload]);
 
   return (
     <>

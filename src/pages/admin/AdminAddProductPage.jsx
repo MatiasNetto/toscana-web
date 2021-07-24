@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import AdminForm from '../../components/admin/AdminForm';
 import NewProductForm from '../../components/admin/NewProductForma';
@@ -24,6 +24,7 @@ const Page = styled.div`
 
 const AdminAddProductPage = () => {
   const [category, setCategory] = useState('testcategory');
+  const [reload, setReload] = useState(false);
 
   const handleCategoryChange = (e) => {
     console.log(e.target.value);
@@ -34,7 +35,7 @@ const AdminAddProductPage = () => {
   const uploadNewProduct = async (productData) => {
     await db.collection(category).doc(productData.id).set(productData);
     alert('tarea Nueva agregada');
-    window.location.reload();
+    setReload(!reload);
   };
 
   return (
@@ -54,7 +55,7 @@ const AdminAddProductPage = () => {
           dataToFill={undefined}
           category={category}
         />
-        <ProductsPreview category={category} />
+        <ProductsPreview category={category} reload={reload} />
       </Page>
     </>
   );
