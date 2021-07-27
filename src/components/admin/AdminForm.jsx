@@ -53,17 +53,12 @@ const CheckInput = styled.input`
   cursor: pointer;
 `;
 
-const ButtonsGrid = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-`;
-
 const ButtonInput = styled.input`
   width: 100%;
   height: 6vh;
   background: #00ce69;
   font-size: 1.2em;
+  cursor: pointer;
 `;
 
 /*###################*/
@@ -246,7 +241,7 @@ const AdminForm = ({ onSubmitCallback, submitName, dataToFill, category }) => {
         <div>
           <CheckInput
             type="checkbox"
-            defaultChecked="true"
+            // defaultChecked="true"
             checked={productData.new}
             onChange={handleCheckboxChange}
             name="new"
@@ -287,10 +282,7 @@ const AdminForm = ({ onSubmitCallback, submitName, dataToFill, category }) => {
           <Label htmlFor="hidden">Oculto</Label>
         </div>
 
-        {/* BUTTONS */}
-        <ButtonsGrid>
-          <ButtonInput type="submit" value={submitName} />
-        </ButtonsGrid>
+        <ButtonInput type="submit" value={submitName} />
       </Form>
     </MainContainer>
   );

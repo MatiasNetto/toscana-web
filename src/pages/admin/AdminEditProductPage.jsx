@@ -38,7 +38,7 @@ const AdminEditProductPage = () => {
   };
 
   //Al hacer click en un producto se llama a esta funcion y setea el formulario con la data del producto enviado
-  const handleFillForm = (data) => {
+  const handlePreviewCallback = (data) => {
     setFillFormData(data);
   };
 
@@ -82,7 +82,12 @@ const AdminEditProductPage = () => {
       <Page>
         <AdminForm onSubmitCallback={editProduct} submitName="Edit" dataToFill={fillFormData} />
         {reload === false && (
-          <ProductsPreview category={category} reload={reload} customClick={true} onClickCallback={handleFillForm} />
+          <ProductsPreview
+            category={category}
+            reload={reload}
+            customClick={true}
+            onClickCallback={handlePreviewCallback}
+          />
         )}
       </Page>
     </>

@@ -18,6 +18,11 @@ const CardLink = styled(Link)`
   border-radius: 10px;
   text-decoration: none;
   overflow: hidden;
+  ${(props) => {
+    if (props.custom === true) {
+      return `cursor:pointer`;
+    }
+  }}
 `;
 
 const Image = styled.div`
@@ -117,6 +122,7 @@ const ProductCard = (props) => {
   return (
     <>
       <CardLink
+        custom={props.customClick}
         as={props.customClick === true ? 'div' : Link}
         onClick={props.customClick ? props.onClickCallback : null}
         to={toLinkUrl}
@@ -137,14 +143,14 @@ const ProductCard = (props) => {
         )}
 
         <ModifiersContainer>
+          {/* OCULTO */}
+          {props.hidden === true && <Modifier color="#777">OCULTO</Modifier>}
+
           {/* TRENDING */}
           {props.trending === true && <Modifier color="#a95cc3">MAS VENDIDO!</Modifier>}
 
           {/* NEW */}
           {props.new === true && <Modifier color="#f7d249">NEW!</Modifier>}
-
-          {/* OCULTO */}
-          {props.hidden === true && <Modifier color="#777">OCULTO</Modifier>}
 
           {/* <Sticker>NEW</Sticker> */}
         </ModifiersContainer>

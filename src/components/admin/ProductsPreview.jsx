@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useGetProductsCollection } from '../../hooks/useGetProductsCollection';
-import { db } from '../Firebase';
 import PageLoader from '../PageLoader';
 import ProductsGirid from '../ProductsGrid';
 
