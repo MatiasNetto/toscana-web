@@ -35,3 +35,7 @@
   -outOfStock---------------//Indica si esta fuera de stock o no, en caso de estarlos coloca la imagen en blanco y negro y una barra que dice fuera de stock
   -offer--------------------//indica si esta en oferta, se ingresa el precio con descuento y el programa genera el porcentaje
   -hidden-------------------//Indica si esta oculto, en caso de estarlo no se listara en los productos
+
+  ## Bugs
+
+  -si elegis new y trening o en un futuro el descuento se colocan uno arriba del otro, deberian verse uno abajo del otro, se arregla creando un div que se posiione absolute sobre la imagen y que dentro se vayan disponiendo de manera normal, uno abajo del otro los modificadores estos

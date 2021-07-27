@@ -41,6 +41,7 @@ const ProductsGirid = ({ products, customClick, onClickCallback }) => {
               imgsURL={product.imgsURL}
               new={product.new}
               trending={product.trending}
+              hidden={product.hidden}
               outOfStock={product.outOfStock}
               customClick={customClick}
               onClickCallback={

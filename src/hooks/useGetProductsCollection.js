@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { db } from '../components/Firebase';
 
-const useGetProductsCollection = (category, pendingDefault) => {
+const useGetProductsCollection = (category, pendingDefault, hidden) => {
   const [collection, setCollection] = useState(JSON.parse(sessionStorage.getItem(category)));
   const [isPending, setIsPending] = useState(pendingDefault);
   const [err, setErr] = useState({ error: false, code: '' });
@@ -14,14 +14,77 @@ const useGetProductsCollection = (category, pendingDefault) => {
       let productsRequest = '';
 
       try {
-        productsRequest = await db.collection(category).get();
-
+        //productos que son tendencia y nuevos
+        productsRequest = await db
+          .collection(category)
+          .where('trending', '==', true)
+          .where('new', '==', true)
+          .where('hidden', '==', false)
+          .get();
         productsRequest.forEach((product) => {
           //Recorre la data traida y agrega los productos a productsFragment
           productsFragment = [...productsFragment, product.data()];
         });
 
+        //productos que son tendencia
+        productsRequest = await db
+          .collection(category)
+          .where('trending', '==', true)
+          .where('new', '==', false)
+          .where('hidden', '==', false)
+          .get();
+        productsRequest.forEach((product) => {
+          //Recorre la data traida y agrega los productos a productsFragment
+          productsFragment = [...productsFragment, product.data()];
+        });
+
+        //productos que son nuevos
+        productsRequest = await db
+          .collection(category)
+          .where('new', '==', true)
+          .where('trending', '==', false)
+          .where('hidden', '==', false)
+          .get();
+        productsRequest.forEach((product) => {
+          //Recorre la data traida y agrega los productos a productsFragment
+          productsFragment = [...productsFragment, product.data()];
+        });
+
+        //productos que hay stock
+        productsRequest = await db
+          .collection(category)
+          .where('trending', '==', false)
+          .where('new', '==', false)
+          .where('outOfStock', '==', false)
+          .where('hidden', '==', false)
+          .get();
+        productsRequest.forEach((product) => {
+          //Recorre la data traida y agrega los productos a productsFragment
+          productsFragment = [...productsFragment, product.data()];
+        });
+
+        //productos que no hay stock
+        productsRequest = await db
+          .collection(category)
+          .where('outOfStock', '==', true)
+          .where('hidden', '==', false)
+          .get();
+        productsRequest.forEach((product) => {
+          //Recorre la data traida y agrega los productos a productsFragment
+          productsFragment = [...productsFragment, product.data()];
+        });
+
+        //si esta especificada la prop hidden se muestra todos los productos ocultos
+        if (hidden === true) {
+          productsRequest = await db.collection(category).where('hidden', '==', true).get();
+          productsRequest.forEach((product) => {
+            //Recorre la data traida y agrega los productos a productsFragment
+            productsFragment = [...productsFragment, product.data()];
+          });
+        }
+
         if (productsFragment.length === 0) {
+          //si la categoria no existe devuelve una longitud de cero
           //si el contenido regresado es vacio, erroja un error
           throw { code: 'La categoria deseada no se pudo encontrar' };
         } else if (_isMounted) {

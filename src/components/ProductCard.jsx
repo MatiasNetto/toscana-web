@@ -28,55 +28,43 @@ const Image = styled.div`
   background-position: center;
 `;
 
-const Sticker = styled.div`
-  height: 10vw;
-  width: 10vw;
-  position: absolute;
-  top: 5px;
-  left: 5px;
-  z-index: 999;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #fff;
-  border-radius: 100%;
-  border: 2px dashed #000;
-  color: #000;
-  box-shadow: 3px 5px 8px #000a;
-  transform: rotate(-25deg);
-  padding: 24px;
-`;
+// const Sticker = styled.div`
+//   height: 10vw;
+//   width: 10vw;
+//   position: absolute;
+//   top: 5px;
+//   left: 5px;
+//   z-index: 999;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   background: #fff;
+//   border-radius: 100%;
+//   border: 2px dashed #000;
+//   color: #000;
+//   box-shadow: 3px 5px 8px #000a;
+//   transform: rotate(-25deg);
+//   padding: 24px;
+// `;
 
-const New = styled.div`
-  width: 13vw;
-  height: 5vw;
+const ModifiersContainer = styled.div`
+  width: 100%;
+  height: 75%;
   position: absolute;
   top: 10px;
   left: 8px;
   z-index: 999;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #f7d249;
-  border-radius: 3px;
-  font-size: 0.7em;
-  font-weight: 600;
-  letter-spacing: 1px;
-  color: #000;
-  box-shadow: -3px 5px 8px #0005;
 `;
 
-const Trending = styled.div`
-  width: 29vw;
-  height: 5vw;
-  position: absolute;
-  top: 10px;
-  left: 8px;
-  z-index: 999;
+const Modifier = styled.div`
+  height: auto;
+  width: fit-content;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #a95cc3;
+  padding: 2.5px 4.5px;
+  margin-bottom: 5px;
+  background: ${({ color }) => color};
   border-radius: 3px;
   font-size: 0.7em;
   font-weight: 600;
@@ -148,12 +136,18 @@ const ProductCard = (props) => {
           </OutOfStock>
         )}
 
-        {/* NEW */}
-        {props.new === true && <New>NEW!</New>}
+        <ModifiersContainer>
+          {/* TRENDING */}
+          {props.trending === true && <Modifier color="#a95cc3">MAS VENDIDO!</Modifier>}
 
-        {/* TRENDING */}
-        {props.trending === true && <Trending>MAS VENDIDO!</Trending>}
-        {/* <Sticker>NEW</Sticker> */}
+          {/* NEW */}
+          {props.new === true && <Modifier color="#f7d249">NEW!</Modifier>}
+
+          {/* OCULTO */}
+          {props.hidden === true && <Modifier color="#777">OCULTO</Modifier>}
+
+          {/* <Sticker>NEW</Sticker> */}
+        </ModifiersContainer>
 
         <ProductInfo>
           <Model>{props.model}</Model>

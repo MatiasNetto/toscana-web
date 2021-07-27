@@ -56,7 +56,8 @@ const AdminEditProductPage = () => {
     await db.collection(originalData.category).doc(originalData.id).delete(); //Delete el producto origial
     await db.collection(modifiedData.category).doc(modifiedData.id).set(modifiedData); //Create el producto que remplaza al original
     alert('Tarea Editada');
-    setReload(!reload);
+    setReload(true);
+    setReload(false);
     // window.location.reload();
     //en el input de las imagenes es necesario antes de subir nuevas eliminar las anteriores, eso se debe hacer desde el product form o creando un componente aparte para eso que seria lo mas logico
   };
@@ -85,7 +86,9 @@ const AdminEditProductPage = () => {
       </select>
       <Page>
         <AdminForm onSubmitCallback={editProduct} submitName="Edit" dataToFill={fillFormData} />
-        <ProductsPreview category={category} reload={reload} customClick={true} onClickCallback={handleFillForm} />
+        {reload === false && (
+          <ProductsPreview category={category} reload={reload} customClick={true} onClickCallback={handleFillForm} />
+        )}
       </Page>
     </>
   );
