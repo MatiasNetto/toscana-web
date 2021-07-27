@@ -62,13 +62,13 @@ const AdminEditProductPage = () => {
   };
 
   //Agrega un nuevo producto a la categoria seleccionada
-  const deleteProduct = async (productData) => {
-    await db.collection(productData.category).doc(productData.id).delete();
-    sessionStorage.clear();
-    alert('Producto borrado');
-    setReload(true);
-    // window.location.reload();
-  };
+  // const deleteProduct = async (productData) => {
+  //   await db.collection(productData.category).doc(productData.id).delete();
+  //   sessionStorage.clear();
+  //   alert('Producto borrado');
+  //   setReload(true);
+  //   // window.location.reload();
+  // };
 
   /*#######################*/
   /*#### DOM COMPONENT ####*/
@@ -84,12 +84,7 @@ const AdminEditProductPage = () => {
         <option value="pulseras">Pulseras</option>
       </select>
       <Page>
-        <AdminForm
-          onSubmitCallback={editProduct}
-          submitName="Edit"
-          deleteCallback={deleteProduct}
-          dataToFill={fillFormData}
-        />
+        <AdminForm onSubmitCallback={editProduct} submitName="Edit" dataToFill={fillFormData} />
         <ProductsPreview category={category} reload={reload} customClick={true} onClickCallback={handleFillForm} />
       </Page>
     </>

@@ -14,6 +14,9 @@ const MainContainer = styled.div`
 
   ${desktopMediaQuery} {
     width: 25vw;
+    position: sticky;
+    left: 0;
+    top: 0;
   }
 `;
 
@@ -67,7 +70,7 @@ const ButtonInput = styled.input`
 /*#### COMPONENT ####*/
 /*###################*/
 
-const AdminForm = ({ onSubmitCallback, submitName, deleteCallback, dataToFill, category }) => {
+const AdminForm = ({ onSubmitCallback, submitName, dataToFill, category }) => {
   const dataLayout = {
     id: '',
     order: '',
@@ -151,6 +154,13 @@ const AdminForm = ({ onSubmitCallback, submitName, deleteCallback, dataToFill, c
     setProductData({ ...{ ...productData, [name]: value }, id: idValue }); //modifica los campos de newProductData especificados por name mas el product id
   };
 
+  //maneja el completado de datos para las checkboxes
+  const handleCheckboxChange = (e) => {
+    //destructura el nombre y el valor del checkbox
+    let { name, checked } = e.target;
+    setProductData({ ...productData, [name]: checked }); //modifica el campo de newProductData especificado por name
+  };
+
   //Al agregarse archivos de imagen estos son subidos al servidor, guardados los paths y guardadas las URLs generadas
   const handleFilesChange = async (e) => {
     let imagesPaths = [];
@@ -192,10 +202,6 @@ const AdminForm = ({ onSubmitCallback, submitName, deleteCallback, dataToFill, c
     } else {
       alert('Complete todos los campos');
     }
-  };
-
-  const handleDeleteClick = () => {
-    deleteCallback(originalProductData); //se pasa la data original del producto para atravez de esta eliminar el documento
   };
 
   /*#######################*/
@@ -241,10 +247,8 @@ const AdminForm = ({ onSubmitCallback, submitName, deleteCallback, dataToFill, c
           <CheckInput
             type="checkbox"
             defaultChecked="true"
-            onClick={(e) => {
-              e.target.value = e.target.checked;
-            }}
-            onChange={handleInputChange}
+            checked={productData.new}
+            onChange={handleCheckboxChange}
             name="new"
           />
           <Label htmlFor="new">New</Label>
@@ -252,14 +256,7 @@ const AdminForm = ({ onSubmitCallback, submitName, deleteCallback, dataToFill, c
 
         {/* TRENDING */}
         <div>
-          <CheckInput
-            type="checkbox"
-            onClick={(e) => {
-              e.target.value = e.target.checked;
-            }}
-            onChange={handleInputChange}
-            name="trending"
-          />
+          <CheckInput type="checkbox" checked={productData.trending} onChange={handleCheckboxChange} name="trending" />
           <Label htmlFor="trending">Trending</Label>
         </div>
 
@@ -267,10 +264,8 @@ const AdminForm = ({ onSubmitCallback, submitName, deleteCallback, dataToFill, c
         <div>
           <CheckInput
             type="checkbox"
-            onClick={(e) => {
-              e.target.value = e.target.checked;
-            }}
-            onChange={handleInputChange}
+            checked={productData.outOfStock}
+            onChange={handleCheckboxChange}
             name="outOfStock"
           />
           <Label htmlFor="outOfStock">Sin Stock</Label>
@@ -280,10 +275,7 @@ const AdminForm = ({ onSubmitCallback, submitName, deleteCallback, dataToFill, c
         {/* <div>
           <CheckInput
             type="checkbox"
-            onClick={(e) => {
-              e.target.value = e.target.checked;
-            }}
-            onChange={handleInputChange}
+            onChange={handleCheckboxChange}
             name="offer"
           />
           <Label htmlFor="offer">Oferta</Label>
@@ -291,23 +283,13 @@ const AdminForm = ({ onSubmitCallback, submitName, deleteCallback, dataToFill, c
 
         {/* OUT OF STOCK */}
         <div>
-          <CheckInput
-            type="checkbox"
-            onClick={(e) => {
-              e.target.value = e.target.checked;
-            }}
-            onChange={handleInputChange}
-            name="hidden"
-          />
+          <CheckInput type="checkbox" checked={productData.hidden} onChange={handleCheckboxChange} name="hidden" />
           <Label htmlFor="hidden">Oculto</Label>
         </div>
 
         {/* BUTTONS */}
         <ButtonsGrid>
           <ButtonInput type="submit" value={submitName} />
-          {deleteCallback !== undefined && (
-            <ButtonInput style={{ background: '#d45452' }} type="button" value="Delete" onClick={handleDeleteClick} />
-          )}
         </ButtonsGrid>
       </Form>
     </MainContainer>

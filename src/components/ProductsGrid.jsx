@@ -34,11 +34,14 @@ const ProductsGirid = ({ products, customClick, onClickCallback }) => {
           return (
             <ProductCard
               key={product.id}
-              imgsURL={product.imgsURL}
               category={product.category}
+              id={product.id}
               model={product.model}
               price={product.price}
-              id={product.id}
+              imgsURL={product.imgsURL}
+              new={product.new}
+              trending={product.trending}
+              outOfStock={product.outOfStock}
               customClick={customClick}
               onClickCallback={
                 customClick === true
