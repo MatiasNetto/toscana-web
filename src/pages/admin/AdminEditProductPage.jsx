@@ -40,11 +40,6 @@ const AdminEditProductPage = () => {
   //Al hacer click en un producto se llama a esta funcion y setea el formulario con la data del producto enviado
   const handleFillForm = (data) => {
     setFillFormData(data);
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: 'smooth',
-    });
   };
 
   /*###################*/
