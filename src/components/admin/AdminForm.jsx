@@ -41,9 +41,18 @@ const TextInput = styled.input`
   font-size: 1.2em;
 `;
 
+const NumberInput = styled(TextInput)`
+  font-size: 1.4em;
+`;
+
 const AreaInput = styled.textarea`
   height: 15vh;
   font-size: 1.2em;
+`;
+
+const SelectInput = styled.select`
+  height: 5vh;
+  font-size: 1.4em;
 `;
 
 const CheckInput = styled.input`
@@ -218,11 +227,26 @@ const AdminForm = ({ onSubmitCallback, submitName, dataToFill, category }) => {
           <AreaInput value={productData.description} onChange={handleInputChange} type="text-area" name="description" />
         </InputContainer>
 
-        {/* PRICE */}
-        <InputContainer>
-          <Label htmlFor="price">Price</Label>
-          <TextInput value={productData.price} onChange={handleInputChange} type="number" name="price" />
-        </InputContainer>
+        <div style={{ display: 'flex' }}>
+          {/* PRICE */}
+          <InputContainer style={{ width: '50%' }}>
+            <Label htmlFor="price">Price</Label>
+            <NumberInput value={productData.price} onChange={handleInputChange} type="number" name="price" />
+          </InputContainer>
+
+          {/* ORDER */}
+          <InputContainer style={{ width: '50%' }}>
+            <Label htmlFor="order">Relevance</Label>
+            {/* <TextInput value={productData.order} onChange={handleInputChange} type="number" name="order" /> */}
+            <SelectInput value={productData.order} onChange={handleInputChange} name="order">
+              <option value={1}>1</option>
+              <option value={2}>2</option>
+              <option value={3}>3</option>
+              <option value={4}>4</option>
+              <option value={5}>5</option>
+            </SelectInput>
+          </InputContainer>
+        </div>
 
         {/* IMGS */}
         <InputContainer>
@@ -231,14 +255,11 @@ const AdminForm = ({ onSubmitCallback, submitName, dataToFill, category }) => {
           <input onChange={handleFilesChange} type="file" multiple="multiple  " name="imgsURI" />
         </InputContainer>
 
-        {/* ORDER */}
-        <InputContainer>
-          <Label htmlFor="order">Order</Label>
-          <TextInput value={productData.order} onChange={handleInputChange} type="number" name="order" />
-        </InputContainer>
-
-        {/* NEW */}
+        {/* ********* */}
+        {/* MODIFIERS */}
+        {/* ********* */}
         <div>
+          {/* NEW */}
           <CheckInput
             type="checkbox"
             // defaultChecked="true"
