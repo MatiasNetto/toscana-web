@@ -45,6 +45,8 @@
 
   - creo que en el hook useGetProductsCollection se podran suplantar todas las peticiones con filtros por pedir una sola vez todos los elementos y despues ir ordenandolos por propiedades tal como se hace cunado se traen los productos normales pero con todos los campos, estilo new, outOfStock, etc
 
+  - al momento de crear un nuevo producto y subirlo, que las imagenes se suban cuando se le da a agregar producto, asi no existirian problemas en el caso de elegir las imagenes y posteriormente cambiar el nombre del producto
+
   ## Bugs
 
   -en add y edit products en mobile al abrir el teclado los campos se achican, hay que cambiar los tomanos de los mismos por vw en vez de vh en su version mobile

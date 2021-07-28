@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { db } from '../../components/Firebase';
+import { db, storage } from '../../components/Firebase';
 import ProductsPreview from '../../components/admin/ProductsPreview';
 import { desktopMediaQuery } from '../../components/Styles';
 
@@ -34,6 +34,12 @@ const AdminDeleteProductPage = () => {
   const handleDeleteProduct = async (productData) => {
     let ask = window.confirm('Estas seguro que deseas eliminar "' + productData.model + '"?');
     if (ask === true) {
+      //borra las imagenes del storage de firebase
+      productData.imgsPath.forEach((reference) => {
+        storage.ref(reference).delete();
+      });
+
+      //elimina el producto de la base de datos
       await db.collection(productData.category).doc(productData.id).delete();
       sessionStorage.clear();
       alert('Producto borrado');
