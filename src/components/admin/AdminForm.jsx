@@ -8,15 +8,12 @@ import { desktopMediaQuery } from '../Styles';
 /*################*/
 
 const MainContainer = styled.div`
-  height: 95vh;
+  height: 90%;
   width: 100%;
   padding: 1em 1em;
 
   ${desktopMediaQuery} {
-    width: 25vw;
-    position: sticky;
-    left: 0;
-    top: 0;
+    width: 18vw;
   }
 `;
 
@@ -77,7 +74,7 @@ const ButtonInput = styled.input`
 const AdminForm = ({ onSubmitCallback, submitName, dataToFill, category }) => {
   const dataLayout = {
     id: '',
-    order: '',
+    order: 5,
     model: '',
     category: category,
     description: '',
@@ -239,11 +236,11 @@ const AdminForm = ({ onSubmitCallback, submitName, dataToFill, category }) => {
             <Label htmlFor="order">Relevance</Label>
             {/* <TextInput value={productData.order} onChange={handleInputChange} type="number" name="order" /> */}
             <SelectInput value={productData.order} onChange={handleInputChange} name="order">
-              <option value={1}>1</option>
-              <option value={2}>2</option>
-              <option value={3}>3</option>
-              <option value={4}>4</option>
               <option value={5}>5</option>
+              <option value={4}>4</option>
+              <option value={3}>3</option>
+              <option value={2}>2</option>
+              <option value={1}>1</option>
             </SelectInput>
           </InputContainer>
         </div>

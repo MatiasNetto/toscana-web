@@ -18,6 +18,22 @@ const Page = styled.div`
   }
 `;
 
+const FormContainer = styled.div`
+  height: 100vh;
+  position: sticky;
+  top: 2vh;
+  left: 0;
+`;
+
+const CategorySelector = styled.select`
+  height: 5vh;
+  width: 90vw;
+  font-size: 1.4em;
+  ${desktopMediaQuery} {
+    width: 16vw;
+  }
+`;
+
 /*###################*/
 /*#### COMPONENT ####*/
 /*###################*/
@@ -43,22 +59,26 @@ const AdminAddProductPage = () => {
 
   return (
     <>
-      <select onChange={handleCategoryChange} name="category">
-        <option value="testcategory">Test Category</option>
-        <option value="anillos">Anillos</option>
-        <option value="aros">Aros</option>
-        <option value="collares">Collares</option>
-        <option value="pulseras">Pulseras</option>
-      </select>
       <Page>
-        <AdminForm
-          onSubmitCallback={uploadNewProduct}
-          submitName="Add Product"
-          deleteCallback={undefined}
-          dataToFill={undefined}
-          category={category}
-        />
-        {reload === true ? <PageLoader /> : <ProductsPreview category={category} reload={reload} />}
+        <FormContainer>
+          <div style={{ height: '8vh', display: 'flex', flexDirection: 'column', marginLeft: '1em' }}>
+            <label htmlFor="category">Category</label>
+            <CategorySelector onChange={handleCategoryChange} name="category">
+              <option value="testcategory">Test Category</option>
+              <option value="anillos">Anillos</option>
+              <option value="aros">Aros</option>
+              <option value="collares">Collares</option>
+              <option value="pulseras">Pulseras</option>
+            </CategorySelector>
+          </div>
+          <AdminForm
+            onSubmitCallback={uploadNewProduct}
+            submitName="Add Product"
+            deleteCallback={undefined}
+            dataToFill={undefined}
+            category={category}
+          />
+        </FormContainer>
       </Page>
     </>
   );

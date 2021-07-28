@@ -17,12 +17,19 @@ const Page = styled.div`
   }
 `;
 
+const FormContainer = styled.div`
+  height: 100vh;
+  position: sticky;
+  top: 2vh;
+  left: 0;
+`;
+
 const CategorySelector = styled.select`
   height: 5vh;
   width: 90vw;
   font-size: 1.4em;
   ${desktopMediaQuery} {
-    width: 22vw;
+    width: 16vw;
   }
 `;
 
@@ -92,18 +99,21 @@ const AdminEditProductPage = () => {
 
   return (
     <>
-      <div style={{ display: 'flex', flexDirection: 'column', marginLeft: '1em' }}>
-        <label htmlFor="category">Category</label>
-        <CategorySelector onChange={handleCategoryChange} name="category">
-          <option value="testcategory">Test Category</option>
-          <option value="anillos">Anillos</option>
-          <option value="aros">Aros</option>
-          <option value="collares">Collares</option>
-          <option value="pulseras">Pulseras</option>
-        </CategorySelector>
-      </div>
       <Page>
-        <AdminForm onSubmitCallback={editProduct} submitName="Edit" dataToFill={fillFormData} />
+        <FormContainer>
+          <div style={{ height: '8vh', display: 'flex', flexDirection: 'column', marginLeft: '1em' }}>
+            <label htmlFor="category">Category</label>
+            <CategorySelector onChange={handleCategoryChange} name="category">
+              <option value="testcategory">Test Category</option>
+              <option value="anillos">Anillos</option>
+              <option value="aros">Aros</option>
+              <option value="collares">Collares</option>
+              <option value="pulseras">Pulseras</option>
+            </CategorySelector>
+          </div>
+          <AdminForm onSubmitCallback={editProduct} submitName="Edit" dataToFill={fillFormData} />
+        </FormContainer>
+
         {reload === false && (
           <ProductsPreview
             category={category}
