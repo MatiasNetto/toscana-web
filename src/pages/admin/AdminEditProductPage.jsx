@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import AdminForm from '../../components/admin/AdminForm';
-import NewProductForm from '../../components/admin/NewProductForma';
 import ProductsPreview from '../../components/admin/ProductsPreview';
 import { db } from '../../components/Firebase';
 
@@ -17,6 +16,17 @@ const Page = styled.div`
     flex-direction: row;
   }
 `;
+
+const CategorySelector = styled.select`
+  height: 5vh;
+  width: 90vw;
+  font-size: 1.4em;
+  ${desktopMediaQuery} {
+    width: 22vw;
+  }
+`;
+
+const SelectInput = styled.select``;
 
 /*###################*/
 /*#### COMPONENT ####*/
@@ -34,12 +44,22 @@ const AdminEditProductPage = () => {
   //Cuando el input de categoria cambia actualiza el estado
   const handleCategoryChange = (e) => {
     console.log(e.target.value);
+    setReload(true);
+    setReload(false);
     setCategory(e.target.value);
+    console.log('reload');
   };
 
   //Al hacer click en un producto se llama a esta funcion y setea el formulario con la data del producto enviado
   const handlePreviewCallback = (data) => {
     setFillFormData(data);
+    if (window.innerWidth <= 996) {
+      window.scroll({
+        top: 0,
+        left: 0,
+        behavior: 'smooth',
+      });
+    }
   };
 
   /*###################*/
@@ -72,13 +92,16 @@ const AdminEditProductPage = () => {
 
   return (
     <>
-      <select onChange={handleCategoryChange} name="category">
-        <option value="testcategory">Test Category</option>
-        <option value="anillos">Anillos</option>
-        <option value="aros">Aros</option>
-        <option value="collares">Collares</option>
-        <option value="pulseras">Pulseras</option>
-      </select>
+      <div style={{ display: 'flex', flexDirection: 'column', marginLeft: '1em' }}>
+        <label htmlFor="category">Category</label>
+        <CategorySelector onChange={handleCategoryChange} name="category">
+          <option value="testcategory">Test Category</option>
+          <option value="anillos">Anillos</option>
+          <option value="aros">Aros</option>
+          <option value="collares">Collares</option>
+          <option value="pulseras">Pulseras</option>
+        </CategorySelector>
+      </div>
       <Page>
         <AdminForm onSubmitCallback={editProduct} submitName="Edit" dataToFill={fillFormData} />
         {reload === false && (

@@ -49,7 +49,7 @@ const CategoryCard = ({ img, category, align, text }) => {
               left: 0,
               behavior: 'auto',
             });
-          }, 3);
+          }, 0);
         }}
         to={'/category/' + category}
       >

@@ -36,6 +36,12 @@
   -offer--------------------//indica si esta en oferta, se ingresa el precio con descuento y el programa genera el porcentaje
   -hidden-------------------//Indica si esta oculto, en caso de estarlo no se listara en los productos
 
+  ## Add
+
+  - en el add menu agregar una especie de preview de como seria el producto a medida que se van agregando los datos
+  - funcionalidad para poner descuentos
+
   ## Bugs
 
-  -si elegis new y trening o en un futuro el descuento se colocan uno arriba del otro, deberian verse uno abajo del otro, se arregla creando un div que se posiione absolute sobre la imagen y que dentro se vayan disponiendo de manera normal, uno abajo del otro los modificadores estos
+  -en add y edit products en mobile al abrir el teclado los campos se achican, hay que cambiar los tomanos de los mismos por vw en vez de vh en su version mobile
+  -en el product preview si hay pocos productos estos se posicionan en el centro, deberian hacerlo en la parte superior

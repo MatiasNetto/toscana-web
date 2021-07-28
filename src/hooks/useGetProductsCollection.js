@@ -8,6 +8,8 @@ const useGetProductsCollection = (category, pendingDefault, hidden) => {
 
   useEffect(() => {
     let _isMounted = true;
+    setIsPending(true);
+    setCollection([]);
     const getData = async () => {
       //trae los productos desde la categoria indicada por parametros y los almacena en productsFragment
       let productsFragment = [];
