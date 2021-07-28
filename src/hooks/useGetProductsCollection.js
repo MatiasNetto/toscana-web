@@ -60,9 +60,18 @@ const useGetProductsCollection = (category, pendingDefault, hidden) => {
           .where('outOfStock', '==', false)
           .where('hidden', '==', false)
           .get();
+
+        let productsToSort = [];
+        //recorre la peticion y guarda los datos ya interpretados en productsToSort para posteriormente ser ordenados
         productsRequest.forEach((product) => {
+          productsToSort = [...productsToSort, product.data()];
+        });
+        productsToSort.sort((a, b) => a.order - b.order); //ordena los elelemntos segun el numero de orden del objeto
+
+        //recorre finalmente la data ordenada y la agrega a el productsFragment
+        productsToSort.forEach((product) => {
           //Recorre la data traida y agrega los productos a productsFragment
-          productsFragment = [...productsFragment, product.data()];
+          productsFragment = [...productsFragment, product];
         });
 
         //productos que no hay stock

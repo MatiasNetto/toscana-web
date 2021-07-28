@@ -84,15 +84,6 @@ const AdminEditProductPage = () => {
     //en el input de las imagenes es necesario antes de subir nuevas eliminar las anteriores, eso se debe hacer desde el product form o creando un componente aparte para eso que seria lo mas logico
   };
 
-  //Agrega un nuevo producto a la categoria seleccionada
-  // const deleteProduct = async (productData) => {
-  //   await db.collection(productData.category).doc(productData.id).delete();
-  //   sessionStorage.clear();
-  //   alert('Producto borrado');
-  //   setReload(true);
-  //   // window.location.reload();
-  // };
-
   /*#######################*/
   /*#### DOM COMPONENT ####*/
   /*#######################*/

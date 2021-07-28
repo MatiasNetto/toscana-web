@@ -41,6 +41,10 @@
   - en el add menu agregar una especie de preview de como seria el producto a medida que se van agregando los datos
   - funcionalidad para poner descuentos
 
+  ## Optimizacions
+
+  - creo que en el hook useGetProductsCollection se podran suplantar todas las peticiones con filtros por pedir una sola vez todos los elementos y despues ir ordenandolos por propiedades tal como se hace cunado se traen los productos normales pero con todos los campos, estilo new, outOfStock, etc
+
   ## Bugs
 
   -en add y edit products en mobile al abrir el teclado los campos se achican, hay que cambiar los tomanos de los mismos por vw en vez de vh en su version mobile
