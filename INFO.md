@@ -40,6 +40,7 @@
 
   - en el add menu agregar una especie de preview de como seria el producto a medida que se van agregando los datos
   - funcionalidad para poner descuentos
+  - en el formulario para agregar imagenes que se pueda arrastrar y soltar las imagenes desde el explorador
 
   ## Optimizacions
 

@@ -169,6 +169,7 @@ const AdminForm = ({ onSubmitCallback, submitName, dataToFill, category }) => {
 
     for (let i = 0; i < rawFiles.length; i++) {
       //recorro todos los archivos
+      //!cambiar el ultimo campo rawFiles[i].name por directamnete i, asi los archivos se llaman 1,2,3,4....
       let ref = storage.ref(productData.category + '/' + productData.id + '/' + rawFiles[i].name); //la ruta de referencia en el sercidor para subir el archivo
       await ref.put(rawFiles[i]); //subida del archivo al servidor
       imagesPaths[i] = ref.fullPath; //guarda la ubicacion de la imagen en el indice i de la variable filespaths

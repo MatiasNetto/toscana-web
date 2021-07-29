@@ -1,18 +1,7 @@
-import React from 'react';
-import { storage } from '../components/Firebase';
-
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
 const TestPage = () => {
-  const deleteStorage = (imgsRefs) => {
-    imgsRefs.forEach((reference) => {
-      storage.ref(reference).delete();
-    });
-  };
-
-  return (
-    <>
-      <button onClick={deleteStorage}>Delete</button>
-    </>
-  );
+  return <></>;
 };
 
 export default TestPage;
