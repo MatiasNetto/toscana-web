@@ -14,7 +14,7 @@ import CategoryCard from '../components/CategoryCard';
 /*################*/
 /*#### STYLES ####*/
 /*################*/
-import { Subtittle } from '../components/Styles';
+import { desktopMediaQuery, Subtittle } from '../components/Styles';
 import HomePageSlider from '../components/HomePageSlider';
 
 const Categories = styled.div`
@@ -22,6 +22,12 @@ const Categories = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  ${desktopMediaQuery} {
+    flex-direction: row;
+    justify-content: space-around;
+    padding-bottom: 10vh;
+  }
 `;
 
 /*###################*/
@@ -35,7 +41,7 @@ function HomePage() {
       <div className="products-container">
         <Subtittle>Categorias</Subtittle>
         <Categories>
-          <CategoryCard text="Test Category" category="testcategory" img={testImage} align="left" />
+          {/* <CategoryCard text="Test Category" category="testcategory" img={testImage} align="left" /> */}
           <CategoryCard text="Anillos" category="anillos" img={anillosImage} align="left" />
           <CategoryCard text="Aros" category="aros" img={arosImage} align="right" />
           <CategoryCard text="Pulseras" category="pulseras" img={pulserasImage} align="left" />

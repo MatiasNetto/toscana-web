@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { desktopMediaQuery } from './Styles';
 
 //components
 import ProductCard from './ProductCard';
@@ -16,6 +17,11 @@ const Grid = styled.div`
   justify-items: center;
   padding: 0 1vw;
   margin-top: 2vh;
+
+  ${desktopMediaQuery} {
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 5vh;
+  }
 `;
 
 /*##################*/

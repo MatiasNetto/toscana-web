@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { desktopMediaQuery } from './Styles';
 
 /*################*/
 /*#### STYLES ####*/
@@ -15,6 +16,14 @@ const CategoryLink = styled(Link)`
   border-radius: 10px;
   box-shadow: 0px 2px 3px #000a;
   text-decoration: none;
+
+  ${desktopMediaQuery} {
+    width: 22vw;
+    height: 13vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 const Name = styled.h2`
@@ -22,6 +31,10 @@ const Name = styled.h2`
   color: #fff;
   margin: 20px 20px;
   text-align: ${(props) => props.align};
+
+  ${desktopMediaQuery} {
+    text-align: center;
+  }
 `;
 
 const Img = styled.img`
@@ -31,6 +44,10 @@ const Img = styled.img`
   top: -60%;
   left: 0;
   filter: brightness(80%);
+
+  ${desktopMediaQuery} {
+    transform: scale(130%);
+  }
 `;
 
 /*###################*/

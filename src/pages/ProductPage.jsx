@@ -8,6 +8,7 @@ import ProductSlider from '../components/ProductSlider';
 import WppLogo from '../assets/Whatsapp-Logo.png';
 import useGetProductData from '../hooks/useGetProductData.js';
 import PageLoader from '../components/PageLoader';
+import { desktopMediaQuery } from '../components/Styles';
 
 /*################*/
 /*#### STYLES ####*/
@@ -18,6 +19,23 @@ const Main = styled.main`
   display: flex;
   flex-direction: column;
   margin-top: 8vh;
+
+  ${desktopMediaQuery} {
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+`;
+
+const InfoContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  ${desktopMediaQuery} {
+    height: 92vh;
+    width: 30%;
+    justify-content: space-around;
+  }
 `;
 
 const ProductName = styled.h3`
@@ -26,31 +44,55 @@ const ProductName = styled.h3`
   font-size: 1.6em;
   font-weight: 600;
   letter-spacing: 1px;
+
+  ${desktopMediaQuery} {
+    width: 100%;
+    font-size: 3em;
+  }
 `;
 
 const Price = styled.p`
-  width: 90vw;
+  width: 90%;
   margin: 0 auto 1vh auto;
   font-size: 1.5em;
+
+  ${desktopMediaQuery} {
+    width: 100%;
+    font-size: 3em;
+  }
 `;
 
 const DescriptionContainer = styled.div`
-  width: 90vw;
+  width: 90%;
   margin: 1vh auto;
   padding: 2vh 0;
   border-top: 2px solid #000;
   /* border-bottom: 2px solid #000; */
+
+  ${desktopMediaQuery} {
+    width: 100%;
+  }
 `;
 
 const Description = styled.p`
   font-size: 1em;
   letter-spacing: 1px;
   color: #000;
+
+  ${desktopMediaQuery} {
+    width: 100%;
+    font-size: 1.5em;
+  }
 `;
 
 const DescriptionTittle = styled.h4`
   margin-bottom: 1vh;
   font-size: 1.2em;
+
+  ${desktopMediaQuery} {
+    width: 100%;
+    font-size: 1.5em;
+  }
 `;
 
 const Btn = styled(Link)`
@@ -71,11 +113,21 @@ const Btn = styled(Link)`
   &:hover {
     background: #00ce69;
   }
+
+  ${desktopMediaQuery} {
+    width: 100%;
+    height: 10vh;
+    font-size: 1.8em;
+  }
 `;
 
 const Icon = styled.img`
   height: 60%;
   margin: auto 3vw;
+
+  ${desktopMediaQuery} {
+    margin: auto 1vw;
+  }
 `;
 
 /*###################*/
@@ -125,33 +177,35 @@ const ProductPage = () => {
         ) : (
           <>
             <ProductSlider imgsURL={productData.imgsURL} />
-            <ProductName>{productData.model}</ProductName>
-            <Price>${productData.price}</Price>
+            <InfoContainer>
+              <ProductName>{productData.model}</ProductName>
+              <Price>${productData.price}</Price>
 
-            <DescriptionContainer>
-              <DescriptionTittle>Description:</DescriptionTittle>
-              <Description>{productData.description}</Description>
-            </DescriptionContainer>
+              <DescriptionContainer>
+                <DescriptionTittle>Description:</DescriptionTittle>
+                <Description>{productData.description}</Description>
+              </DescriptionContainer>
 
-            <Btn
-              as="a"
-              href={`https://wa.me/5491140902700?text=Hola buenos dias, queria consultar por el ${
-                productData.category
-              } modelo ${productData.model.replace('Modelo ', '')}`}
-            >
-              Consultá <Icon src={WppLogo} />
-            </Btn>
+              <Btn
+                as="a"
+                href={`https://wa.me/5491140902700?text=Hola buenos dias, queria consultar por el ${
+                  productData.category
+                } modelo ${productData.model.replace('Modelo ', '')}`}
+              >
+                Consultá <Icon src={WppLogo} />
+              </Btn>
 
-            <InfoCard
-              tittle="Zona Sur, Avellaneda"
-              description="Envios a todo el pais y puntos de encuentro"
-              icon="location"
-            />
-            <InfoCard
-              tittle="Medios de pago"
-              description="Aceptamos pagos en efectivo, mercado pago o tranferencia"
-              icon="money"
-            />
+              <InfoCard
+                tittle="Zona Sur, Avellaneda"
+                description="Envios a todo el pais y puntos de encuentro"
+                icon="location"
+              />
+              <InfoCard
+                tittle="Medios de pago"
+                description="Aceptamos pagos en efectivo, mercado pago o tranferencia"
+                icon="money"
+              />
+            </InfoContainer>
           </>
         )}
       </Main>

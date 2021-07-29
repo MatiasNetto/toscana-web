@@ -41,6 +41,7 @@
   - en el add menu agregar una especie de preview de como seria el producto a medida que se van agregando los datos
   - funcionalidad para poner descuentos
   - en el formulario para agregar imagenes que se pueda arrastrar y soltar las imagenes desde el explorador
+  - la posibilidad de elegir cual sera la imagen que se mostrara comp preview del producto
 
   ## Optimizacions
 
@@ -52,3 +53,7 @@
 
   -en add y edit products en mobile al abrir el teclado los campos se achican, hay que cambiar los tomanos de los mismos por vw en vez de vh en su version mobile
   -en el product preview si hay pocos productos estos se posicionan en el centro, deberian hacerlo en la parte superior
+
+  ## Recordar
+
+  - arreglar lo del boton de consultar, que la consulta se haga bien

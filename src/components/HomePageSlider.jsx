@@ -64,7 +64,7 @@ const Content = styled.div`
 const Logo = styled.img`
   width: 40vw;
   ${desktopMediaQuery} {
-    width: 12vw;
+    width: 16vw;
   }
 `;
 
@@ -72,12 +72,20 @@ const Tittle = styled.h2`
   font-size: 4em;
   letter-spacing: 4px;
   text-align: center;
+
+  ${desktopMediaQuery} {
+    font-size: 7em;
+  }
 `;
 
 const Subtittle = styled.h3`
   font-size: 2em;
   font-weight: 300;
   text-align: center;
+
+  ${desktopMediaQuery} {
+    font-size: 3em;
+  }
 `;
 
 const SlideButton = styled.button`
@@ -94,6 +102,13 @@ const SlideButton = styled.button`
     background: #fff;
     border: 2px solid #0000;
     color: #000;
+  }
+
+  ${desktopMediaQuery} {
+    height: 5vw;
+    width: 20vw;
+    font-size: 2em;
+    cursor: pointer;
   }
 `;
 

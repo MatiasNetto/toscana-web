@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { desktopMediaQuery } from './Styles';
 
 /*################*/
 /*#### STYLES ####*/
@@ -18,11 +19,14 @@ const CardLink = styled(Link)`
   border-radius: 10px;
   text-decoration: none;
   overflow: hidden;
-  ${(props) => {
-    if (props.custom === true) {
-      return `cursor:pointer`;
-    }
-  }}
+  cursor: pointer;
+  /* ${(props) => {
+    return `cursor:pointer`;
+  }} */
+
+  ${desktopMediaQuery} {
+    height: 50vh;
+  }
 `;
 
 const Image = styled.div`
@@ -76,6 +80,11 @@ const Modifier = styled.div`
   letter-spacing: 1px;
   color: #000;
   box-shadow: -3px 5px 8px #0005;
+
+  ${desktopMediaQuery} {
+    font-size: 0.8em;
+    padding: 5.5px 8.5px;
+  }
 `;
 
 const OutOfStock = styled.div`

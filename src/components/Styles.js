@@ -7,6 +7,10 @@ const Subtittle = styled.h3`
   text-align: center;
   margin-bottom: 1vh;
   padding-top: 3vh;
+
+  ${desktopMediaQuery} {
+    font-size: 3em;
+  }
 `;
 
 export { desktopMediaQuery, Subtittle };
