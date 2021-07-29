@@ -167,6 +167,18 @@ const ProductPage = () => {
     }
   }, [isPending, err]);
 
+  const generateMessage = (category, model) => {
+    if (category === 'anillos') {
+      return `https://wa.me/5491122984412?text=Hola buenos dias, queria consultar por el anillo ${model}`;
+    } else if (category === 'aros') {
+      return `https://wa.me/5491122984412?text=Hola buenos dias, queria consultar por el aro ${model}`;
+    } else if (category === 'pulseras') {
+      return `https://wa.me/5491122984412?text=Hola buenos dias, queria consultar por la pulsera ${model}`;
+    } else if (category === 'collares') {
+      return `https://wa.me/5491122984412?text=Hola buenos dias, queria consultar por el collar ${model}`;
+    }
+  };
+
   return (
     <>
       <Main>
@@ -186,12 +198,7 @@ const ProductPage = () => {
                 <Description>{productData.description}</Description>
               </DescriptionContainer>
 
-              <Btn
-                as="a"
-                href={`https://wa.me/5491140902700?text=Hola buenos dias, queria consultar por el ${
-                  productData.category
-                } modelo ${productData.model.replace('Modelo ', '')}`}
-              >
+              <Btn as="a" href={generateMessage(productData.category, productData.model)}>
                 Consultá <Icon src={WppLogo} />
               </Btn>
 

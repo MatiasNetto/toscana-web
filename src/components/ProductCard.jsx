@@ -117,9 +117,18 @@ const ProductInfo = styled.div`
 
 const Model = styled.h3`
   text-align: center;
+
+  ${desktopMediaQuery} {
+    font-size: 1.5em;
+  }
 `;
 
-const Price = styled.p``;
+const Price = styled.p`
+  ${desktopMediaQuery} {
+    font-size: 1.3em;
+    margin-top: 0.2em;
+  }
+`;
 
 /*###################*/
 /*#### COMPONENT ####*/
