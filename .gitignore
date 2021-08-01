@@ -12,6 +12,8 @@
 /build
 /build/
 /deploy
+deploy.sh
+./deploy.sh
 
 # misc
 .DS_Store
