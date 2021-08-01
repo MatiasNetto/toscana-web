@@ -1,16 +1,52 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { Zoom } from 'swiper';
+import SwiperCore, { Zoom, Navigation } from 'swiper';
 
 import 'swiper/swiper-bundle.css';
+import { desktopMediaQuery } from './Styles';
 
 //!Falta condicion de que en caso de estar desde movile mostrar los controles del slider
-SwiperCore.use([Zoom]);
+if (window.innerWidth < 996) {
+  SwiperCore.use([Zoom]);
+} else {
+  SwiperCore.use([Navigation]);
+}
 
 /*################*/
 /*#### STYLES ####*/
 /*################*/
+
+const Container = styled.div`
+  height: 82vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  ${desktopMediaQuery} {
+    padding: 10px;
+    height: 92vh;
+    max-width: 35%;
+  }
+`;
+
+const SwiperComponent = styled(Swiper)`
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+
+  ${desktopMediaQuery} {
+    height: 90vh;
+  }
+`;
+
+const SwiperSlideComponent = styled(SwiperSlide)`
+  height: 100%;
+  display: flex;
+  align-items: center;
+  border: 1px solid #f00;
+`;
 
 const SwiperImage = styled.img`
   width: 100%;
@@ -30,7 +66,7 @@ const PointInactive = styled.div`
   width: 1.5vh;
   margin: 0 0.5vh;
   border-radius: 100%;
-  background: #bbf;
+  background: #ddf;
 `;
 
 const PointActive = styled(PointInactive)`
@@ -48,7 +84,7 @@ const ProductSlider = ({ imgsURL }) => {
   let sliderImages = [''];
   for (let i = 0; i < imgsURL.length; i++) {
     sliderImages[i] = (
-      <SwiperSlide style={{ display: 'flex', alignItems: 'center' }} key={i}>
+      <SwiperSlide style={{ display: 'flex', alignItems: 'center', height: '100%' }} key={i}>
         <SwiperImage src={imgsURL[i]}></SwiperImage>
       </SwiperSlide>
     );
@@ -65,20 +101,21 @@ const ProductSlider = ({ imgsURL }) => {
 
   return (
     <>
-      <Swiper
-        id="main"
-        style={{ height: '80vh', width: '100vw', overflow: 'hidden' }}
-        spaceBetween={0}
-        slidesPerView={1}
-        pagination={{ clickable: true }}
-        zoom={true}
-        onSlideChange={(e) => {
-          setSliderIndex(e.activeIndex);
-        }}
-      >
-        {sliderImages}
-      </Swiper>
-      <PaginationContainer>{paginationInfo}</PaginationContainer>
+      <Container>
+        <SwiperComponent
+          id="main"
+          spaceBetween={0}
+          slidesPerView={1}
+          navigation={window.innerWidth <= 996 ? false : true} //si es mobile no pone navegation, si es desktop si
+          zoom={true}
+          onSlideChange={(e) => {
+            setSliderIndex(e.activeIndex);
+          }}
+        >
+          {sliderImages}
+        </SwiperComponent>
+        <PaginationContainer>{paginationInfo}</PaginationContainer>
+      </Container>
     </>
   );
 };

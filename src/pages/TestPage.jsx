@@ -1,12 +1,7 @@
-import React from 'react';
-import TestComponent from '../components/TestComponent';
-
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
 const TestPage = () => {
-  return (
-    <>
-      <TestComponent />
-    </>
-  );
+  return <></>;
 };
 
 export default TestPage;

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { storage } from './Firebase';
 import PageLoader from './PageLoader';
 
 const TestComponent = () => {
@@ -22,12 +23,17 @@ const TestComponent = () => {
   // const req = useGetProductData(category, model);
   // console.log(req);
 
+  const deleteStorage = (ref) => {
+    storage.ref().delete();
+  };
+
   return (
     <>
       {/* {imgURL == null ? <p>cargando...</p> : 
                 (<img src={imgURL} alt="" />)
             } */}
       <PageLoader />
+      <button onClick={deleteStorage}>Delete</button>
     </>
   );
 };

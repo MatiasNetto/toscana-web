@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import AdminForm from '../../components/admin/AdminForm';
-import NewProductForm from '../../components/admin/NewProductForma';
 import ProductsPreview from '../../components/admin/ProductsPreview';
 import { db } from '../../components/Firebase';
 
@@ -15,9 +14,30 @@ const Page = styled.div`
   flex-direction: column;
   ${desktopMediaQuery} {
     flex-direction: row;
-    border: 2px solid #f00;
   }
 `;
+
+const FormContainer = styled.div`
+  height: 100vh;
+  position: relative;
+
+  ${desktopMediaQuery} {
+    position: sticky;
+    top: 2vh;
+    left: 0;
+  }
+`;
+
+const CategorySelector = styled.select`
+  height: 5vh;
+  width: 90vw;
+  font-size: 1.4em;
+  ${desktopMediaQuery} {
+    width: 16vw;
+  }
+`;
+
+const SelectInput = styled.select``;
 
 /*###################*/
 /*#### COMPONENT ####*/
@@ -26,6 +46,11 @@ const Page = styled.div`
 const AdminEditProductPage = () => {
   const [category, setCategory] = useState('testcategory');
   const [fillFormData, setFillFormData] = useState(undefined);
+  const [reload, setReload] = useState(false);
+
+  useEffect(() => {
+    sessionStorage.clear();
+  }, []);
 
   /*#################*/
   /*#### CHANGES ####*/
@@ -34,13 +59,22 @@ const AdminEditProductPage = () => {
   //Cuando el input de categoria cambia actualiza el estado
   const handleCategoryChange = (e) => {
     console.log(e.target.value);
+    setReload(true);
+    setReload(false);
     setCategory(e.target.value);
+    console.log('reload');
   };
 
   //Al hacer click en un producto se llama a esta funcion y setea el formulario con la data del producto enviado
-  const handleFillForm = (data) => {
+  const handlePreviewCallback = (data) => {
     setFillFormData(data);
-    window.scrollTo(0, 0);
+    if (window.innerWidth <= 996) {
+      window.scroll({
+        top: 0,
+        left: 0,
+        behavior: 'smooth',
+      });
+    }
   };
 
   /*###################*/
@@ -52,15 +86,10 @@ const AdminEditProductPage = () => {
     await db.collection(originalData.category).doc(originalData.id).delete(); //Delete el producto origial
     await db.collection(modifiedData.category).doc(modifiedData.id).set(modifiedData); //Create el producto que remplaza al original
     alert('Tarea Editada');
-    window.location.reload();
+    setReload(true);
+    setReload(false);
+    // window.location.reload();
     //en el input de las imagenes es necesario antes de subir nuevas eliminar las anteriores, eso se debe hacer desde el product form o creando un componente aparte para eso que seria lo mas logico
-  };
-
-  //Agrega un nuevo producto a la categoria seleccionada
-  const deleteProduct = async (productData) => {
-    await db.collection(productData.category).doc(productData.id).delete();
-    alert('Producto borrado');
-    window.location.reload();
   };
 
   /*#######################*/
@@ -69,21 +98,29 @@ const AdminEditProductPage = () => {
 
   return (
     <>
-      <select onChange={handleCategoryChange} name="category">
-        <option value="testcategory">Test Category</option>
-        <option value="anillos">Anillos</option>
-        <option value="aros">Aros</option>
-        <option value="collares">Collares</option>
-        <option value="pulseras">Pulseras</option>
-      </select>
       <Page>
-        <AdminForm
-          onSubmitCallback={editProduct}
-          submitName="Edit"
-          deleteCallback={deleteProduct}
-          dataToFill={fillFormData}
-        />
-        <ProductsPreview category={category} customClick={true} onClickCallback={handleFillForm} />
+        <FormContainer>
+          <div style={{ height: '8vh', display: 'flex', flexDirection: 'column', marginLeft: '1em' }}>
+            <label htmlFor="category">Category</label>
+            <CategorySelector onChange={handleCategoryChange} name="category">
+              <option value="testcategory">Test Category</option>
+              <option value="anillos">Anillos</option>
+              <option value="aros">Aros</option>
+              <option value="collares">Collares</option>
+              <option value="pulseras">Pulseras</option>
+            </CategorySelector>
+          </div>
+          <AdminForm onSubmitCallback={editProduct} submitName="Edit" dataToFill={fillFormData} />
+        </FormContainer>
+
+        {reload === false && (
+          <ProductsPreview
+            category={category}
+            reload={reload}
+            customClick={true}
+            onClickCallback={handlePreviewCallback}
+          />
+        )}
       </Page>
     </>
   );

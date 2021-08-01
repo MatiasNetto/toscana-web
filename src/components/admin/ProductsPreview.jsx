@@ -1,39 +1,40 @@
 import React, { useState, useEffect } from 'react';
-import { db } from '../Firebase';
+import { useGetProductsCollection } from '../../hooks/useGetProductsCollection';
+import PageLoader from '../PageLoader';
 import ProductsGirid from '../ProductsGrid';
 
 const ProductsPreview = (props) => {
   const [products, setProducts] = useState(null);
+  const [awaiting, setAwaiting] = useState(true); //establece con el valor default que establece la condicion anterior
+  const [error, setError] = useState({ error: false });
+
+  //peticion de los productos, se pasa la categoria y el estado inicial de cargando o no
+
+  let { collection, isPending, err } = useGetProductsCollection(props.category, true, true);
+
+  //cuando cambia el valor de isPending setea el estado con los valores traidos de la peticion solo en caso de que el estado se encuentre en awaiting true
+  useEffect(() => {
+    //solo en caso de que el estado sea de cargando actualiza los datos del estado
+    if (awaiting === true) {
+      setProducts(collection);
+      setError(err);
+      setAwaiting(isPending);
+    }
+  }, [isPending]);
 
   useEffect(() => {
-    let _isMounted = true;
-    setProducts(null); // reset el state para que aparezca el texto como cargando
-
-    const getProductList = async (category) => {
-      //trae los productos desde la categoria indicada por parametros y los almacena en productsFragment
-      let productsFragment = [];
-      const productsRequest = await db.collection(category).get();
-
-      productsRequest.forEach((product) => {
-        //Recorre la data traida y agrega los productos a productsFragment
-        productsFragment = [...productsFragment, product.data()];
-      });
-
-      //setea el state products como productsFragment para no andar actualizando todo el tiempo el state, previene memory leack
-      if (_isMounted) setProducts(productsFragment);
-    };
-
-    getProductList(props.category); //Llama la funcion asincrona
-
-    //Cuando el componente se desmonte, cancela toda actualizacion de estado
-    return () => {
-      _isMounted = false;
-    };
-  }, [props.category]);
+    setAwaiting(true);
+    setProducts(null);
+  }, [props.reload, props.category]);
 
   return (
     <>
-      {products !== null && (
+      {/* {products !== null && (
+        <ProductsGirid products={products} customClick={props.customClick} onClickCallback={props.onClickCallback} />
+      )} */}
+      {awaiting === true ? (
+        <PageLoader />
+      ) : (
         <ProductsGirid products={products} customClick={props.customClick} onClickCallback={props.onClickCallback} />
       )}
     </>

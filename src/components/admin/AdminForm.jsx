@@ -1,41 +1,91 @@
 import React, { useEffect, useState } from 'react';
 import { storage, storageBucket } from '../Firebase';
 import styled from 'styled-components';
+import { desktopMediaQuery } from '../Styles';
 
 /*################*/
 /*#### STYLES ####*/
 /*################*/
 
+const MainContainer = styled.div`
+  height: 90%;
+  width: 100%;
+  padding: 1em 1em;
+
+  ${desktopMediaQuery} {
+    width: 18vw;
+  }
+`;
+
 const Form = styled.form`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
+const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
 
-const ButtonsGrid = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
+const Label = styled.label`
+  color: #000;
+`;
+
+const TextInput = styled.input`
+  height: 5vh;
+  font-size: 1.2em;
+`;
+
+const NumberInput = styled(TextInput)`
+  font-size: 1.4em;
+`;
+
+const AreaInput = styled.textarea`
+  height: 15vh;
+  font-size: 1.2em;
+`;
+
+const SelectInput = styled.select`
+  height: 5vh;
+  font-size: 1.4em;
+`;
+
+const CheckInput = styled.input`
+  height: 1.2em;
+  width: 1.2em;
+  margin-right: 5px;
+  cursor: pointer;
 `;
 
 const ButtonInput = styled.input`
   width: 100%;
+  height: 6vh;
+  background: #00ce69;
+  font-size: 1.2em;
+  cursor: pointer;
 `;
 
 /*###################*/
 /*#### COMPONENT ####*/
 /*###################*/
 
-const AdminForm = ({ onSubmitCallback, submitName, deleteCallback, dataToFill }) => {
+const AdminForm = ({ onSubmitCallback, submitName, dataToFill, category }) => {
   const dataLayout = {
     id: '',
-    order: '',
+    order: 5,
     model: '',
-    category: 'testcategory',
+    category: category,
     description: '',
     price: '',
     imgsPath: '',
     imgsURL: '',
     new: true,
+    trending: false,
+    outOfStock: false,
+    offer: false,
+    hidden: false,
   };
 
   const [productData, setProductData] = useState(dataLayout);
@@ -49,6 +99,11 @@ const AdminForm = ({ onSubmitCallback, submitName, deleteCallback, dataToFill })
   useEffect(() => {
     fillForm(dataToFill);
   }, [dataToFill]);
+
+  //al cambiar la categoria pasada por props actualiza el productData con la nueva categoria
+  useEffect(() => {
+    setProductData({ ...{ ...productData, category: category } });
+  }, [category]);
 
   //Rellena el form y originalProductData con los datos indicados
   const fillForm = (data) => {
@@ -100,6 +155,13 @@ const AdminForm = ({ onSubmitCallback, submitName, deleteCallback, dataToFill })
     setProductData({ ...{ ...productData, [name]: value }, id: idValue }); //modifica los campos de newProductData especificados por name mas el product id
   };
 
+  //maneja el completado de datos para las checkboxes
+  const handleCheckboxChange = (e) => {
+    //destructura el nombre y el valor del checkbox
+    let { name, checked } = e.target;
+    setProductData({ ...productData, [name]: checked }); //modifica el campo de newProductData especificado por name
+  };
+
   //Al agregarse archivos de imagen estos son subidos al servidor, guardados los paths y guardadas las URLs generadas
   const handleFilesChange = async (e) => {
     let imagesPaths = [];
@@ -107,7 +169,8 @@ const AdminForm = ({ onSubmitCallback, submitName, deleteCallback, dataToFill })
 
     for (let i = 0; i < rawFiles.length; i++) {
       //recorro todos los archivos
-      let ref = storage.ref(productData.category + '/' + productData.id + '/' + rawFiles[i].name); //la ruta de referencia en el sercidor para subir el archivo
+      //!cambiar el ultimo campo rawFiles[i].name por directamnete i, asi los archivos se llaman 1,2,3,4....
+      let ref = storage.ref(productData.category + '/' + productData.id + '/IMG-' + i); //la ruta de referencia en el sercidor para subir el archivo
       await ref.put(rawFiles[i]); //subida del archivo al servidor
       imagesPaths[i] = ref.fullPath; //guarda la ubicacion de la imagen en el indice i de la variable filespaths
     }
@@ -143,52 +206,104 @@ const AdminForm = ({ onSubmitCallback, submitName, deleteCallback, dataToFill })
     }
   };
 
-  const handleDeleteClick = () => {
-    deleteCallback(originalProductData); //se pasa la data original del producto para atravez de esta eliminar el documento
-  };
-
   /*#######################*/
   /*#### DOM COMPONENT ####*/
   /*#######################*/
 
   return (
-    <div>
+    <MainContainer>
       <Form onSubmit={handleSubmit} action="">
-        {/* ORDER */}
-        <label htmlFor="order">Order</label>
-        <input value={productData.order} onChange={handleInputChange} type="number" name="order" />
-
         {/* MODEL */}
-        <label htmlFor="model">Model</label>
-        <input value={productData.model} onChange={handleInputChange} type="text" name="model" />
+        <InputContainer>
+          <Label htmlFor="model">Model</Label>
+          <TextInput value={productData.model} onChange={handleInputChange} type="text" name="model" />
+        </InputContainer>
 
         {/* DESCRIPTION */}
-        <label htmlFor="description">Description</label>
-        <textarea value={productData.description} onChange={handleInputChange} type="text-area" name="description" />
+        <InputContainer>
+          <Label htmlFor="description">Description</Label>
+          <AreaInput value={productData.description} onChange={handleInputChange} type="text-area" name="description" />
+        </InputContainer>
 
-        {/* PRICE */}
-        <label htmlFor="price">Price</label>
-        <input value={productData.price} onChange={handleInputChange} type="number" name="price" />
+        <div style={{ display: 'flex' }}>
+          {/* PRICE */}
+          <InputContainer style={{ width: '50%' }}>
+            <Label htmlFor="price">Price</Label>
+            <NumberInput value={productData.price} onChange={handleInputChange} type="number" name="price" />
+          </InputContainer>
+
+          {/* ORDER */}
+          <InputContainer style={{ width: '50%' }}>
+            <Label htmlFor="order">Relevance</Label>
+            {/* <TextInput value={productData.order} onChange={handleInputChange} type="number" name="order" /> */}
+            <SelectInput value={productData.order} onChange={handleInputChange} name="order">
+              <option value={5}>5</option>
+              <option value={4}>4</option>
+              <option value={3}>3</option>
+              <option value={2}>2</option>
+              <option value={1}>1</option>
+            </SelectInput>
+          </InputContainer>
+        </div>
 
         {/* IMGS */}
-        <label htmlFor="imgs">IMGS</label>
-        {/* EL input upload que sea un componente que cuando agregues las imagenes se muestre el progreso */}
-        <input onChange={handleFilesChange} type="file" multiple="multiple  " name="imgsURI" />
+        <InputContainer>
+          <Label htmlFor="imgs">IMGS</Label>
+          {/* EL input upload que sea un componente que cuando agregues las imagenes se muestre el progreso */}
+          <input onChange={handleFilesChange} type="file" multiple="multiple  " name="imgsURI" />
+        </InputContainer>
 
-        {/* NEW */}
-        <label htmlFor="new">New</label>
-        <select defaultValue={productData.new} onChange={handleInputChange} name="new">
-          <option value="true">true</option>
-          <option value="false">false</option>
-        </select>
+        {/* ********* */}
+        {/* MODIFIERS */}
+        {/* ********* */}
+        <div>
+          {/* NEW */}
+          <CheckInput
+            type="checkbox"
+            // defaultChecked="true"
+            checked={productData.new}
+            onChange={handleCheckboxChange}
+            name="new"
+          />
+          <Label htmlFor="new">New</Label>
+        </div>
 
-        {/* BUTTONS */}
-        <ButtonsGrid>
-          <ButtonInput type="submit" value={submitName} />
-          {deleteCallback !== undefined && <ButtonInput type="button" value="Delete" onClick={handleDeleteClick} />}
-        </ButtonsGrid>
+        {/* TRENDING */}
+        <div>
+          <CheckInput type="checkbox" checked={productData.trending} onChange={handleCheckboxChange} name="trending" />
+          <Label htmlFor="trending">Trending</Label>
+        </div>
+
+        {/* OUT OF STOCK */}
+        <div>
+          <CheckInput
+            type="checkbox"
+            checked={productData.outOfStock}
+            onChange={handleCheckboxChange}
+            name="outOfStock"
+          />
+          <Label htmlFor="outOfStock">Sin Stock</Label>
+        </div>
+
+        {/* OFFER */}
+        {/* <div>
+          <CheckInput
+            type="checkbox"
+            onChange={handleCheckboxChange}
+            name="offer"
+          />
+          <Label htmlFor="offer">Oferta</Label>
+        </div> */}
+
+        {/* OUT OF STOCK */}
+        <div>
+          <CheckInput type="checkbox" checked={productData.hidden} onChange={handleCheckboxChange} name="hidden" />
+          <Label htmlFor="hidden">Oculto</Label>
+        </div>
+
+        <ButtonInput type="submit" value={submitName} />
       </Form>
-    </div>
+    </MainContainer>
   );
 };
 
