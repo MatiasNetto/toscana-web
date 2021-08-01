@@ -8,6 +8,8 @@ import styled from 'styled-components';
 const Hamburger = styled.button`
   height: 6vh;
   width: 6vh;
+  position: absolute;
+  left: 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;

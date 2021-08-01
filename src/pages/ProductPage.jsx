@@ -8,7 +8,7 @@ import ProductSlider from '../components/ProductSlider';
 import WppLogo from '../assets/Whatsapp-Logo.png';
 import useGetProductData from '../hooks/useGetProductData.js';
 import PageLoader from '../components/PageLoader';
-import { desktopMediaQuery } from '../components/Styles';
+import { colorBrown, desktopMediaQuery } from '../components/Styles';
 
 /*################*/
 /*#### STYLES ####*/
@@ -21,8 +21,12 @@ const Main = styled.main`
   margin-top: 8vh;
 
   ${desktopMediaQuery} {
+    width: 80%;
+    height: 92vh;
+    margin: 0 auto;
+    margin-top: 8vh;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: center;
   }
 `;
 
@@ -30,10 +34,12 @@ const InfoContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  margin-top: 5px;
 
   ${desktopMediaQuery} {
-    height: 92vh;
-    width: 30%;
+    height: auto;
+    margin: 2vh 0 2vh 5vw;
+    width: 35%;
     justify-content: space-around;
   }
 `;
@@ -41,13 +47,16 @@ const InfoContainer = styled.div`
 const ProductName = styled.h3`
   width: 90%;
   margin: 2vh auto 1vh auto;
-  font-size: 1.6em;
+  font-size: 1.7em;
   font-weight: 600;
   letter-spacing: 1px;
+  font-weight: 200;
+  color: ${colorBrown};
 
   ${desktopMediaQuery} {
     width: 100%;
-    font-size: 3em;
+    margin: 0vh auto 1vh auto;
+    font-size: 2.8em;
   }
 `;
 
@@ -55,10 +64,11 @@ const Price = styled.p`
   width: 90%;
   margin: 0 auto 1vh auto;
   font-size: 1.5em;
+  color: ${colorBrown};
 
   ${desktopMediaQuery} {
     width: 100%;
-    font-size: 3em;
+    font-size: 2.8em;
   }
 `;
 
@@ -77,17 +87,20 @@ const DescriptionContainer = styled.div`
 const Description = styled.p`
   font-size: 1em;
   letter-spacing: 1px;
-  color: #000;
+  /* color: #000; */
+  color: ${colorBrown};
 
   ${desktopMediaQuery} {
     width: 100%;
-    font-size: 1.5em;
+    font-size: 1.3em;
   }
 `;
 
 const DescriptionTittle = styled.h4`
   margin-bottom: 1vh;
   font-size: 1.2em;
+  font-weight: 200;
+  color: ${colorBrown};
 
   ${desktopMediaQuery} {
     width: 100%;
@@ -109,6 +122,7 @@ const Btn = styled(Link)`
   color: #000;
   text-decoration: none;
   font-size: 1.3em;
+  font-weight: 200;
 
   &:hover {
     background: #00ce69;
@@ -116,8 +130,8 @@ const Btn = styled(Link)`
 
   ${desktopMediaQuery} {
     width: 100%;
-    height: 10vh;
-    font-size: 1.8em;
+    height: 8vh;
+    font-size: 1.6em;
   }
 `;
 
@@ -169,13 +183,13 @@ const ProductPage = () => {
 
   const generateMessage = (category, model) => {
     if (category === 'anillos') {
-      return `https://wa.me/5491122984412?text=Hola buenos dias, queria consultar por el anillo ${model}`;
+      return `https://wa.me/5491145265942?text=Hola buenos dias, queria consultar por el anillo ${model}`;
     } else if (category === 'aros') {
-      return `https://wa.me/5491122984412?text=Hola buenos dias, queria consultar por el aro ${model}`;
+      return `https://wa.me/5491145265942?text=Hola buenos dias, queria consultar por el aro ${model}`;
     } else if (category === 'pulseras') {
-      return `https://wa.me/5491122984412?text=Hola buenos dias, queria consultar por la pulsera ${model}`;
+      return `https://wa.me/5491145265942?text=Hola buenos dias, queria consultar por la pulsera ${model}`;
     } else if (category === 'collares') {
-      return `https://wa.me/5491122984412?text=Hola buenos dias, queria consultar por el collar ${model}`;
+      return `https://wa.me/5491145265942?text=Hola buenos dias, queria consultar por el collar ${model}`;
     }
   };
 

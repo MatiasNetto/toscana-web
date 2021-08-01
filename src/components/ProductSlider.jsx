@@ -27,7 +27,7 @@ const Container = styled.div`
   ${desktopMediaQuery} {
     padding: 10px;
     height: 92vh;
-    width: 30%;
+    max-width: 35%;
   }
 `;
 
@@ -66,7 +66,7 @@ const PointInactive = styled.div`
   width: 1.5vh;
   margin: 0 0.5vh;
   border-radius: 100%;
-  background: #bbf;
+  background: #ddf;
 `;
 
 const PointActive = styled(PointInactive)`

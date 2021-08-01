@@ -11,6 +11,7 @@ import NavBar from './components/NavBar';
 import AdminPage from './pages/admin/AdminPage';
 import AdminAddProductPage from './pages/admin/AdminAddProductPage';
 import AdminDeleteProductPage from './pages/admin/AdminDeleteProductPage';
+import { colorCrema } from './components/Styles';
 
 //STYLES
 
@@ -22,6 +23,10 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+  }
+
+  body {
+    background: ${colorCrema};
   }
   p,div,li,ul,a,button {
     font-family: 'Abhaya Libre', serif;

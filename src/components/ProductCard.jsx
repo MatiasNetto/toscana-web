@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { desktopMediaQuery } from './Styles';
+import { colorBrown, desktopMediaQuery } from './Styles';
 
 /*################*/
 /*#### STYLES ####*/
@@ -117,6 +117,9 @@ const ProductInfo = styled.div`
 
 const Model = styled.h3`
   text-align: center;
+  font-size: 1.2em;
+  font-weight: 200;
+  color: ${colorBrown};
 
   ${desktopMediaQuery} {
     font-size: 1.5em;
@@ -124,6 +127,7 @@ const Model = styled.h3`
 `;
 
 const Price = styled.p`
+  color: ${colorBrown};
   ${desktopMediaQuery} {
     font-size: 1.3em;
     margin-top: 0.2em;

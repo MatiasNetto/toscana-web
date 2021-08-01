@@ -6,7 +6,7 @@ import SwiperCore, { Autoplay, EffectFade, Zoom } from 'swiper';
 import 'swiper/swiper-bundle.css';
 
 //assets
-import logoIMG from '../assets/logos/logo.png';
+import logoIMG from '../assets/logos/Logo-V2.png';
 import sliderIMG from '../assets/slider/mobile/slider_1.jpg';
 
 //css
@@ -21,6 +21,7 @@ SwiperCore.use([Zoom, Autoplay, EffectFade]);
 
 const SwiperImage = styled.img`
   width: 100%;
+  filter: brightness(60%);
 `;
 
 const Slider = styled.div`
@@ -46,6 +47,8 @@ const Slider = styled.div`
   }
 `;
 
+// const SwiperSlideStyles = styled.css``;
+
 const Content = styled.div`
   height: 100%;
   width: 100%;
@@ -62,7 +65,7 @@ const Content = styled.div`
 `;
 
 const Logo = styled.img`
-  width: 40vw;
+  width: 50vw;
   ${desktopMediaQuery} {
     width: 16vw;
   }
@@ -72,6 +75,8 @@ const Tittle = styled.h2`
   font-size: 4em;
   letter-spacing: 4px;
   text-align: center;
+  color: #fff;
+  font-weight: 200;
 
   ${desktopMediaQuery} {
     font-size: 7em;
@@ -82,6 +87,7 @@ const Subtittle = styled.h3`
   font-size: 2em;
   font-weight: 300;
   text-align: center;
+  color: #fff;
 
   ${desktopMediaQuery} {
     font-size: 3em;
@@ -172,7 +178,7 @@ const HomePageSlider = () => {
               style={{ display: 'flex', alignItems: 'center' }}
               key={Math.random()}
             >
-              <SwiperImage style={{ filter: 'brightness(80%)' }} src={image}></SwiperImage>
+              <SwiperImage src={image}></SwiperImage>
             </SwiperSlide>
           );
         })}

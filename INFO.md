@@ -54,6 +54,11 @@
   -en add y edit products en mobile al abrir el teclado los campos se achican, hay que cambiar los tomanos de los mismos por vw en vez de vh en su version mobile
   -en el product preview si hay pocos productos estos se posicionan en el centro, deberian hacerlo en la parte superior
 
-  ## Recordar
+## CORRECCIONES
 
-  - arreglar lo del boton de consultar, que la consulta se haga bien
+cambiar el logo
+
+- Color de la letra de los nombres de los productos dentro de las categorias
+- En el nombre del inicio el que esta abajo del logo y en todos los titulos en general que esten tipo • Toscana • corte con dos puntitos (tambien el nombre de la barra blanca de arriba este en el medio centrado en vez de a la izquierda y con los puntitos)
+- Cambiar en lugar de un fondo blanco un amarillo clarito como el de los cartelitos de 'new' de los productos (solo cambia el color del fondo fondo, lo que seria los productos y botones como el de "ver productos" que quede como está) Y en vez de negro la letra en marron. Esto para que no quede una paleta tan basica, simplemente
+- las tres rayitas de la barra de arriba de todo que indicarian un panel de categorias si se puede lo pondria a la izquierda en vez de a la derecha

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import AdminForm from '../../components/admin/AdminForm';
 import ProductsPreview from '../../components/admin/ProductsPreview';
@@ -19,9 +19,13 @@ const Page = styled.div`
 
 const FormContainer = styled.div`
   height: 100vh;
-  position: sticky;
-  top: 2vh;
-  left: 0;
+  position: relative;
+
+  ${desktopMediaQuery} {
+    position: sticky;
+    top: 2vh;
+    left: 0;
+  }
 `;
 
 const CategorySelector = styled.select`
@@ -43,6 +47,10 @@ const AdminEditProductPage = () => {
   const [category, setCategory] = useState('testcategory');
   const [fillFormData, setFillFormData] = useState(undefined);
   const [reload, setReload] = useState(false);
+
+  useEffect(() => {
+    sessionStorage.clear();
+  }, []);
 
   /*#################*/
   /*#### CHANGES ####*/

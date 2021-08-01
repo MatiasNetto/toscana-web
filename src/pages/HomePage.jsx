@@ -38,7 +38,7 @@ function HomePage() {
   return (
     <>
       <HomePageSlider />
-      <div className="products-container">
+      <div>
         <Subtittle>Categorias</Subtittle>
         <Categories>
           {/* <CategoryCard text="Test Category" category="testcategory" img={testImage} align="left" /> */}
