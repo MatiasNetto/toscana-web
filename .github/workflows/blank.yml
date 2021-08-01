@@ -2,7 +2,7 @@ name: Build and Deploy in Firebase Hosting
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   build:
