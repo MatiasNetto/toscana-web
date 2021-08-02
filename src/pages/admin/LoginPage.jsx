@@ -5,10 +5,10 @@ import styled from 'styled-components';
 //assets
 import logoIMG from '../../assets/logos/Logo-V2.png';
 import { useAuth } from '../../auth/AuthContext';
-import { colorBrown, colorCrema } from '../../components/Styles';
+import { desktopMediaQuery } from '../../components/Styles';
 
 const Container = styled.div`
-  height: 100vh;
+  height: 90vh;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -16,15 +16,19 @@ const Container = styled.div`
 `;
 
 const Form = styled.form`
-  height: 70%;
-  width: 40%;
+  height: 80%;
+  width: 90%;
   background: #eaeaff;
   box-shadow: 0 5px 30px #0005;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  /* padding: 5% 0; */
+
+  ${desktopMediaQuery} {
+    height: 70%;
+    width: 40%;
+  }
 `;
 
 const Logo = styled.img`

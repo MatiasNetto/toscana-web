@@ -45,7 +45,7 @@ const SelectInput = styled.select``;
 /*###################*/
 
 const AdminEditProductPage = () => {
-  const [category, setCategory] = useState('testcategory');
+  const [category, setCategory] = useState('anillos');
   const [fillFormData, setFillFormData] = useState(undefined);
   const [reload, setReload] = useState(false);
   const { currentUser } = useAuth();

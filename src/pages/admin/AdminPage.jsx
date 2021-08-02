@@ -7,12 +7,12 @@ import EditIMG from '../../assets/buttons/Edit-BTN.png';
 import AddIMG from '../../assets/buttons/Add-BTN.png';
 import DeleteIMG from '../../assets/buttons/Delete-BTN.png';
 import OutIMG from '../../assets/buttons/Exit-BTN.png';
-import { colorBrown, colorCrema } from '../../components/Styles';
+import { colorBrown, colorCrema, desktopMediaQuery } from '../../components/Styles';
 import { useAuth } from '../../auth/AuthContext';
 
 const Mode = styled(NavLink)`
   height: 100%;
-  width: 50%;
+  width: 90%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -26,6 +26,10 @@ const Mode = styled(NavLink)`
 
   &:hover {
     filter: brightness(80%);
+  }
+  ${desktopMediaQuery} {
+    height: 100%;
+    width: 50%;
   }
 `;
 
@@ -45,11 +49,15 @@ const Grid = styled.div`
 `;
 
 const LogOutBtn = styled.img`
-  width: 50px;
+  width: 38px;
   position: absolute;
   top: 20px;
   left: 20px;
   cursor: pointer;
+
+  ${desktopMediaQuery} {
+    width: 50px;
+  }
 `;
 
 const AdminPage = () => {
