@@ -7,7 +7,7 @@ npm run build
 sleep 15
 
 rm -r ./deploy/public/*
-cp ./build/* ./deploy/public/
+cp -r ./build/* ./deploy/public/
 
 sleep 5
 
