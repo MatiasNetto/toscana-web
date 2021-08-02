@@ -6,7 +6,6 @@ npm run build
 
 sleep 15
 
->>>>>>> dev
 rm -r ./deploy/public/*
 cp ./build/* ./deploy/public/
 
