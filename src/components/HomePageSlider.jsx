@@ -5,14 +5,23 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Autoplay, EffectFade, Zoom } from 'swiper';
 import 'swiper/swiper-bundle.css';
 
-//assets
-import logoIMG from '../assets/logos/Logo-V2.png';
-import sliderIMG from '../assets/slider/mobile/slider_1.jpg';
-
 //css
 import { desktopMediaQuery } from './Styles';
 
-//!Falta condicion de que en caso de estar desde movile mostrar los controles del slider
+//assets
+import logoIMG from '../assets/logos/Logo-V2.png';
+import mobileDefaultImg from '../assets/slider/mobile-default.jpg';
+import desktopDefaultImg from '../assets/slider/desktop-default.jpg';
+
+let defaultSliderImg;
+
+if (window.innerWidth <= 996) {
+  defaultSliderImg = mobileDefaultImg;
+} else {
+  defaultSliderImg = desktopDefaultImg;
+}
+
+//inicializar el Slider
 SwiperCore.use([Zoom, Autoplay, EffectFade]);
 
 /*################*/
@@ -40,10 +49,10 @@ const Slider = styled.div`
     top: 0;
     left: 0;
     z-index: -1;
-    background-image: url(${sliderIMG});
+    background-image: url(${defaultSliderImg});
     background-size: cover;
     background-position: center;
-    filter: brightness(80%);
+    filter: brightness(60%);
   }
 `;
 
@@ -123,26 +132,42 @@ const SlideButton = styled.button`
 /*###################*/
 
 const HomePageSlider = () => {
-  //el estado se inicializa con la url de la primera imagen, hay que agregarla a mano, despues el resto son traidas con http requests
-  const [sliderImages, setSliderImages] = useState([
-    'https://firebasestorage.googleapis.com/v0/b/tostest-2fbf8.appspot.com/o/admin%2Fhome-slider%2Fmobile%2Fslider_1.jpg?alt=media&token=c1f3d51f-13b1-44e6-b5b4-0bb9abd7cee2',
-  ]);
+  //el estado se inicializa con la imagen default
+  const [sliderImages, setSliderImages] = useState([defaultSliderImg]);
 
   useEffect(() => {
+    //TODO en caso de ser mas grande que 996 que se establezca la direccion como admin/home-slider/desktop/
     let pathRef = storage.ref('admin/home-slider/mobile/'); //se crea la referencia hacia la base de datos
     let sliderFragment = [];
-    let imagesCount = 8; //se establece la cantidad de imagenes que apareceran en el slider
     const getURLs = async () => {
-      for (let i = 1; i <= imagesCount; i++) {
-        let imageURL = await pathRef.child('slider_' + i + '.jpg').getDownloadURL(); //trae la imagen desde el servidor y la almacena en la variable
+      let imagesList = (await pathRef.listAll()).items; //trae un array con todos los elementos del storage
 
-        sliderFragment[i] = imageURL; //agrega la url al fragmento
-        console.log(imageURL);
+      //mapea en imagesList el path de cada item del array
+      imagesList = imagesList.map((item) => {
+        return item.fullPath;
+      });
+
+      //recorre todos los paths, los convierte en url y la agrega a sliderFragment
+      for (let imagePath of imagesList) {
+        let imageURL = await storage.ref(imagePath).getDownloadURL();
+        sliderFragment = [...sliderFragment, imageURL]; //agrega la url al fragmento
       }
+
       setSliderImages(sliderFragment); //una vez guardadas todas la imagenes en el fragment la almacena en el estado
+      sessionStorage.setItem('homePageSliderImages', JSON.stringify(sliderFragment));
     };
-    getURLs();
+
+    //si no existe data en el session storage ejecuta getURLs y pide las imagenes,en caso de estar guardadas, set el state con la info del session storage
+    if (sessionStorage.getItem('homePageSliderImages') === null) {
+      getURLs();
+    } else {
+      setSliderImages(JSON.parse(sessionStorage.getItem('homePageSliderImages')));
+    }
   }, []);
+
+  useEffect(() => {
+    console.log(sliderImages);
+  });
 
   //scroll hacia abajo
   const handleButtonClick = (e) => {
@@ -154,7 +179,6 @@ const HomePageSlider = () => {
   };
 
   //DOM object
-
   return (
     <Slider>
       <Swiper
