@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { useAuth } from '../../auth/AuthContext';
 import AdminForm from '../../components/admin/AdminForm';
 import ProductsPreview from '../../components/admin/ProductsPreview';
 import { db } from '../../components/Firebase';
@@ -47,6 +48,7 @@ const AdminEditProductPage = () => {
   const [category, setCategory] = useState('testcategory');
   const [fillFormData, setFillFormData] = useState(undefined);
   const [reload, setReload] = useState(false);
+  const { currentUser } = useAuth();
 
   useEffect(() => {
     sessionStorage.clear();
@@ -103,11 +105,11 @@ const AdminEditProductPage = () => {
           <div style={{ height: '8vh', display: 'flex', flexDirection: 'column', marginLeft: '1em' }}>
             <label htmlFor="category">Category</label>
             <CategorySelector onChange={handleCategoryChange} name="category">
-              <option value="testcategory">Test Category</option>
               <option value="anillos">Anillos</option>
               <option value="aros">Aros</option>
               <option value="collares">Collares</option>
               <option value="pulseras">Pulseras</option>
+              {currentUser.email === 'admin@admin.com' && <option value="testcategory">Test</option>}
             </CategorySelector>
           </div>
           <AdminForm onSubmitCallback={editProduct} submitName="Edit" dataToFill={fillFormData} />

@@ -12,6 +12,9 @@ import AdminPage from './pages/admin/AdminPage';
 import AdminAddProductPage from './pages/admin/AdminAddProductPage';
 import AdminDeleteProductPage from './pages/admin/AdminDeleteProductPage';
 import { colorCrema } from './components/Styles';
+import LoginPage from './pages/admin/LoginPage';
+import { AuthProvider } from './auth/AuthContext';
+import PrivateRoute from './auth/PrivateRoute';
 
 //STYLES
 
@@ -42,16 +45,19 @@ function App() {
     <Router>
       <GlobalStyle />
       <NavBar />
-      <Switch>
-        <Route path="/test" exact component={TestPage} />
-        <Route path="/category/:category" exact component={CartegoryPage} />
-        <Route path="/category/:category/:productId" exact component={ProductPage} />
-        <Route path="/admin" exact component={AdminPage} />
-        <Route path="/admin/add" exact component={AdminAddProductPage} />
-        <Route path="/admin/edit" exact component={AdminEditProductPage} />
-        <Route path="/admin/delete" exact component={AdminDeleteProductPage} />
-        <Route exact path="/" component={HomePage} />
-      </Switch>
+      <AuthProvider>
+        <Switch>
+          <Route path="/test" exact component={TestPage} />
+          <Route path="/category/:category" exact component={CartegoryPage} />
+          <Route path="/category/:category/:productId" exact component={ProductPage} />
+          <Route path="/login" exact component={LoginPage} />
+          <PrivateRoute path="/admin" exact component={AdminPage} />
+          <PrivateRoute path="/admin/add" exact component={AdminAddProductPage} />
+          <PrivateRoute path="/admin/edit" exact component={AdminEditProductPage} />
+          <PrivateRoute path="/admin/delete" exact component={AdminDeleteProductPage} />
+          <Route exact path="/" component={HomePage} />
+        </Switch>
+      </AuthProvider>
     </Router>
   );
 }

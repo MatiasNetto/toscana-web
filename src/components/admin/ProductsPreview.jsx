@@ -28,7 +28,7 @@ const ProductsPreview = (props) => {
   }, [props.reload, props.category]);
 
   return (
-    <>
+    <div style={{ minHeight: '100vh', width: '100%' }}>
       {/* {products !== null && (
         <ProductsGirid products={products} customClick={props.customClick} onClickCallback={props.onClickCallback} />
       )} */}
@@ -37,7 +37,7 @@ const ProductsPreview = (props) => {
       ) : (
         <ProductsGirid products={products} customClick={props.customClick} onClickCallback={props.onClickCallback} />
       )}
-    </>
+    </div>
   );
 };
 

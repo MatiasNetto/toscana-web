@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { BrowserRouter as Router, NavLink, Route, Switch } from 'react-router-dom';
-import AdminAddProductPage from './AdminAddProductPage';
-import AdminEditProductPage from './AdminEditProductPage';
+import { NavLink } from 'react-router-dom';
 
 //assets
 import EditIMG from '../../assets/buttons/Edit-BTN.png';
 import AddIMG from '../../assets/buttons/Add-BTN.png';
 import DeleteIMG from '../../assets/buttons/Delete-BTN.png';
+import OutIMG from '../../assets/buttons/Exit-BTN.png';
+import { colorBrown, colorCrema } from '../../components/Styles';
+import { useAuth } from '../../auth/AuthContext';
 
 const Mode = styled(NavLink)`
   height: 100%;
@@ -16,12 +17,15 @@ const Mode = styled(NavLink)`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: ${colorBrown};
+  text-decoration: none;
+  font-size: 1.5em;
 
-  background: #fff;
-  transition: background 0.4s;
+  background: ${colorCrema};
+  transition: filter 0.4s;
 
   &:hover {
-    background: #ddf;
+    filter: brightness(80%);
   }
 `;
 
@@ -40,7 +44,24 @@ const Grid = styled.div`
   justify-items: center;
 `;
 
+const LogOutBtn = styled.img`
+  width: 50px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  cursor: pointer;
+`;
+
 const AdminPage = () => {
+  const { logOut } = useAuth();
+  const handleLogOut = () => {
+    logOut();
+  };
+
+  useEffect(() => {
+    sessionStorage.clear();
+  }, []);
+
   return (
     <>
       <Grid>
@@ -57,6 +78,7 @@ const AdminPage = () => {
           Delete Product
         </Mode>
       </Grid>
+      <LogOutBtn src={OutIMG} onClick={handleLogOut} />
     </>
   );
 };
