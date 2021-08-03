@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
+import { desktopMediaQuery } from './Styles';
 
 const LoaderContainer = styled.div`
   height: 92vh;
@@ -37,6 +38,11 @@ const Dot = styled.div`
   overflow: hidden;
 
   animation: ${dotCicle} 0.5s linear ${(props) => props.delay} infinite alternate both;
+
+  ${desktopMediaQuery} {
+    height: 2em;
+    width: 2em;
+  }
 `;
 
 const PageLoader = () => {
