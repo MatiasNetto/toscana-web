@@ -70,6 +70,9 @@ const CategoryCard = ({ img, category, align, text }) => {
             });
           }, 0);
         }}
+        onScrollCapture={() => {
+          console.log('ashei');
+        }}
         to={'/category/' + category}
       >
         <Name className="text" align={align}>

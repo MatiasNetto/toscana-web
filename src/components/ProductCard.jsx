@@ -1,10 +1,22 @@
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { colorBrown, desktopMediaQuery } from './Styles';
 
 /*################*/
 /*#### STYLES ####*/
 /*################*/
+
+const ApearAnimation = keyframes`
+  0% {
+    opacity: 0%;
+    transform: scale(80%);
+  }
+  
+  100% {
+    opacity: 100%;
+    transform: scale(100%);
+  }
+`;
 
 const CardLink = styled(Link)`
   height: 40vh;
@@ -20,9 +32,17 @@ const CardLink = styled(Link)`
   text-decoration: none;
   overflow: hidden;
   cursor: pointer;
-  /* ${(props) => {
-    return `cursor:pointer`;
-  }} */
+
+  /* si la categoria recien se carga muestra la animation (duration = 0.3s), de no ser asi no la muestra (duration = 0) */
+  animation: ${ApearAnimation}
+    ${({ justloaded }) => {
+      if (justloaded === 'true') {
+        return `0.3s`;
+      } else {
+        return `0s`;
+      }
+    }}
+    ease-out;
 
   ${desktopMediaQuery} {
     height: 50vh;
@@ -145,13 +165,14 @@ const ProductCard = (props) => {
     <>
       <CardLink
         custom={props.customClick}
+        justloaded={sessionStorage.getItem(props.category) === null ? 'true' : 'false'} //usado para aplicar o no la animacion de aparecer
         as={props.customClick === true ? 'div' : Link}
         onClick={props.customClick ? props.onClickCallback : null}
         to={toLinkUrl}
       >
         {/* agregar loading en cada imagen, se crea un componente con la animacion de carga y con styledComponents localmente lo posicionas en el centro de la imagen */}
         <Image
-          style={props.outOfStock === true ? { filter: 'saturate(0%) brightness(80%)' } : {}}
+          style={props.outOfStock === true ? { filter: 'saturate(0%) brightness(60%)' } : {}}
           image={props.imgsURL[0]}
           alt=""
         />
