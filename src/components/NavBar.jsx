@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import HamburgerMenu from './Menu';
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
-import { colorBrown, desktopMediaQuery } from './Styles';
+import { desktopMediaQuery } from './Styles';
 import Menu from './Menu';
 
 /*################*/

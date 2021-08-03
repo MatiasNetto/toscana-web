@@ -2,9 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useAuth } from '../../auth/AuthContext';
 import AdminForm from '../../components/admin/AdminForm';
-import ProductsPreview from '../../components/admin/ProductsPreview';
 import { db } from '../../components/Firebase';
-import PageLoader from '../../components/PageLoader';
 
 /*################*/
 /*#### STYLES ####*/

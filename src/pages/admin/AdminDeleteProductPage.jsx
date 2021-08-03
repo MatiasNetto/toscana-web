@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { db, storage } from '../../components/Firebase';
 import ProductsPreview from '../../components/admin/ProductsPreview';

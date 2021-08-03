@@ -41,13 +41,6 @@ const SwiperComponent = styled(Swiper)`
   }
 `;
 
-const SwiperSlideComponent = styled(SwiperSlide)`
-  height: 100%;
-  display: flex;
-  align-items: center;
-  border: 1px solid #f00;
-`;
-
 const SwiperImage = styled.img`
   width: 100%;
 `;

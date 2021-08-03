@@ -6,7 +6,6 @@ import arosImage from '../assets/categorys/Aros.png';
 import anillosImage from '../assets/categorys/Anillo.png';
 import collaresImage from '../assets/categorys/Collar.png';
 import pulserasImage from '../assets/categorys/Pulsera.png';
-import testImage from '../assets/categorys/Test.png';
 
 //components
 import CategoryCard from '../components/CategoryCard';

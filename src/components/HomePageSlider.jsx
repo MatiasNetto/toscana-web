@@ -166,10 +166,6 @@ const HomePageSlider = () => {
     }
   }, []);
 
-  useEffect(() => {
-    console.log(sliderImages);
-  });
-
   //scroll hacia abajo
   const handleButtonClick = (e) => {
     window.scroll({

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 //assets
 import image404 from '../../assets/404-IMG.png';
-import { colorBrown, desktopMediaQuery } from '../../components/Styles';
+import { desktopMediaQuery } from '../../components/Styles';
 
 const Container = styled.div`
   height: 92vh;

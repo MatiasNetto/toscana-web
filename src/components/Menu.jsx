@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import { colorBrown, colorCrema } from './Styles';
 
@@ -8,16 +8,6 @@ import { colorBrown, colorCrema } from './Styles';
 /*#### STYLES ####*/
 /*################*/
 
-const Container = styled.div`
-  height: 92vh;
-  width: 100%;
-  border: none;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  z-index: 9999999;
-  /* overflow: hidden; */
-`;
 const openAnimation = keyframes`
   0% {
     transform: translateX(-100vw)
@@ -116,13 +106,15 @@ const Menu = ({ isOpen, setIsOpen }) => {
           left: 0,
           behavior: 'smooth',
         });
+        break;
+      default:
+        break;
     }
     setIsOpen(false);
   };
 
   return ReactDOM.createPortal(
     <>
-      {/* <Container> */}
       <ContainerMenu isOpen={isOpen}>
         <LinkMenu name="home" onClick={handleLinkClick}>
           Home
@@ -136,7 +128,6 @@ const Menu = ({ isOpen, setIsOpen }) => {
         <LinkMenu>Politica de cambio</LinkMenu>
         <LinkMenu>Contacto</LinkMenu>
       </ContainerMenu>
-      {/* </Container> */}
     </>,
     document.getElementById('menu-portal')
   );

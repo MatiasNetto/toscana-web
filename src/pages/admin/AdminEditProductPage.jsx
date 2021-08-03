@@ -38,8 +38,6 @@ const CategorySelector = styled.select`
   }
 `;
 
-const SelectInput = styled.select``;
-
 /*###################*/
 /*#### COMPONENT ####*/
 /*###################*/

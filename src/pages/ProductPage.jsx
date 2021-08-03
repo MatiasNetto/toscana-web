@@ -191,14 +191,35 @@ const ProductPage = () => {
   const generateMessage = (category, model) => {
     //genera el mensaje a enviar segun el modelo y la categoria
     let phoneNumber = '5491145265942';
-    if (category === 'anillos') {
-      return `https://wa.me/${phoneNumber}?text=Hola buenos dias, queria consultar por el anillo ${model}`;
-    } else if (category === 'aros') {
-      return `https://wa.me/?text=Hola buenos dias, queria consultar por el aro ${model}`;
-    } else if (category === 'pulseras') {
-      return `https://wa.me/${phoneNumber}?text=Hola buenos dias, queria consultar por la pulsera ${model}`;
-    } else if (category === 'collares') {
-      return `https://wa.me/${phoneNumber}?text=Hola buenos dias, queria consultar por el collar ${model}`;
+
+    switch (category) {
+      case 'anillos':
+        return `https://wa.me/${phoneNumber}?text=Hola buenos dias, queria consultar por el anillo *${model}*
+
+                                                   -                                                       
+
+        Link: ${window.location.href.replace('http://', '')}`;
+
+      case 'aros':
+        return `https://wa.me/${phoneNumber}?text=Hola buenos dias, queria consultar por los aros *${model}*
+        
+                                                           -                                                       
+        
+                Link: ${window.location.href.replace('http://', '')}`;
+
+      case 'pulseras':
+        return `https://wa.me/${phoneNumber}?text=Hola buenos dias, queria consultar por la pulsera *${model}*
+
+                                                   -                                                       
+
+        Link: ${window.location.href.replace('http://', '')}`;
+
+      case 'collares':
+        return `https://wa.me/${phoneNumber}?text=Hola buenos dias, queria consultar por el collar *${model}*
+
+                                                   -                                                       
+
+        Link: ${window.location.href.replace('http://', '')}`;
     }
   };
 
