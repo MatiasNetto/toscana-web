@@ -47,7 +47,7 @@ const ContainerMenu = styled.div`
   z-index: 9999999;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
+  align-items: center;
   justify-content: space-around;
   transform: translateX(-100vw);
   background: ${colorBrown};
@@ -60,7 +60,7 @@ const ContainerMenu = styled.div`
         return closeAnimation;
       }
     }}
-    0.6s ease
+    0.5s ease
     ${({ isOpen }) => {
       if (isOpen === true) {
         return `forwards`;
@@ -82,7 +82,8 @@ const LinkMenu = styled.p`
   width: fit-content;
   height: fit-content;
   padding: 0 10px;
-  font-size: 2em;
+  font-size: 1.7em;
+  font-weight: 200;
   /* text-align: center; */
   color: ${colorCrema};
   text-decoration: none;

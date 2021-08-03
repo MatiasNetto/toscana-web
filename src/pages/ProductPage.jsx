@@ -108,7 +108,7 @@ const DescriptionTittle = styled.h4`
   }
 `;
 
-const Btn = styled(Link)`
+const BtnConsulta = styled(Link)`
   width: 90%;
   height: 8vh;
   display: flex;
@@ -132,6 +132,13 @@ const Btn = styled(Link)`
     width: 100%;
     height: 8vh;
     font-size: 1.6em;
+  }
+`;
+
+const BtnSinStock = styled(BtnConsulta)`
+  background: #777;
+  &:hover {
+    background: #777;
   }
 `;
 
@@ -182,14 +189,16 @@ const ProductPage = () => {
   }, [isPending, err]);
 
   const generateMessage = (category, model) => {
+    //genera el mensaje a enviar segun el modelo y la categoria
+    let phoneNumber = '5491145265942';
     if (category === 'anillos') {
-      return `https://wa.me/5491145265942?text=Hola buenos dias, queria consultar por el anillo ${model}`;
+      return `https://wa.me/${phoneNumber}?text=Hola buenos dias, queria consultar por el anillo ${model}`;
     } else if (category === 'aros') {
-      return `https://wa.me/5491145265942?text=Hola buenos dias, queria consultar por el aro ${model}`;
+      return `https://wa.me/?text=Hola buenos dias, queria consultar por el aro ${model}`;
     } else if (category === 'pulseras') {
-      return `https://wa.me/5491145265942?text=Hola buenos dias, queria consultar por la pulsera ${model}`;
+      return `https://wa.me/${phoneNumber}?text=Hola buenos dias, queria consultar por la pulsera ${model}`;
     } else if (category === 'collares') {
-      return `https://wa.me/5491145265942?text=Hola buenos dias, queria consultar por el collar ${model}`;
+      return `https://wa.me/${phoneNumber}?text=Hola buenos dias, queria consultar por el collar ${model}`;
     }
   };
 
@@ -212,9 +221,14 @@ const ProductPage = () => {
                 <Description>{productData.description}</Description>
               </DescriptionContainer>
 
-              <Btn as="a" href={generateMessage(productData.category, productData.model)}>
-                Consultá <Icon src={WppLogo} />
-              </Btn>
+              {/* si el producto se encuentra sin stock renderiza el boton sin stock, si tiene renderiza el boton de consulta */}
+              {productData.outOfStock ? (
+                <BtnSinStock as="p">Sin Stock</BtnSinStock>
+              ) : (
+                <BtnConsulta as="a" href={generateMessage(productData.category, productData.model)}>
+                  Consultá <Icon src={WppLogo} />
+                </BtnConsulta>
+              )}
 
               <InfoCard
                 tittle="Zona Sur, Avellaneda"
@@ -230,25 +244,6 @@ const ProductPage = () => {
           </>
         )}
       </Main>
-
-      {/* teapa todo lo anterior y muestra el mensaje deseado dependiendo que ocurra */}
-      {/* {productData === undefined ? ( //condicion
-        //si el producto no existe:
-        <h1>No se encontro el producto</h1>
-      ) : (
-        //si encuentra el producto:
-        <div>
-          {productData === null ? (
-            //Cuando el producto se encuentra cargando
-
-            <h2>cargando...</h2>
-          ) : (
-            //Cuando el producto se enconctro
-
-            <></>
-          )}
-        </div>
-      )} */}
     </>
   );
 };
