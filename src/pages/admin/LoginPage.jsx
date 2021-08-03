@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
+import { useAuth } from '../../auth/AuthContext';
+import { desktopMediaQuery } from '../../components/Styles';
 
 //assets
 import logoIMG from '../../assets/logos/Logo-V2.png';
-import { useAuth } from '../../auth/AuthContext';
-import { desktopMediaQuery } from '../../components/Styles';
+import homeIMG from '../../assets/buttons/Home-BTN.png';
 
 const Container = styled.div`
   height: 90vh;
@@ -74,6 +75,20 @@ const InputSubmit = styled.input`
   border: none;
 `;
 
+const HomeBtn = styled.img`
+  width: 38px;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  cursor: pointer;
+
+  ${desktopMediaQuery} {
+    width: 50px;
+    top: 20px;
+    left: 20px;
+  }
+`;
+
 const LoginPage = () => {
   const { login } = useAuth();
   const history = useHistory();
@@ -104,6 +119,10 @@ const LoginPage = () => {
       setLoading(false);
     }
   };
+
+  const handleHome = () => {
+    history.push('/');
+  };
   return (
     <Container>
       <Form onSubmit={handleSubmit}>
@@ -119,6 +138,8 @@ const LoginPage = () => {
 
         <InputSubmit type="submit" value="Log In" disabled={loading} />
       </Form>
+
+      <HomeBtn src={homeIMG} onClick={handleHome} />
     </Container>
   );
 };

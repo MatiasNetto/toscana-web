@@ -51,12 +51,14 @@ const Grid = styled.div`
 const LogOutBtn = styled.img`
   width: 38px;
   position: absolute;
-  top: 20px;
-  left: 20px;
+  top: 5px;
+  left: 5px;
   cursor: pointer;
 
   ${desktopMediaQuery} {
     width: 50px;
+    top: 20px;
+    left: 20px;
   }
 `;
 
