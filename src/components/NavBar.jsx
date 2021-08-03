@@ -20,7 +20,7 @@ const NavContainer = styled.div`
   padding: 0 10px;
   box-shadow: 0px 4px 20px #0008;
   background-color: whitesmoke;
-  overflow: hidden;
+  /* overflow: hidden; */
 `;
 
 const Tittle = styled.h1`
@@ -51,7 +51,7 @@ const TittleCircle = styled.div`
 const NavBar = () => {
   return (
     <>
-      <NavContainer>
+      <NavContainer id="home">
         <HamburgerMenu />
         <Link style={{ textDecoration: 'none' }} to="/">
           <Tittle>
