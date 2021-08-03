@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
 import { Link, useHistory } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import { colorBrown, colorCrema } from './Styles';
@@ -8,33 +9,15 @@ import { colorBrown, colorCrema } from './Styles';
 /*################*/
 
 const Container = styled.div`
+  height: 92vh;
+  width: 100%;
   border: none;
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
+  z-index: 9999999;
   /* overflow: hidden; */
 `;
-
-const Hamburger = styled.button`
-  height: 8vh;
-  width: 6vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  background-color: whitesmoke;
-  border: none;
-  padding: 1vh 0;
-  margin-left: 10px;
-  cursor: pointer;
-`;
-
-const Line = styled.div`
-  height: 15%;
-  width: 100%;
-  background-color: black;
-  border-radius: 100px;
-`;
-
 const openAnimation = keyframes`
   0% {
     transform: translateX(-100vw)
@@ -54,33 +37,35 @@ const closeAnimation = keyframes`
   }
 `;
 
-const Menu = styled.div`
+const ContainerMenu = styled.div`
   /* pointer-events: none; */
   height: 92vh;
   width: 100vw;
-  position: absolute;
-  left: 0;
+  position: fixed;
   top: 8vh;
+  left: 0;
+  z-index: 9999999;
   display: flex;
   flex-direction: column;
   /* align-items: center; */
   justify-content: space-around;
   transform: translateX(-100vw);
   background: ${colorBrown};
+  overflow: hidden;
 
   animation: ${({ isOpen }) => {
       if (isOpen) {
-        return closeAnimation;
-      } else {
         return openAnimation;
+      } else {
+        return closeAnimation;
       }
     }}
-    0.3s ease
+    0.6s ease
     ${({ isOpen }) => {
       if (isOpen === true) {
-        return `normal`;
-      } else {
         return `forwards`;
+      } else {
+        return `normal`;
       }
     }};
 
@@ -109,15 +94,9 @@ const LinkMenu = styled.p`
 /*#### COMPONENT ####*/
 /*###################*/
 
-const HamburgerMenu = () => {
-  const [isOpen, setIsOpen] = useState(null);
+const Menu = ({ isOpen, setIsOpen }) => {
+  // const [isOpen, setIsOpen] = useState(null);
   const history = useHistory();
-
-  const handleMenuClick = () => {
-    if (isOpen === false) setIsOpen(true);
-    else if (isOpen === null) setIsOpen(false);
-    else setIsOpen(false);
-  };
 
   const handleLinkClick = (e) => {
     history.push('/');
@@ -137,33 +116,29 @@ const HamburgerMenu = () => {
           behavior: 'smooth',
         });
     }
-    setIsOpen(true);
+    setIsOpen(false);
   };
 
-  return (
+  return ReactDOM.createPortal(
     <>
-      <Container>
-        <Hamburger onClick={handleMenuClick} isOpen={isOpen}>
-          <Line />
-          <Line />
-          <Line />
-        </Hamburger>
-        <Menu isOpen={isOpen}>
-          <LinkMenu name="home" onClick={handleLinkClick}>
-            Home
-          </LinkMenu>
-          <LinkMenu name="products" onClick={handleLinkClick}>
-            Productos
-          </LinkMenu>
-          <LinkMenu>Nosotros</LinkMenu>
-          <LinkMenu>Materiales</LinkMenu>
-          <LinkMenu>Entregas y envios</LinkMenu>
-          <LinkMenu>Politica de cambio</LinkMenu>
-          <LinkMenu>Contacto</LinkMenu>
-        </Menu>
-      </Container>
-    </>
+      {/* <Container> */}
+      <ContainerMenu isOpen={isOpen}>
+        <LinkMenu name="home" onClick={handleLinkClick}>
+          Home
+        </LinkMenu>
+        <LinkMenu name="products" onClick={handleLinkClick}>
+          Productos
+        </LinkMenu>
+        <LinkMenu>Nosotros</LinkMenu>
+        <LinkMenu>Materiales</LinkMenu>
+        <LinkMenu>Entregas y envios</LinkMenu>
+        <LinkMenu>Politica de cambio</LinkMenu>
+        <LinkMenu>Contacto</LinkMenu>
+      </ContainerMenu>
+      {/* </Container> */}
+    </>,
+    document.getElementById('menu-portal')
   );
 };
 
-export default HamburgerMenu;
+export default Menu;
