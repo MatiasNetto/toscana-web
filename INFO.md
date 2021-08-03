@@ -42,6 +42,8 @@
   - funcionalidad para poner descuentos
   - en el formulario para agregar imagenes que se pueda arrastrar y soltar las imagenes desde el explorador
   - la posibilidad de elegir cual sera la imagen que se mostrara comp preview del producto
+  - un buen mensaje en caso de que no se encunetre la categoria o el producto deseado con un link
+  - personalizacion slider
 
   ## Optimizacions
 

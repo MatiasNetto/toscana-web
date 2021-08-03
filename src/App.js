@@ -15,6 +15,7 @@ import { colorCrema } from './components/Styles';
 import LoginPage from './pages/admin/LoginPage';
 import { AuthProvider } from './auth/AuthContext';
 import PrivateRoute from './auth/PrivateRoute';
+import Page404 from './pages/admin/Page404';
 
 //STYLES
 
@@ -56,6 +57,7 @@ function App() {
           <PrivateRoute path="/admin/edit" exact component={AdminEditProductPage} />
           <PrivateRoute path="/admin/delete" exact component={AdminDeleteProductPage} />
           <Route exact path="/" component={HomePage} />
+          <Route path="*" component={Page404} />
         </Switch>
       </AuthProvider>
     </Router>
