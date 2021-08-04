@@ -28,6 +28,7 @@ const CategorySelector = styled.select`
   height: 5vh;
   width: 90vw;
   font-size: 1.4em;
+  cursor: pointer;
   ${desktopMediaQuery} {
     width: 16vw;
   }

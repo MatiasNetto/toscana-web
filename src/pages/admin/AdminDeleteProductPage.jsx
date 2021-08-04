@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { db, storage } from '../../components/Firebase';
 import ProductsPreview from '../../components/admin/ProductsPreview';
 import { desktopMediaQuery } from '../../components/Styles';
+import { useAuth } from '../../auth/AuthContext';
 
 const FormContainer = styled.div`
   height: 100vh;
@@ -15,14 +16,16 @@ const CategorySelector = styled.select`
   height: 5vh;
   width: 90vw;
   font-size: 1.4em;
+  cursor: pointer;
   ${desktopMediaQuery} {
     width: 16vw;
   }
 `;
 
 const AdminDeleteProductPage = () => {
-  const [category, setCategory] = useState('testcategory');
+  const [category, setCategory] = useState('anillos');
   const [reload, setReload] = useState(false);
+  const { currentUser } = useAuth();
 
   const handleCategoryChange = (e) => {
     console.log(e.target.value);
@@ -53,11 +56,11 @@ const AdminDeleteProductPage = () => {
       <div style={{ height: '8vh', display: 'flex', flexDirection: 'column', marginLeft: '1em' }}>
         <label htmlFor="category">Category</label>
         <CategorySelector onChange={handleCategoryChange} name="category">
-          <option value="testcategory">Test Category</option>
           <option value="anillos">Anillos</option>
           <option value="aros">Aros</option>
           <option value="collares">Collares</option>
           <option value="pulseras">Pulseras</option>
+          {currentUser.email === 'admin@admin.com' && <option value="testcategory">Test Category</option>}
         </CategorySelector>
       </div>
       {reload === false && (
