@@ -199,7 +199,7 @@ const HomePageSlider = () => {
               style={{ display: 'flex', alignItems: 'center' }}
               key={Math.random()}
             >
-              <SwiperImage src={image}></SwiperImage>
+              <SwiperImage style={{ height: '100%' }} src={image}></SwiperImage>
             </SwiperSlide>
           );
         })}

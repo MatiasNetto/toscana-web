@@ -1,5 +1,7 @@
 #PROJECT INFO
 
+- LINEAS DE CODIGO 8/8/21: 3267
+
 - Design
   > https://www.figma.com/file/fowD5gEu0fzEy5upNG1EPi/Toscana?node-id=0%3A1
 

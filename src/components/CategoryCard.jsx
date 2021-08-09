@@ -46,7 +46,7 @@ const Img = styled.img`
   z-index: -99;
   top: -60%;
   left: 0;
-  filter: brightness(80%);
+  filter: brightness(70%);
 
   ${desktopMediaQuery} {
     transform: scale(130%);

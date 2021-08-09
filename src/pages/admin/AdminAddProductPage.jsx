@@ -73,6 +73,7 @@ const AdminAddProductPage = () => {
               <option value="aros">Aros</option>
               <option value="collares">Collares</option>
               <option value="pulseras">Pulseras</option>
+              <option value="relojes">Relojes</option>
               {currentUser.email === 'admin@admin.com' && <option value="testcategory">Test</option>}
             </CategorySelector>
           </div>
