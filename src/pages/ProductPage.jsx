@@ -84,7 +84,7 @@ const DescriptionContainer = styled.div`
   }
 `;
 
-const Description = styled.p`
+const Description = styled.div`
   font-size: 1em;
   letter-spacing: 1px;
   /* color: #000; */
@@ -239,7 +239,11 @@ const ProductPage = () => {
 
               <DescriptionContainer>
                 <DescriptionTittle>Description:</DescriptionTittle>
-                <Description>{productData.description}</Description>
+                <Description>
+                  {productData.description.split('\n').map((el) => {
+                    return el ? <p key={Math.random()}>{el}</p> : <br />;
+                  })}
+                </Description>
               </DescriptionContainer>
 
               {/* si el producto se encuentra sin stock renderiza el boton sin stock, si tiene renderiza el boton de consulta */}
