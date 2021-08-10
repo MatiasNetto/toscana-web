@@ -102,12 +102,18 @@ const Menu = ({ isOpen, setIsOpen }) => {
 
       case 'products':
         window.scroll({
-          top: window.innerHeight,
+          top: window.innerHeight - 50,
           left: 0,
           behavior: 'smooth',
         });
         break;
+
       default:
+        window.scrollBy({
+          top: document.getElementById(e.target.attributes.name.value).getBoundingClientRect().top - 50,
+          left: 0,
+          behavior: 'smooth',
+        });
         break;
     }
     setIsOpen(false);
@@ -122,11 +128,24 @@ const Menu = ({ isOpen, setIsOpen }) => {
         <LinkMenu name="products" onClick={handleLinkClick}>
           Productos
         </LinkMenu>
-        <LinkMenu>Nosotros</LinkMenu>
-        <LinkMenu>Materiales</LinkMenu>
-        <LinkMenu>Entregas y envios</LinkMenu>
-        <LinkMenu>Politica de cambio</LinkMenu>
-        <LinkMenu>Contacto</LinkMenu>
+        <LinkMenu name="nosotros" onClick={handleLinkClick}>
+          Nosotros
+        </LinkMenu>
+        <LinkMenu name="materiales" onClick={handleLinkClick}>
+          Materiales
+        </LinkMenu>
+        <LinkMenu name="politica-de-cambio" onClick={handleLinkClick}>
+          Politica de cambio
+        </LinkMenu>
+        <LinkMenu name="medi-tu-anillo" onClick={handleLinkClick}>
+          Medi tu anillo
+        </LinkMenu>
+        <LinkMenu name="como-comprar" onClick={handleLinkClick}>
+          Como comprar
+        </LinkMenu>
+        <LinkMenu name="envios-y-entregas" onClick={handleLinkClick}>
+          Envios y entregas
+        </LinkMenu>
       </ContainerMenu>
     </>,
     document.getElementById('menu-portal')

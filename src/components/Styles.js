@@ -12,7 +12,7 @@ const SubtittleStyle = styled.h3`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2em;
+  font-size: ${({ size }) => (size ? size : `2em`)};
   text-align: center;
   margin-bottom: 1vh;
   padding-top: 3vh;
@@ -32,9 +32,9 @@ const SubtittleCircle = styled.div`
   background: ${colorBrown};
 `;
 
-const Subtittle = ({ children }) => {
+const Subtittle = ({ children, size }) => {
   return (
-    <SubtittleStyle>
+    <SubtittleStyle size={size}>
       <SubtittleCircle />
       {children}
       <SubtittleCircle />
