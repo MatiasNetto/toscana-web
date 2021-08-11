@@ -241,7 +241,7 @@ const ProductPage = () => {
                 <DescriptionTittle>Description:</DescriptionTittle>
                 <Description>
                   {productData.description.split('\n').map((el) => {
-                    return el ? <p key={Math.random()}>{el}</p> : <br />;
+                    return el ? <p key={Math.random()}>{el}</p> : <br key={Math.random()} />;
                   })}
                 </Description>
               </DescriptionContainer>

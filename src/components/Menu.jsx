@@ -109,11 +109,13 @@ const Menu = ({ isOpen, setIsOpen }) => {
         break;
 
       default:
-        window.scrollBy({
-          top: document.getElementById(e.target.attributes.name.value).getBoundingClientRect().top - 50,
-          left: 0,
-          behavior: 'smooth',
-        });
+        setTimeout(() => {
+          window.scrollBy({
+            top: document.getElementById(e.target.attributes.name.value).getBoundingClientRect().top - 50,
+            left: 0,
+            behavior: 'smooth',
+          });
+        }, 500);
         break;
     }
     setIsOpen(false);

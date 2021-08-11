@@ -36,12 +36,23 @@ const Section = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  ${desktopMediaQuery} {
+    width: 70%;
+    margin: 0 auto;
+  }
 `;
 
 const Article = styled.article`
   font-size: ${({ size }) => (size ? size : `1.1em`)};
   padding: 10px 5vw;
   text-align: ${({ align }) => align};
+`;
+
+const Text = styled.p`
+  margin-top: 10px;
+  ${desktopMediaQuery} {
+    font-size: 1.2em;
+  }
 `;
 
 const Li1 = styled.ul`
@@ -60,6 +71,10 @@ const Li1 = styled.ul`
     /* border-radius: 100%; */
 
     position: absolute;
+  }
+
+  ${desktopMediaQuery} {
+    font-size: 1.2em;
   }
 `;
 
@@ -80,6 +95,10 @@ const Li2 = styled.li`
 
     position: absolute;
   }
+
+  ${desktopMediaQuery} {
+    font-size: 1.2em;
+  }
 `;
 
 const Li2Numbered = styled.li`
@@ -95,6 +114,10 @@ const Li2Numbered = styled.li`
     background: transparent;
 
     position: absolute;
+  }
+
+  ${desktopMediaQuery} {
+    font-size: 1.2em;
   }
 `;
 
@@ -114,6 +137,10 @@ const Li3 = styled.li`
     /* border-radius: 100%; */
 
     position: absolute;
+  }
+
+  ${desktopMediaQuery} {
+    font-size: 1.2em;
   }
 `;
 
@@ -170,27 +197,26 @@ function HomePage() {
           <CategoryCard text="Relojes" category="relojes" img={relojesImage} align="right" />
         </Categories>
 
-        <Hr id="nosotros" />
-
         <Section>
+          <Hr id="nosotros" />
           <Subtittle>NOSOTROS</Subtittle>
           <Article align="center">
-            <p>
+            <Text>
               Toscana Accesorios es el resultado del sueño de dos hermanos que buscaban ayudar a su familia e
               independizarse. En 2019, yo Giuliana, le propuse esta atrevida idea de comenzar con este proyecto a Nacho,
               mi hermano y co-fundador.
-            </p>
+            </Text>
             <br />
-            <p>
+            <Text>
               Desde el primer momento, pusimos manos a la obra, y establecimos nuestro objetivo principal: hacer llegar
               accesorios de diseño y excelentísima calidad (para cualquier tipo de piel) a todos, con un precio
               sumamente accesible.
-            </p>
+            </Text>
             <br />
-            <p>
+            <Text>
               Comenzamos con un círculo de venta entre nuestros conocidos, y poco a poco, con muchísimo esfuerzo,
               dedicación, tropezones y alegrías ¡Comenzamos a expandirnos!, por eso hoy les decimos:
-            </p>
+            </Text>
             <br />
             <h3>¡BIENVENIDOS A NUESTRA PAGINA WEB!</h3>
           </Article>
@@ -200,58 +226,48 @@ function HomePage() {
           <Article align="left">
             <Subtittle size="1.8em">MATERIALES</Subtittle>
             <br />
-            <p>Todos nuestros productos están hechos de: </p>
-            <Li1>
-              Acero quirurgo 316L, un material:
-              <Li2>Hipoalergénico (por lo que no produce ningún tipo de alergia a la piel).</Li2>
-              <Li2>No se oscurece.</Li2>
-              <Li2>No se oxida.</Li2>
-              <Li2>Es sumamente resistente y perdurable.</Li2>
-            </Li1>
-            <Li1>
-              Acero quirúrgico blanco, un material:
-              <Li2>Hipoalergénico (por lo que no produce ningún tipo de alergia a la piel)</Li2>
-              <Li2>No se oxida</Li2>
-              <Li2>
-                Son de acero quirúrgico con baño en plata (y níquel o cobre para lograr adherir la plata al acero)
-              </Li2>
-              <Li2>
-                Ya que es un baño, el color blanco puede irse yendo con el uso (dejando ver el color del acero
-                quirúrgico) <strong>si no se lo cuida apropiadamente</strong>, por eso te recomendamos PARA CONSERVAR SU
-                BIRLLO Y COLOR POR MAS TIEMPO:
-                <ul>
-                  <Li3>
-                    No exponerlo a cremas, agua oxigenada, productos de limpieza, agua con cloro, alcohol en gel, etc.{' '}
-                  </Li3>
-                </ul>
-              </Li2>
-              <Li2>
-                Al guardarlos te recomendarnos ponerlos en una bolsita de plástico, un alhajero, etc para que
-                <ul>
-                  <Li3>No se rayen.</Li3>
-                  <Li3>No se ensucien, ya que es posible que se le adhieran residuos. </Li3>
-                </ul>
-              </Li2>
-              <Li2>En el caso de que tu joya no la hayas guardado podes limpiarla con ¡un simple paño!</Li2>
-            </Li1>
-            <p style={{ marginTop: '15px' }}>¡Muchísimas gracias!</p>
+            <Text>Todos nuestros productos están hechos de: </Text>
+            <Li1>Acero quirurgo 316L, un material:</Li1>
+            <Li2>Hipoalergénico (por lo que no produce ningún tipo de alergia a la piel).</Li2>
+            <Li2>No se oscurece.</Li2>
+            <Li2>No se oxida.</Li2>
+            <Li2>Es sumamente resistente y perdurable.</Li2>
+            <Li1>Acero quirúrgico blanco, un material:</Li1>
+            <Li2>Hipoalergénico (por lo que no produce ningún tipo de alergia a la piel)</Li2>
+            <Li2>No se oxida</Li2>
+            <Li2>
+              Son de acero quirúrgico con baño en plata (y níquel o cobre para lograr adherir la plata al acero)
+            </Li2>
+            <Li2>
+              Ya que es un baño, el color blanco puede irse yendo con el uso (dejando ver el color del acero quirúrgico){' '}
+              <strong>si no se lo cuida apropiadamente</strong>, por eso te recomendamos PARA CONSERVAR SU BIRLLO Y
+              COLOR POR MAS TIEMPO:
+            </Li2>
+            <Li3>
+              No exponerlo a cremas, agua oxigenada, productos de limpieza, agua con cloro, alcohol en gel, etc.{' '}
+            </Li3>
+            <Li2>Al guardarlos te recomendarnos ponerlos en una bolsita de plástico, un alhajero, etc para que</Li2>
+            <Li3>No se rayen.</Li3>
+            <Li3>No se ensucien, ya que es posible que se le adhieran residuos. </Li3>
+            <Li2>En el caso de que tu joya no la hayas guardado podes limpiarla con ¡un simple paño!</Li2>
+            <Text style={{ marginTop: '15px' }}>¡Muchísimas gracias!</Text>
           </Article>
 
           <Hr id="politica-de-cambio" />
 
           <Article>
             <Subtittle size="1.5em">POLITICA DE CAMBIO</Subtittle>
-            <p>
+            <Text>
               Los accesorios tienen un periodo de cambio de 15 días posteriores a la comprar, por todo defecto o vicio
               previo a la entrega del mismo y que afecte la identidad del producto.
-            </p>
+            </Text>
             <br />
-            <p>
+            <Text>
               <strong style={{ textDecoration: 'underline', textDecorationThickness: '2px', marginBottom: '0' }}>
                 No se realizan cambios
               </strong>{' '}
               por cualquier defecto o vicio producto de:
-            </p>
+            </Text>
             <Li2>Su uso indebido, incorrecto o inoportuno.</Li2>
             <Li2>
               No seguir las recomendaciones para su cuidado (debidamente consignadas en la presente página, en el
@@ -261,7 +277,7 @@ function HomePage() {
               Cualquier otro daño o desperfecto ostensible, que no concurría al momento de la entrega del producto,
               tales como ralladuras, manchas, roturas, etc.{' '}
             </Li2>
-            <p style={{ marginTop: '15px' }}>¡Muchísimas gracias!</p>
+            <Text style={{ marginTop: '15px' }}>¡Muchísimas gracias!</Text>
           </Article>
 
           <Hr id="medi-tu-anillo" />
@@ -269,24 +285,24 @@ function HomePage() {
           <Article>
             <Subtittle size="1.6em">MEDI TU ANILLO</Subtittle>
             <br />
-            <p>¿Querés comprarte un anillo, pero no sabes cuál es tu medida? </p>
-            <p>Toscana Accesorios te muestra la mejor forma para saberlo, ¡en 3 simples pasos!</p>
+            <Text>¿Querés comprarte un anillo, pero no sabes cuál es tu medida? </Text>
+            <Text>Toscana Accesorios te muestra la mejor forma para saberlo, ¡en 3 simples pasos!</Text>
             <br />
             <ArticleTittle>Paso 1</ArticleTittle>
-            <p>
+            <Text>
               Toma un anillo tuyo, el más circular posible (ya que el material es maleable y todos los anillos suelen
               alterar su forma circular y toman la de nuestro dedo por el uso constante) y un regla o centímetro que
               encuentres.
-            </p>
+            </Text>
             <br />
             <ArticleTittle>Paso 2</ArticleTittle>
-            <p>
+            <Text>
               Medí con tu regla o centímetro el diámetro (circulo interno) de tu anillo justo por el medio y anota los
               centímetros.
-            </p>
+            </Text>
             <br />
             <ArticleTittle>Paso 3</ArticleTittle>
-            <p>Coteja los centímetros de tu anillo con la siguiente tabla y listo, tenes tu medida de anillo:</p>
+            <Text>Coteja los centímetros de tu anillo con la siguiente tabla y listo, tenes tu medida de anillo:</Text>
             <Table>
               <Th>1,5 CM</Th>
               <Th>1,6 CM</Th>
@@ -307,12 +323,12 @@ function HomePage() {
               <Th>NRO. 9</Th>
               <Th>NRO. 10</Th>
             </Table>
-            <p>
+            <Text>
               <strong>ACLARACION: </strong>Siempre tené en cuenta que hay anillos con hormas más grandes, otros con
               horma más chicas; algunos son regulable y otros que no lo son, por lo que la medida puede variar según el
               anillo y el dedo en que quiera usarse
-            </p>
-            <p style={{ marginTop: '15px' }}>¡Muchísimas gracias!</p>
+            </Text>
+            <Text style={{ marginTop: '15px' }}>¡Muchísimas gracias!</Text>
           </Article>
 
           <Hr id="como-comprar" />
@@ -320,7 +336,7 @@ function HomePage() {
           <Article>
             <Subtittle size="1.6em">COMO COMPRAR</Subtittle>
             <br />
-            <p>¡Te contamos como comprar en nuestra página! </p>
+            <Text>¡Te contamos como comprar en nuestra página! </Text>
             <Li2Numbered number="1.">
               Vas al menú principal de la izquierda, en el apartado que dice “Productos” y haciendo “click” en ella, te
               va a aparecer en pantalla todas las categorías de productos: anillos, pulseras, collares, aros y relojes.
@@ -335,7 +351,7 @@ function HomePage() {
               donde vas a por hacernos cualquier tipo de consulta, y por donde coordinaremos la entrega y los medios de
               pago!
             </Li2Numbered>
-            <p style={{ marginTop: '15px' }}>¡Muchísimas gracias!</p>
+            <Text style={{ marginTop: '15px' }}>¡Muchísimas gracias!</Text>
           </Article>
 
           <Hr id="envios-y-entregas" />
@@ -343,7 +359,7 @@ function HomePage() {
           <Article>
             <Subtittle size="1.3em">ENVIOS Y ENTREGAS</Subtittle>
             <br />
-            <p>En Toscana accesorios realizamos: </p>
+            <Text>En Toscana accesorios realizamos: </Text>
             <Li1>Envíos a TODO EL PAIS, utilizando:</Li1>
             <Li2>
               Moto mensajería UNICAMENTE para aquellas zonas adyacentes o aledañas a Avellaneda, prov. De Buenos Aires.{' '}
@@ -359,10 +375,10 @@ function HomePage() {
             </Li2>
             <Li2>Av. Mitre 3.300 (Supermercado Coto). Localidad: Sarandí, prov. Bs As. Dirección: Av. Mitre 3.300</Li2>
             <Li2>Parque dominico. Localidad: Villa Dominico, prov. Bs As. Dirección: Av. Mitre 4.700.</Li2>
-            <p style={{ marginTop: '15px' }}>¡Muchísimas gracias!</p>
+            <Text style={{ marginTop: '15px' }}>¡Muchísimas gracias!</Text>
           </Article>
         </Section>
-        <footer>footer</footer>
+        {/* <footer>footer</footer> */}
       </div>
     </>
   );
