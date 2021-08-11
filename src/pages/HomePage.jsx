@@ -24,10 +24,17 @@ const Categories = styled.div`
   align-items: center;
   padding-bottom: 10px;
 
-  ${desktopMediaQuery} {
+  /* ${desktopMediaQuery} {
     flex-direction: row;
     justify-content: space-around;
     padding-bottom: 10vh;
+  } */
+
+  ${desktopMediaQuery} {
+    width: 85%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
   }
 `;
 
