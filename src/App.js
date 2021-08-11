@@ -16,6 +16,7 @@ import LoginPage from './pages/admin/LoginPage';
 import { AuthProvider } from './auth/AuthContext';
 import PrivateRoute from './auth/PrivateRoute';
 import Page404 from './pages/admin/Page404';
+import Admin from './pages/adminPage/Admin';
 
 //STYLES
 
@@ -52,7 +53,8 @@ function App() {
           <Route path="/category/:category" exact component={CartegoryPage} />
           <Route path="/category/:category/:productId" exact component={ProductPage} />
           <Route path="/login" exact component={LoginPage} />
-          <PrivateRoute path="/admin" exact component={AdminPage} />
+          <PrivateRoute path="/admin/" exact component={Admin} />
+          <PrivateRoute path="/admin/:section" exact component={Admin} />
           <PrivateRoute path="/admin/add" exact component={AdminAddProductPage} />
           <PrivateRoute path="/admin/edit" exact component={AdminEditProductPage} />
           <PrivateRoute path="/admin/delete" exact component={AdminDeleteProductPage} />

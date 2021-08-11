@@ -136,7 +136,7 @@ const HomePageSlider = () => {
   const [sliderImages, setSliderImages] = useState([defaultSliderImg]);
 
   useEffect(() => {
-    //TODO en caso de ser mas grande que 996 que se establezca la direccion como admin/home-slider/desktop/
+    //en caso de ser mas grande que 996 que se establezca la direccion como admin/home-slider/desktop/
     let pathRef = storage.ref('admin/home-slider/mobile/'); //se crea la referencia a las imagenes de mobile
     if (window.innerWidth > 996) pathRef = storage.ref('admin/home-slider/desktop/'); //se crea la referencia a las imagenes de desktop
     let sliderFragment = [];
