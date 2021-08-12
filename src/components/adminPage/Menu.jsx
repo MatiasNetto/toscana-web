@@ -1,17 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-
-//assets
-import homeImage from '../../assets/icons/Home-Icon.png';
-import productsImage from '../../assets/icons/Products-Icon.png';
-import logOutImage from '../../assets/icons/Log-Out-Icon.png';
 import { useHistory, useParams } from 'react-router-dom';
 
 const Container = styled.div`
   height: 100vh;
   width: 5vw;
-  position: sticky;
-  top: 0;
+  position: fixed;
+  top: 0px;
+  left: 0;
+  z-index: 9999;
   display: flex;
   flex-direction: column;
   align-items: flex-start;

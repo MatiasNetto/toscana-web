@@ -12,7 +12,8 @@ const Container = styled.div`
 `;
 
 const PageContainer = styled.div`
-  width: 100%;
+  width: 95vw;
+  margin-left: 5vw;
 `;
 
 const Admin = () => {
