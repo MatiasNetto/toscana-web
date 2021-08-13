@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { colorBrown } from '../Styles';
+import { colorBrown, colorGreen, colorRed } from '../Styles';
 
 const Tr = styled.tr`
   height: 15vh;
@@ -109,7 +109,7 @@ const ProductRow = ({ data, dark }) => {
         )}
       </Td>
       <Td>
-        <Button color="#00ce69">Edit</Button> <Button color="#ff3131">Delete</Button>
+        <Button color={colorGreen}>Edit</Button> <Button color={colorRed}>Delete</Button>
       </Td>
     </Tr>
   );

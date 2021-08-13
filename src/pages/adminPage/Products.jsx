@@ -5,6 +5,7 @@ import PageLoader from '../../components/PageLoader';
 import ProductRow from '../../components/adminPage/ProductRow';
 import { useAuth } from '../../auth/AuthContext';
 import ProductsTable from '../../components/adminPage/ProductsTable';
+import FormModal from './FormModal';
 
 const Container = styled.div`
   width: 100%;
@@ -102,6 +103,8 @@ const Products = () => {
       </TopFormBar>
 
       <ProductsContainer>{reload === true ? <PageLoader /> : <ProductsTable category={category} />}</ProductsContainer>
+
+      <FormModal category={category} />
     </Container>
   );
 };

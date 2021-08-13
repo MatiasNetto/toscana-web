@@ -7,6 +7,8 @@ let colorCrema = '#d8c38a';
 if (window.innerWidth <= 996) {
   colorCrema = '#decc9bee';
 }
+const colorRed = '#ff3131';
+const colorGreen = '#00ce69';
 
 const SubtittleStyle = styled.h3`
   display: flex;
@@ -41,4 +43,4 @@ const Subtittle = ({ children, size }) => {
     </SubtittleStyle>
   );
 };
-export { desktopMediaQuery, colorBrown, colorCrema, Subtittle };
+export { desktopMediaQuery, colorBrown, colorCrema, colorRed, colorGreen, Subtittle };
