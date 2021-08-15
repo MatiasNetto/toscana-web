@@ -14,7 +14,7 @@ const Th = styled.th`
   font-size: 1.1em;
 `;
 
-const ProductsTable = ({ category }) => {
+const ProductsTable = ({ category, setDataToFill, setOpenForm }) => {
   const [products, setProducts] = useState(null);
   const [awaiting, setAwaiting] = useState(true); //establece con el valor default que establece la condicion anterior
   const [error, setError] = useState({ error: false });
@@ -55,7 +55,15 @@ const ProductsTable = ({ category }) => {
           <tbody>
             {products.map((product) => {
               dark = !dark;
-              return <ProductRow data={product} dark={dark} key={product.id} />;
+              return (
+                <ProductRow
+                  setDataToFill={setDataToFill}
+                  setOpenForm={setOpenForm}
+                  data={product}
+                  dark={dark}
+                  key={product.id}
+                />
+              );
             })}
           </tbody>
         </Table>

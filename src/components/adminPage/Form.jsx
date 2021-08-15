@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useAuth } from '../../auth/AuthContext';
 import { colorGreen, colorRed } from '../Styles';
 import UploadFiles from './UploadFiles';
 
@@ -20,8 +21,18 @@ const GridContainer = styled.div`
 `;
 
 const Tittle = styled.h4`
+  display: flex;
+  align-items: center;
   background: #0042;
   padding: 5px;
+`;
+
+const CategoryInput = styled.select`
+  margin-left: 1em;
+  background: transparent;
+  border: none;
+  font-size: 1.3em;
+  cursor: pointer;
 `;
 
 const Label = styled.label`
@@ -110,7 +121,10 @@ const ImagePreview = styled.div`
   background-position: center;
 `;
 
-const Form = ({ productData, setProductData, handleSubmit, submitText }) => {
+const Form = ({ productData, setProductData, setCategory, setOpenForm, handleSubmit, submitText }) => {
+  const [openUploadFiles, setOpenUploadFiles] = useState(false);
+  const { currentUser } = useAuth();
+
   const handleInputChange = (e) => {
     let { name, value } = e.target;
     let idValue;
@@ -128,13 +142,36 @@ const Form = ({ productData, setProductData, handleSubmit, submitText }) => {
     setProductData({ ...productData, [name]: checked }); //modifica el campo de newProductData especificado por name
   };
 
+  const handleCancel = () => {
+    setOpenForm(false);
+  };
+
+  const handleUploadFilesClick = (e) => {
+    e.preventDefault();
+    setOpenUploadFiles(true);
+  };
+
+  const handleCategoryChange = (e) => {
+    setCategory(e.target.value);
+  };
+
   return (
     <>
       <FormStyle onSubmit={handleSubmit} action="">
         {/* ******* */}
         {/* PRODUCT */}
         {/* ******* */}
-        <Tittle>Producto</Tittle>
+        <Tittle>
+          Producto:
+          <CategoryInput value={productData.category} onChange={handleCategoryChange}>
+            <option value="anillos">Anillo</option>
+            <option value="aros">Aro</option>
+            <option value="collares">Collar</option>
+            <option value="pulseras">Pulsera</option>
+            <option value="relojes">Reloj</option>
+            {currentUser.email === 'admin@admin.com' && <option value="testcategory">Test</option>}
+          </CategoryInput>
+        </Tittle>
         <GridContainer>
           {/* MODEL */}
           <Label htmlFor="model">Model</Label>
@@ -152,7 +189,7 @@ const Form = ({ productData, setProductData, handleSubmit, submitText }) => {
           <Label htmlFor="imgs">IMGS</Label>
           {/* EL input upload que sea un componente que cuando agregues las imagenes se muestre el progreso */}
           <div style={{ display: 'flex', height: '10vh' }}>
-            <UploadImageButton onClick={''}>
+            <UploadImageButton onClick={handleUploadFilesClick}>
               <UploadImageIcon className="fas fa-cloud-upload-alt"></UploadImageIcon>
             </UploadImageButton>
             {productData.imgsURL !== '' && productData.imgsURL.map((url) => <ImagePreview src={url} />)}
@@ -226,10 +263,18 @@ const Form = ({ productData, setProductData, handleSubmit, submitText }) => {
         </TagsContainer>
 
         <ButtonsContainer style={{ display: 'flex' }}>
-          <ButtonInput type="button" value="Cancelar" color={colorRed} />
+          <ButtonInput type="button" value="Cancelar" color={colorRed} onClick={handleCancel} />
           <ButtonInput type="submit" value={submitText} color={colorGreen} />
         </ButtonsContainer>
       </FormStyle>
+
+      {openUploadFiles && (
+        <UploadFiles
+          productData={productData}
+          setProductData={setProductData}
+          setOpenUploadFiles={setOpenUploadFiles}
+        />
+      )}
     </>
   );
 };

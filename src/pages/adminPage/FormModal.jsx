@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import reactDom from 'react-dom';
 import styled from 'styled-components';
 import Form from '../../components/adminPage/Form';
+import { db } from '../../components/Firebase';
 
 const BackgroundContainer = styled.div`
   height: 100vh;
-  width: 100vw;
-  position: absolute;
+  width: 100%;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 9999999;
@@ -25,7 +26,7 @@ const MainContainer = styled.div`
   border-radius: 5px;
 `;
 
-const FormModal = ({ dataToFill, category }) => {
+const FormModal = ({ dataToFill, category, setCategory, setOpenForm, setReloadProductsTable }) => {
   const dataLayout = {
     id: '',
     order: 5,
@@ -46,11 +47,39 @@ const FormModal = ({ dataToFill, category }) => {
 
   const [productData, setProductData] = useState(defaultData);
 
+  const handleAddProduct = async (e) => {
+    e.preventDefault();
+    let d = productData;
+    if (
+      d.id !== '' &&
+      d.order !== '' &&
+      d.model !== '' &&
+      d.description !== '' &&
+      d.price !== '' &&
+      d.imgsPath !== '' &&
+      e.imgsURL !== ''
+    ) {
+      await db.collection(category).doc(productData.id).set(productData);
+      setOpenForm(false);
+      setReloadProductsTable(true);
+      setReloadProductsTable(false);
+    } else {
+      alert('Complete todos los campos');
+    }
+  };
+
   return reactDom.createPortal(
     <>
       <BackgroundContainer>
         <MainContainer>
-          <Form productData={productData} setProductData={setProductData} handleSubmit="" submitText="Guardar"></Form>
+          <Form
+            productData={productData}
+            setProductData={setProductData}
+            setCategory={setCategory}
+            setOpenForm={setOpenForm}
+            handleSubmit={handleAddProduct}
+            submitText="Guardar"
+          ></Form>
         </MainContainer>
       </BackgroundContainer>
     </>,

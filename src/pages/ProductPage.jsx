@@ -220,6 +220,13 @@ const ProductPage = () => {
                                                    -                                                       
 
         Link: ${window.location.href.replace('http://', '')}`;
+
+      case 'relojes':
+        return `https://wa.me/${phoneNumber}?text=Hola buenos dias, queria consultar por el reloj *${model}*
+
+                                                   -                                                       
+
+        Link: ${window.location.href.replace('http://', '')}`;
     }
   };
 

@@ -78,6 +78,8 @@ const ProductsContainer = styled.div`
 const Products = () => {
   const [category, setCategory] = useState('anillos');
   const [reload, setReload] = useState(false); //establece con el valor default que establece la condicion anterior
+  const [openForm, setOpenForm] = useState(false);
+  const [dataToFill, setDataToFill] = useState(null);
   const { currentUser } = useAuth();
 
   const handleCategoryChange = (e) => {
@@ -87,11 +89,16 @@ const Products = () => {
     setCategory(e.target.value);
   };
 
+  const handleOpenAddProductModal = () => {
+    setDataToFill(null);
+    setOpenForm(true);
+  };
+
   return (
     <Container>
       <TopFormBar>
         <TopFormBarText>Category: </TopFormBarText>
-        <CategorySelect onChange={handleCategoryChange} name="category">
+        <CategorySelect onChange={handleCategoryChange} value={category} name="category">
           <option value="anillos">Anillos</option>
           <option value="aros">Aros</option>
           <option value="collares">Collares</option>
@@ -99,12 +106,26 @@ const Products = () => {
           <option value="relojes">Relojes</option>
           {currentUser.email === 'admin@admin.com' && <option value="testcategory">Test</option>}
         </CategorySelect>
-        <Button>+ ADD PRODUCT</Button>
+        <Button onClick={handleOpenAddProductModal}>+ ADD PRODUCT</Button>
       </TopFormBar>
 
-      <ProductsContainer>{reload === true ? <PageLoader /> : <ProductsTable category={category} />}</ProductsContainer>
+      <ProductsContainer>
+        {reload === true ? (
+          <PageLoader />
+        ) : (
+          <ProductsTable category={category} setDataToFill={setDataToFill} setOpenForm={setOpenForm} />
+        )}
+      </ProductsContainer>
 
-      <FormModal category={category} />
+      {openForm && (
+        <FormModal
+          category={category}
+          setCategory={setCategory}
+          setOpenForm={setOpenForm}
+          setReloadProductsTable={setReload}
+          dataToFill={dataToFill}
+        />
+      )}
     </Container>
   );
 };
