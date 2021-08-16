@@ -69,12 +69,14 @@ const Button = styled.button`
   }
 `;
 
-const ProductRow = ({ setDataToFill, setOpenForm, data, dark }) => {
-  console.log(dark);
-
+const ProductRow = ({ setDataToFill, deleteProduct, setOpenForm, data, dark }) => {
   const handleEditClick = () => {
     setDataToFill(data);
     setOpenForm(true);
+  };
+
+  const handleDeleteClick = () => {
+    deleteProduct(data);
   };
 
   return (
@@ -118,7 +120,9 @@ const ProductRow = ({ setDataToFill, setOpenForm, data, dark }) => {
         <Button color={colorGreen} onClick={handleEditClick}>
           Edit
         </Button>{' '}
-        <Button color={colorRed}>Delete</Button>
+        <Button color={colorRed} onClick={handleDeleteClick}>
+          Delete
+        </Button>
       </Td>
     </Tr>
   );

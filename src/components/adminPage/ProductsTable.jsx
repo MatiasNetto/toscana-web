@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useGetProductsCollection } from '../../hooks/useGetProductsCollection';
+import { db, storage } from '../Firebase';
 import PageLoader from '../PageLoader';
 import { colorBrown } from '../Styles';
 import ProductRow from './ProductRow';
@@ -35,6 +36,34 @@ const ProductsTable = ({ category, setDataToFill, setOpenForm }) => {
     setProducts(null);
   }, [category]);
 
+  const deleteProductIndex = (elementToDelete) => {
+    let arrayToUpdate = products;
+
+    //elimina el elemento selecionado
+    arrayToUpdate.splice(products.indexOf(elementToDelete), 1);
+
+    console.log(arrayToUpdate);
+
+    setProducts([...arrayToUpdate]);
+  };
+
+  const handleDeleteProduct = async (elementToDelete) => {
+    let ask = window.confirm('Estas seguro que deseas eliminar "' + elementToDelete.model + '"?');
+    if (ask === true) {
+      //borra las imagenes del storage de firebase
+      elementToDelete.imgsPath.forEach((reference) => {
+        storage.ref(reference).delete();
+      });
+
+      //elimina el producto de la base de datos
+      await db.collection(elementToDelete.category).doc(elementToDelete.id).delete();
+      sessionStorage.clear();
+      alert('Producto borrado');
+
+      deleteProductIndex(elementToDelete);
+    }
+  };
+
   return (
     <>
       {awaiting ? (
@@ -57,6 +86,7 @@ const ProductsTable = ({ category, setDataToFill, setOpenForm }) => {
               dark = !dark;
               return (
                 <ProductRow
+                  deleteProduct={handleDeleteProduct}
                   setDataToFill={setDataToFill}
                   setOpenForm={setOpenForm}
                   data={product}

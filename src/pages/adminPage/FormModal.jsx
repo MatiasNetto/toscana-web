@@ -73,6 +73,19 @@ const FormModal = ({ dataToFill, category, setCategory, setOpenForm, setReloadPr
     }
   };
 
+  const handleEditProduct = async (e, newData = productData, oldData = dataToFill) => {
+    e.preventDefault();
+    setStatus('uploading');
+    await db.collection(oldData.category).doc(oldData.id).delete(); //Delete el producto origial
+    await db.collection(newData.category).doc(newData.id).set(newData); //Create el producto que remplaza al original
+    setStatus('uploaded');
+    setTimeout(() => {
+      setOpenForm(false);
+      setReloadProductsTable(true);
+      setReloadProductsTable(false);
+    }, 1000);
+  };
+
   return reactDom.createPortal(
     <>
       <BackgroundContainer>
@@ -84,7 +97,7 @@ const FormModal = ({ dataToFill, category, setCategory, setOpenForm, setReloadPr
             category={category}
             setCategory={setCategory}
             setOpenForm={setOpenForm}
-            handleSubmit={handleAddProduct}
+            handleSubmit={dataToFill ? handleEditProduct : handleAddProduct}
           ></Form>
         </MainContainer>
       </BackgroundContainer>

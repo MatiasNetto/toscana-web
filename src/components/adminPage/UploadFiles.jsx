@@ -231,12 +231,6 @@ const UploadFiles = ({ productData, setProductData, setOpenUploadFiles }) => {
     }, 1000);
   };
 
-  const handleDrop = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    console.log(e);
-  };
-
   return reactDom.createPortal(
     <BackgroundContainer>
       <Container>
