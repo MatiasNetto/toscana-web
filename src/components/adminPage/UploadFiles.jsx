@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import reactDom from 'react-dom';
-import styled from 'styled-components';
+import { useDropzone } from 'react-dropzone';
+import styled, { css } from 'styled-components';
 import { storageBucket, storage } from '../Firebase';
 import { colorGreen, colorRed } from '../Styles';
 import FileInput from './FileInput';
@@ -41,6 +42,10 @@ const FilesContainer = styled.div`
   width: 100%;
   overflow: auto;
 `;
+
+const FilesContainerActive = {
+  background: '#55f4',
+};
 
 const FilesMessageContainer = styled.div`
   height: 100%;
@@ -117,6 +122,20 @@ const Button = styled.button`
 const UploadFiles = ({ productData, setProductData, setOpenUploadFiles }) => {
   const [images, setImages] = useState(null);
   const [status, setStatus] = useState(null);
+  const { isDragActive, getRootProps, getInputProps } = useDropzone({
+    noClick: images === null ? false : true,
+    onDrop: (acceptedFiles) => {
+      console.log([...acceptedFiles]);
+      if (images === null) setImages([...acceptedFiles]);
+      else setImages([...images, ...acceptedFiles]);
+    },
+  });
+
+  useEffect(() => {
+    //en caso de que el array este vacio, establecerlo como null
+    console.log('object');
+    if (!images?.length) setImages(null);
+  }, [images]);
 
   const handleCancel = () => {
     setOpenUploadFiles(false);
@@ -222,7 +241,8 @@ const UploadFiles = ({ productData, setProductData, setOpenUploadFiles }) => {
     <BackgroundContainer>
       <Container>
         <Tittle>Upload a file</Tittle>
-        <FilesContainer>
+        <FilesContainer style={isDragActive ? FilesContainerActive : {}} {...getRootProps()}>
+          <input {...getInputProps()} />
           {images ? (
             images.map((data) => {
               return (
@@ -236,14 +256,10 @@ const UploadFiles = ({ productData, setProductData, setOpenUploadFiles }) => {
             })
           ) : (
             <FilesMessageContainer>
-              {!images ? (
-                <>
-                  <i className="fas fa-cloud-upload-alt"></i>
-                  <p>Upload a file</p>
-                </>
-              ) : (
-                ''
-              )}
+              <>
+                <i className="fas fa-cloud-upload-alt"></i>
+                <p>{isDragActive ? 'Drop the file' : 'Drag a file'}</p>
+              </>
             </FilesMessageContainer>
           )}
         </FilesContainer>

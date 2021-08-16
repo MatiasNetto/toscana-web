@@ -46,6 +46,7 @@ const FormModal = ({ dataToFill, category, setCategory, setOpenForm, setReloadPr
   const defaultData = dataToFill ? dataToFill : dataLayout;
 
   const [productData, setProductData] = useState(defaultData);
+  const [status, setStatus] = useState(null);
 
   const handleAddProduct = async (e) => {
     e.preventDefault();
@@ -59,10 +60,14 @@ const FormModal = ({ dataToFill, category, setCategory, setOpenForm, setReloadPr
       d.imgsPath !== '' &&
       e.imgsURL !== ''
     ) {
+      setStatus('uploading');
       await db.collection(category).doc(productData.id).set(productData);
-      setOpenForm(false);
-      setReloadProductsTable(true);
-      setReloadProductsTable(false);
+      setStatus('uploaded');
+      setTimeout(() => {
+        setOpenForm(false);
+        setReloadProductsTable(true);
+        setReloadProductsTable(false);
+      }, 1000);
     } else {
       alert('Complete todos los campos');
     }
@@ -73,12 +78,13 @@ const FormModal = ({ dataToFill, category, setCategory, setOpenForm, setReloadPr
       <BackgroundContainer>
         <MainContainer>
           <Form
+            status={status}
             productData={productData}
             setProductData={setProductData}
+            category={category}
             setCategory={setCategory}
             setOpenForm={setOpenForm}
             handleSubmit={handleAddProduct}
-            submitText="Guardar"
           ></Form>
         </MainContainer>
       </BackgroundContainer>

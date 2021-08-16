@@ -119,9 +119,11 @@ const ImagePreview = styled.div`
   background: url(${({ src }) => src});
   background-size: cover;
   background-position: center;
+  border-radius: 5px;
+  margin-left: 3vh;
 `;
 
-const Form = ({ productData, setProductData, setCategory, setOpenForm, handleSubmit, submitText }) => {
+const Form = ({ status, productData, setProductData, category, setCategory, setOpenForm, handleSubmit }) => {
   const [openUploadFiles, setOpenUploadFiles] = useState(false);
   const { currentUser } = useAuth();
 
@@ -163,7 +165,7 @@ const Form = ({ productData, setProductData, setCategory, setOpenForm, handleSub
         {/* ******* */}
         <Tittle>
           Producto:
-          <CategoryInput value={productData.category} onChange={handleCategoryChange}>
+          <CategoryInput value={category} onChange={handleCategoryChange}>
             <option value="anillos">Anillo</option>
             <option value="aros">Aro</option>
             <option value="collares">Collar</option>
@@ -188,7 +190,7 @@ const Form = ({ productData, setProductData, setCategory, setOpenForm, handleSub
           {/* IMGS */}
           <Label htmlFor="imgs">IMGS</Label>
           {/* EL input upload que sea un componente que cuando agregues las imagenes se muestre el progreso */}
-          <div style={{ display: 'flex', height: '10vh' }}>
+          <div style={{ display: 'flex', height: '11vh', overflow: 'auto' }}>
             <UploadImageButton onClick={handleUploadFilesClick}>
               <UploadImageIcon className="fas fa-cloud-upload-alt"></UploadImageIcon>
             </UploadImageButton>
@@ -264,7 +266,11 @@ const Form = ({ productData, setProductData, setCategory, setOpenForm, handleSub
 
         <ButtonsContainer style={{ display: 'flex' }}>
           <ButtonInput type="button" value="Cancelar" color={colorRed} onClick={handleCancel} />
-          <ButtonInput type="submit" value={submitText} color={colorGreen} />
+          <ButtonInput
+            type="submit"
+            value={status === null ? 'Guardar' : status === 'uploading' ? 'Guardando...' : 'Guardado!'}
+            color={colorGreen}
+          />
         </ButtonsContainer>
       </FormStyle>
 
