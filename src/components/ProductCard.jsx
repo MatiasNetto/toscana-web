@@ -166,7 +166,6 @@ const ProductCard = (props) => {
   return (
     <>
       <CardLink
-        custom={props.customClick}
         justloaded={sessionStorage.getItem(props.category) === null ? 'true' : 'false'} //usado para aplicar o no la animacion de aparecer
         onClick={() => {
           addProduct(props.category, props.id);

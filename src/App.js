@@ -5,20 +5,14 @@ import { createGlobalStyle } from 'styled-components';
 import TestPage from './pages/TestPage';
 import HomePage from './pages/HomePage';
 import CartegoryPage from './pages/CategoryPage';
-import AdminEditProductPage from './pages/admin/AdminEditProductPage';
 import ProductPage from './pages/ProductPage';
 import NavBar from './components/NavBar';
-import AdminPage from './pages/admin/AdminPage';
-import AdminAddProductPage from './pages/admin/AdminAddProductPage';
-import AdminDeleteProductPage from './pages/admin/AdminDeleteProductPage';
 import { colorCrema } from './components/Styles';
 import LoginPage from './pages/admin/LoginPage';
 import { AuthProvider } from './auth/AuthContext';
 import PrivateRoute from './auth/PrivateRoute';
 import Page404 from './pages/admin/Page404';
 import Admin from './pages/adminPage/Admin';
-import { useEffect } from 'react';
-import { db } from './components/Firebase';
 import { AnalyticsProvider } from './components/adminPage/AnalitycsContext';
 
 //STYLES
