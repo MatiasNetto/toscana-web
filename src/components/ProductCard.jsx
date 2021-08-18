@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
+import { useAnalytics } from './adminPage/AnalitycsContext';
 import { colorBrown, desktopMediaQuery } from './Styles';
 
 /*################*/
@@ -159,6 +160,7 @@ const Price = styled.p`
 /*###################*/
 
 const ProductCard = (props) => {
+  const { addProduct } = useAnalytics();
   // const toLinkUrl = '/' + 'category/' + props.category + '/' + props.id; //la url a la que es direccionado al hacer click en el producto
   const toLinkUrl = `/category/${props.category}/${props.id}`;
   return (
@@ -166,8 +168,9 @@ const ProductCard = (props) => {
       <CardLink
         custom={props.customClick}
         justloaded={sessionStorage.getItem(props.category) === null ? 'true' : 'false'} //usado para aplicar o no la animacion de aparecer
-        as={props.customClick === true ? 'div' : Link}
-        onClick={props.customClick ? props.onClickCallback : null}
+        onClick={() => {
+          addProduct(props.category, props.id);
+        }}
         to={toLinkUrl}
       >
         {/* agregar loading en cada imagen, se crea un componente con la animacion de carga y con styledComponents localmente lo posicionas en el centro de la imagen */}

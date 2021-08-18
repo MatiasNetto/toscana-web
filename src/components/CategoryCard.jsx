@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { useAnalytics } from './adminPage/AnalitycsContext';
 import { desktopMediaQuery } from './Styles';
 
 /*################*/
@@ -58,10 +59,12 @@ const Img = styled.img`
 /*###################*/
 
 const CategoryCard = ({ img, category, align, text }) => {
+  const { addCategory } = useAnalytics();
   return (
     <>
       <CategoryLink
         onClick={() => {
+          addCategory(category);
           setTimeout(() => {
             window.scroll({
               top: 0,

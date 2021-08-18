@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import Menu from '../../components/adminPage/Menu';
@@ -18,6 +18,10 @@ const PageContainer = styled.div`
 
 const Admin = () => {
   const params = useParams();
+
+  useEffect(() => {
+    sessionStorage.clear();
+  }, []);
 
   console.log(params.section);
   return (
