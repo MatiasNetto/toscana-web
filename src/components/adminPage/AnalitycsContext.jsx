@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
+import { useAuth } from '../../auth/AuthContext';
 import { db } from '../Firebase';
 
 const AnalyticsContext = createContext();
@@ -10,7 +11,7 @@ const useAnalytics = () => {
 const today = new Date();
 let data = {
   id: JSON.stringify(Date.now()),
-  date: today.getDate() + '/' + today.getMonth() + '/' + today.getFullYear(),
+  date: JSON.stringify(today.getDate()) + JSON.stringify(today.getMonth()) + JSON.stringify(today.getFullYear()),
   time: today.getHours() + ':' + today.getMinutes(),
   device: window.innerWidth <= 992 ? 'mobile' : 'desktop',
   platform: navigator.platform,
@@ -27,29 +28,34 @@ const forceAnalytics = false;
 /*************/
 
 const AnalyticsProvider = ({ children }) => {
+  const { currentUser } = useAuth();
   useEffect(() => {
     const uploadData = async () => {
       await db.collection('analytics').doc(data.id).set(data);
     };
     //previene de agregar analiticas cuando estoy desarrollando
     if (!window.location.href.includes('localhost:300') || forceAnalytics) {
-      uploadData();
+      if (!currentUser) uploadData();
     }
   }, []);
 
   const addCategory = async (category) => {
     //previene de agregar analiticas cuando estoy desarrollando
     if (!window.location.href.includes('localhost:300') || forceAnalytics) {
-      categoriesVisited = [...categoriesVisited, category];
-      await db.collection('analytics').doc(data.id).update({ categories: categoriesVisited });
+      if (!currentUser) {
+        categoriesVisited = [...categoriesVisited, category];
+        await db.collection('analytics').doc(data.id).update({ categories: categoriesVisited });
+      }
     }
   };
 
   const addProduct = async (category, product) => {
     //previene de agregar analiticas cuando estoy desarrollando
     if (!window.location.href.includes('localhost:300') || forceAnalytics) {
-      productsVisited = [...productsVisited, `${category}/${product}`];
-      await db.collection('analytics').doc(data.id).update({ products: productsVisited });
+      if (!currentUser) {
+        productsVisited = [...productsVisited, `${category}/${product}`];
+        await db.collection('analytics').doc(data.id).update({ products: productsVisited });
+      }
     }
   };
 

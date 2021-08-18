@@ -8,10 +8,10 @@ import CartegoryPage from './pages/CategoryPage';
 import ProductPage from './pages/ProductPage';
 import NavBar from './components/NavBar';
 import { colorCrema } from './components/Styles';
-import LoginPage from './pages/admin/LoginPage';
+import LoginPage from './pages/adminPage/LoginPage';
 import { AuthProvider } from './auth/AuthContext';
 import PrivateRoute from './auth/PrivateRoute';
-import Page404 from './pages/admin/Page404';
+import Page404 from './pages/Page404';
 import Admin from './pages/adminPage/Admin';
 import { AnalyticsProvider } from './components/adminPage/AnalitycsContext';
 

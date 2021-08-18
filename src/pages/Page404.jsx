@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 //assets
-import image404 from '../../assets/404-IMG.png';
-import { desktopMediaQuery } from '../../components/Styles';
+import image404 from '../assets/404-IMG.png';
+import { desktopMediaQuery } from '../components/Styles';
 
 const Container = styled.div`
   height: 92vh;

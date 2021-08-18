@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useHistory, useParams } from 'react-router-dom';
+import { useAuth } from '../../auth/AuthContext';
 
 const Container = styled.div`
   height: 100vh;
@@ -53,6 +54,7 @@ const Text = styled.p`
 const Menu = () => {
   const history = useHistory();
   const params = useParams();
+  const { logOut } = useAuth();
 
   const handleLink = (value) => {
     setTimeout(() => {
@@ -81,6 +83,17 @@ const Menu = () => {
         >
           <Icon className="fas fa-tag"></Icon>
           <Text>PRODUCTS</Text>
+        </ListItem>
+
+        <ListItem
+          active={params.section === 'logout' ? true : false}
+          section={params.section}
+          onClick={() => {
+            logOut();
+          }}
+        >
+          <Icon className="fas fa-power-off"></Icon>
+          <Text>LogOut</Text>
         </ListItem>
       </MenuContainer>
     </Container>
